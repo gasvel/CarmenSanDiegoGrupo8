@@ -60,6 +60,29 @@ class PistaBanco implements Pista{
 
 }
 
+class PistaClub implements Pista {
+	
+	override darPista(Caso caso){
+		val chorro = caso.getResponsable()
+		val pista1 = chorro.getSenas().get(0)
+		val pista2 = chorro.getSenas().get(1)
+		val pistaHobbie = this.darPistaExtra(chorro.getHobbies())
+		
+		return ("Toma cocucha del chano y tus pistas" + pista1 + pista2 + pistaHobbie)
+	}
+	
+	def darPistaExtra(List<String> hobbies){
+		
+		val randomNum = Math.random
+		var pista = ""
+		
+		if (randomNum > 0.3){
+			pista = hobbies.get(0)
+		}
+		
+		return pista
+	}
+}
 
 
 

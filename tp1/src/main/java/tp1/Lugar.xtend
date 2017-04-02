@@ -49,5 +49,17 @@ class Banco extends Lugar {
 	}
 }
 
+class Club extends Lugar {
+	
+	new(Persona ocupanteLugar){
+		super(ocupanteLugar)
+	}
+	
+	override obtenerPista(Caso caso){
+		val pista = new PistaClub
+		return (this.ocupante.darInfo(pista,caso))
+	}
+}
+
 
 
