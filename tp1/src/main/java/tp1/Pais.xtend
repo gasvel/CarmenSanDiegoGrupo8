@@ -1,6 +1,13 @@
 package tp1
 
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
+
+
+@Observable
+@Accessors
+
 
 class Pais {
 	String nombre;
@@ -18,4 +25,13 @@ class Pais {
 	def getCaracteristicas(){
 		caracteristicas
 	}
+	
+	def getNombre(){
+		nombre
+	}
+	
+	override toString(){
+		getNombre
+	}
+	
 }

@@ -1,6 +1,9 @@
 package tp1
 
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+
+@Accessors
 
 class Caso {
 	
@@ -43,6 +46,11 @@ class Caso {
 	
 	def getObjetoRobado(){
 		objetoRobado
+	}
+	
+	def setPlanDeEscape(List<Pais> plan){
+		
+		planDeEscape = plan
 	}
 	
 	
