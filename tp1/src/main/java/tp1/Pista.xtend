@@ -4,9 +4,6 @@ import java.util.List
 
 interface Pista {
 	
-
-
-	
 	def darPista(Caso caso){
 		
 	}
@@ -17,7 +14,7 @@ class PistaBiblioteca implements Pista{
 	@Override
 	override darPista(Caso caso){
 		val villano = caso.getResponsable()
-		val senal = villano.senas.get(0)
+		val senal = villano.senas_particulares.get(0)
 		val pais = caso.planDeEscape.last()
 		val hobbie = this.darPistaExtra(villano.getHobbies())
 		
@@ -54,12 +51,7 @@ class PistaBanco implements Pista{
 	override darPista(Caso caso){
 		val destino = caso.planDeEscape.last()
 		val pista1 = destino.caracteristicas.get(0)
-		val pista2 = caso.responsable.senas.get(0)
+		val pista2 = caso.responsable.senas_particulares.get(0)
 		return ("Toma pistas papa:" + pista1 + pista2)
 	}
-
 }
-
-
-
-

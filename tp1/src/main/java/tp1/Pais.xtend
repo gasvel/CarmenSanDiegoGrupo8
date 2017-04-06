@@ -6,8 +6,6 @@ import org.uqbar.commons.utils.Observable
 
 @Observable
 @Accessors
-
-
 class Pais {
 	String nombre;
 	List<String> caracteristicas;
@@ -22,19 +20,9 @@ class Pais {
 	}
 	
 	new() {
-		
-	}
-	
-	def getCaracteristicas(){
-		caracteristicas
-	}
-	
-	def getNombre(){
-		nombre
 	}
 	
 	override toString(){
-		getNombre
+		this.getNombre
 	}
-	
 }

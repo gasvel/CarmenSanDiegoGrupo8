@@ -25,6 +25,7 @@ class Biblioteca extends Lugar {
 	}
 }
 
+
 class Embajada extends Lugar {
 
 	new(Persona ocupanteLugar){
@@ -48,6 +49,3 @@ class Banco extends Lugar {
 		return(this.ocupante.darInfo(pista,caso))
 	}
 }
-
-
-

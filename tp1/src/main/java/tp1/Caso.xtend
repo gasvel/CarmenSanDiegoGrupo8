@@ -6,7 +6,6 @@ import org.uqbar.commons.utils.Observable
 
 @Accessors
 @Observable
-
 class Caso {
 	
 	Villano responsable;
@@ -33,28 +32,4 @@ class Caso {
 		reporte = reporteC
 		objetoRobado = objetoR
 	}
-	
-	def getResponsable(){
-		return responsable
-	}
-	
-	def getPlanDeEscape(){
-		return planDeEscape
-	}
-	
-	def getReporte(){
-		reporte
-	}
-	
-	def getObjetoRobado(){
-		objetoRobado
-	}
-	
-	def setPlanDeEscape(List<Pais> plan){
-		
-		planDeEscape = plan
-	}
-	
-	
 }
-
