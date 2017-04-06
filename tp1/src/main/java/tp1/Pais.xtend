@@ -4,7 +4,6 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 
-
 @Observable
 @Accessors
 
@@ -20,6 +19,10 @@ class Pais {
 		caracteristicas = caracteristicasP
 		lugaresDeInteres = lugares
 		conexiones = paises
+	}
+	
+	new() {
+		
 	}
 	
 	def getCaracteristicas(){

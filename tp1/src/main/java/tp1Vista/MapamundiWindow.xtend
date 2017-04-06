@@ -10,6 +10,7 @@ import org.uqbar.arena.widgets.List
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Button
+import org.uqbar.arena.layout.HorizontalLayout
 
 class MapamundiWindow extends SimpleWindow<CarmenSanDiego>{
 	
@@ -23,10 +24,37 @@ class MapamundiWindow extends SimpleWindow<CarmenSanDiego>{
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
+		mainPanel => [
+			layout = new HorizontalLayout
+			
+			]
 		val panelIzq = new Panel(mainPanel)
+		val panelDer = new Panel(mainPanel)
 		panelIzq.layout = new VerticalLayout
 		
 		crearLista(panelIzq)
+		crearAtributos(panelDer)
+	}
+	
+	def crearAtributos(Panel panelDer){
+		new Label(panelDer).text = "Nombre:"
+		new Label(panelDer) => [
+			value <=> "paisElegido"
+		]
+		new Label(panelDer).text = "Caracteristicas"
+		new List(panelDer) => [
+			items <=> "paisElegido.caracteristicas"
+		]
+		
+		new Label(panelDer).text = "Conexiones"
+		new List(panelDer) => [
+			items <=> "paisElegido.conexiones"
+		]
+		
+		new Label(panelDer).text = "Lugares de interes"
+		new List(panelDer) => [
+			items <=> "paisElegido.lugaresDeInteres"
+		]
 	}
 	
 	def crearLista(Panel panelIzq){
@@ -48,8 +76,25 @@ class MapamundiWindow extends SimpleWindow<CarmenSanDiego>{
 
 		]
 		
+		new Button(panelIzq)=> [
+			caption = "Nuevo"
+			onClick [ | nuevoPais]
+		]
+		
+		new Button(panelIzq)=> [
+			caption = "Editar"
+			onClick [ | editarPais]
+		]
+		
 	}
 	
+	def editarPais() {
+		new EditarPaisWindow(this,modelObject.getPaisElegido).open()
+	}
+	
+	def nuevoPais(){
+		new NuevoPaisWindow(this).open()
+	}
 	
 	
 }

@@ -16,6 +16,7 @@ class CarmenSanDiego {
 	List<Pais> mapamundi
 	Caso casoActual
 	Pais paisElegido
+	Villano villanoElegido
 	
 
 	
@@ -68,5 +69,6 @@ class CarmenSanDiego {
    		ObservableUtils.firePropertyChanged(this, "mapamundi", newMapamundi)
 		
 	}
+	
 
 }

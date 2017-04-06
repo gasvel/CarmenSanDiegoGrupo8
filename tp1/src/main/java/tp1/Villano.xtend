@@ -1,6 +1,11 @@
 package tp1
 
 import java.util.List
+import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
+
+@Observable
+@Accessors
 
 class Villano extends Persona {
 	
@@ -21,12 +26,20 @@ class Villano extends Persona {
 		hobbies = hobbiesV
 	}
 	
+	def getSexo(){
+		sexo
+	}
+	
 	def getSenas(){
 		senas_particulares
 	}
 	
 	def getHobbies() {
 		hobbies
+	}
+	
+	override toString(){
+		nombre
 	}
 	
 	override darInfo(Pista pista, Caso caso){

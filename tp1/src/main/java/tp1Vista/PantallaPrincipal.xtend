@@ -50,7 +50,7 @@ class PantallaPrincipal extends SimpleWindow<CarmenSanDiego> {
 	}
 
 	def iniciarExpedientes(){
-		(new ExpedientesWindow(this, modelObject).open )
+		new ExpedientesWindow(this, modelObject).open 
 	}
 	
 }
