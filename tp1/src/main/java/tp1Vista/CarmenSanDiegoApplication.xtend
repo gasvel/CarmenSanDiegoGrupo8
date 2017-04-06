@@ -16,9 +16,7 @@ class CarmenSanDiegoApplication extends Application {
 	val egipto = new Pais("Egipto", new ArrayList<String>, new ArrayList<Lugar>,new ArrayList<Pais>)
 	val mexico = new Pais("Mexico", new ArrayList<String>, new ArrayList<Lugar>,new ArrayList<Pais>)
 	val noruega = new Pais("Noruega", new ArrayList<String>, new ArrayList<Lugar>,new ArrayList<Pais>)
-	val mapamundi = new ArrayList<Pais> 
 	val planDeE = new ArrayList<Pais>
-	
 
 	val caso = new Caso(carmenSanDiego, new ArrayList<Pais>, argentina,"A las 9 de la mañana en la ciudad del
  Cairo la comunidad científica fue
@@ -30,24 +28,23 @@ class CarmenSanDiegoApplication extends Application {
 escena del crimen no contaba con pista alguna
 , su misión como detective es desifrar el
  responsable de tal crímen y apresarlo.", "tumba")
-	
+ 
 	override protected createMainWindow() {
-		val juego = new CarmenSanDiego => [
+		 val juego = new CarmenSanDiego => [
 			planDeE.add(argentina)
 			planDeE.add(mexico)
-			mapamundi.add(argentina)
-			mapamundi.add(mexico)
-			mapamundi.add(noruega)
+			agregarNuevoPais(egipto)
+			agregarNuevoPais(mexico)
+			agregarNuevoPais(noruega)
 			agregarVillano(carmenSanDiego)
 			agregarVillano(pepe)
-			setMapamundi(mapamundi)
+
 			caso.setPlanDeEscape(planDeE)
 			setCasoActual(caso)
 					]
-
-	new PantallaPrincipal(this,juego)
-	
+		new PantallaPrincipal(this,juego)
 	}
+	
 	static def main(String[] args) {
 		new CarmenSanDiegoApplication().start
 	}

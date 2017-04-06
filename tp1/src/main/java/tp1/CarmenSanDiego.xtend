@@ -1,10 +1,8 @@
 package tp1
 
-
 import java.util.List
 import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.ObservableObject
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.ObservableUtils
 
@@ -12,29 +10,28 @@ import org.uqbar.commons.model.ObservableUtils
 @Observable
 class CarmenSanDiego {
 	List<Villano> villanos
-	List<Pais> mapamundi
+	Mapamundi mapamundi
 	Caso casoActual
 	Pais paisElegido
 	Villano villanoElegido
 	
 	new(){
 		villanos = new ArrayList<Villano>
-		mapamundi = new ArrayList<Pais>
+		mapamundi = new Mapamundi
 //		casosDisponibles = new ArrayList<Caso>
 	}
 	
-	def nuevoPais(String nombre, List<String> caracteristicas, List<Lugar> lugares, List<Pais> conexiones ){
-		var pais = new Pais(nombre, caracteristicas, lugares, conexiones)
-		mapamundi.add(pais)
+	def agregarNuevoPais(Pais pais){
+		mapamundi.agregarPais(pais)
 	}
-	
+
 	def agregarVillano(Villano villano){
 		villanos.add(villano)
 	}
 		
 	def eliminarPaisSeleccionado() {
 		var newMapamundi = mapamundi
-		newMapamundi.remove(paisElegido)
+		newMapamundi.eliminarPais(paisElegido)
 		
    		ObservableUtils.firePropertyChanged(this, "mapamundi", newMapamundi)	
 	}
