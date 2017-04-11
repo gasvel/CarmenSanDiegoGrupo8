@@ -14,10 +14,13 @@ class CarmenSanDiego {
 	Caso casoActual
 	Pais paisElegido
 	Villano villanoElegido
+	Pais ubicacionActual
+	List<Pais> recorridoCorrecto = new ArrayList<Pais>
+	List<Pais> recorridoIncorrecto = new ArrayList<Pais>
 	
 	new(){
 		villanos = new ArrayList<Villano>
-		mapamundi = new Mapamundi
+		mapamundi = new Mapamundi()
 //		casosDisponibles = new ArrayList<Caso>
 	}
 	
@@ -27,6 +30,14 @@ class CarmenSanDiego {
 
 	def agregarVillano(Villano villano){
 		villanos.add(villano)
+	}
+	
+	def agregarPaisCorrecto(Pais pais) {
+		recorridoCorrecto.add(pais)
+	}
+	
+	def setUbicacionActual(Pais paisActual){
+		ubicacionActual = paisActual
 	}
 		
 	def eliminarPaisSeleccionado() {

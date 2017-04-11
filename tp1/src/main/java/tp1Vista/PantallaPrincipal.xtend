@@ -5,9 +5,7 @@ import tp1.CarmenSanDiego
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.windows.Dialog
 
 class PantallaPrincipal extends SimpleWindow<CarmenSanDiego> {
 	

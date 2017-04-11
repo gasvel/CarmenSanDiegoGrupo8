@@ -66,11 +66,11 @@ class ExpedientesWindow extends SimpleWindow<CarmenSanDiego>{
 	}
 	
 	def editarVillano() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		(new EditarVillanoWindow(this, modelObject.getVillanoElegido())).open()
 	}
 	
 	def nuevoVillano() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		(new NuevoVillanoWindow(this)).open()
 	}
 	
 }

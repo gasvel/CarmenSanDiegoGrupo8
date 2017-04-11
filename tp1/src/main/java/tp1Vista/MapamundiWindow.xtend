@@ -11,7 +11,6 @@ import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.HorizontalLayout
-import java.util.ArrayList
 
 class MapamundiWindow extends SimpleWindow<CarmenSanDiego>{
 	
