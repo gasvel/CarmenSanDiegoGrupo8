@@ -2,10 +2,10 @@ package tp1
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
 import java.util.ArrayList
+import org.uqbar.commons.utils.TransactionalAndObservable
 
-@Observable
+@TransactionalAndObservable
 @Accessors
 class Villano extends Persona {
 	
@@ -29,9 +29,7 @@ class Villano extends Persona {
 		hobbies = hobbiesV
 	}
 		
-	override toString(){
-		this.nombre
-	}
+
 	
 	override darInfo(Pista pista, Caso caso){
 		"Atrapaste al malvado villano!"

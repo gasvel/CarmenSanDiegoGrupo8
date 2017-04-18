@@ -1,6 +1,8 @@
 package tp1
 
-class Persona {
+import org.uqbar.commons.model.Entity
+
+class Persona extends Entity {
 	
 	
 	

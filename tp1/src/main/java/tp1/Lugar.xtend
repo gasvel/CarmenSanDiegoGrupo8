@@ -21,7 +21,11 @@ class Biblioteca extends Lugar {
 	
 	override obtenerPista(Caso caso){
 		val pista = new PistaBiblioteca
-		return(this.ocupante.darInfo(pista,caso))
+		ocupante.darInfo(pista,caso)
+	}
+	
+	override toString(){
+		"Biblioteca"
 	}
 }
 
@@ -34,7 +38,11 @@ class Embajada extends Lugar {
 	
 	override obtenerPista(Caso caso){
 		val pista = new PistaEmbajada
-		return(this.ocupante.darInfo(pista,caso))
+		ocupante.darInfo(pista,caso)
+	}
+	
+	override toString(){
+		"Embajada"
 	}
 }
 
@@ -46,6 +54,10 @@ class Banco extends Lugar {
 	
 	override obtenerPista(Caso caso){
 		val pista = new PistaBanco
-		return(this.ocupante.darInfo(pista,caso))
+		ocupante.darInfo(pista,caso)
+	}
+	
+	override toString(){
+		"Banco"
 	}
 }

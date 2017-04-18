@@ -10,7 +10,8 @@ import org.uqbar.commons.model.ObservableUtils
 @Observable
 class CarmenSanDiego {
 	List<Villano> villanos
-	Mapamundi mapamundi
+	//Mapamundi mapamundi
+	List<Pais> mapamundi
 	Caso casoActual
 	Pais paisElegido
 	Villano villanoElegido
@@ -20,12 +21,14 @@ class CarmenSanDiego {
 	
 	new(){
 		villanos = new ArrayList<Villano>
-		mapamundi = new Mapamundi()
+		//mapamundi = new Mapamundi()
+		mapamundi = new ArrayList<Pais>
 //		casosDisponibles = new ArrayList<Caso>
 	}
 	
 	def agregarNuevoPais(Pais pais){
-		mapamundi.agregarPais(pais)
+		mapamundi.add(pais)
+		//mapamundi.agregarPais(pais)
 	}
 
 	def agregarVillano(Villano villano){
@@ -41,9 +44,32 @@ class CarmenSanDiego {
 	}
 		
 	def eliminarPaisSeleccionado() {
-		var newMapamundi = mapamundi
-		newMapamundi.eliminarPais(paisElegido)
 		
-   		ObservableUtils.firePropertyChanged(this, "mapamundi", newMapamundi)	
+		//newMapamundi.eliminarPais(paisElegido)
+		mapamundi.remove(paisElegido)
+		
+   		ObservableUtils.firePropertyChanged(this, "mapamundi")	
 	}
+	
+	def actualizarVillanos() {
+		ObservableUtils.firePropertyChanged(this,"villanos")
+	}
+	
+	def actualizarVillano() {
+		ObservableUtils.firePropertyChanged(this,"villanoElegido")
+	}
+	
+	def getVillanoElegido(){
+		villanoElegido
+	}
+	
+	def getPaisElegido(){
+		paisElegido
+	}
+	
+	def getCasoActual(){
+		casoActual
+	}
+	
+	
 }

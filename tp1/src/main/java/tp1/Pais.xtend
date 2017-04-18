@@ -2,9 +2,10 @@ package tp1
 
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.utils.TransactionalAndObservable
+import java.util.ArrayList
 
-@Observable
+@TransactionalAndObservable
 @Accessors
 class Pais {
 	String nombre;
@@ -22,7 +23,10 @@ class Pais {
 	new() {
 	}
 	
-	override toString(){
-		this.getNombre
+	def setLugares(ArrayList<Lugar> lugares){
+		lugaresDeInteres = lugares
 	}
+	
+	
+
 }
