@@ -3,29 +3,33 @@ package tp1
 import java.util.List
 import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.ObservableUtils
+import org.uqbar.commons.utils.Observable
 
 @Accessors
 @Observable
 class CarmenSanDiego {
 	List<Villano> villanos
-	Mapamundi mapamundi
+	//Mapamundi mapamundi
+	List<Pais> mapamundi
 	Caso casoActual
 	Pais paisElegido
 	Villano villanoElegido
 	Pais ubicacionActual
+	Pais destinoElegido
 	List<Pais> recorridoCorrecto = new ArrayList<Pais>
 	List<Pais> recorridoIncorrecto = new ArrayList<Pais>
 	
 	new(){
 		villanos = new ArrayList<Villano>
-		mapamundi = new Mapamundi
+		//mapamundi = new Mapamundi()
+		mapamundi = new ArrayList<Pais>
 //		casosDisponibles = new ArrayList<Caso>
 	}
 	
 	def agregarNuevoPais(Pais pais){
-		mapamundi.agregarPais(pais)
+		mapamundi.add(pais)
+		//mapamundi.agregarPais(pais)
 	}
 
 	def agregarVillano(Villano villano){
@@ -41,7 +45,10 @@ class CarmenSanDiego {
 	}
 		
 	def eliminarPaisSeleccionado() {
-		mapamundi.eliminarPais(paisElegido)
+		
+		//newMapamundi.eliminarPais(paisElegido)
+		mapamundi.remove(paisElegido)
+		
    		ObservableUtils.firePropertyChanged(this, "mapamundi")	
 	}
 	
@@ -64,4 +71,12 @@ class CarmenSanDiego {
 	def getCasoActual(){
 		casoActual
 	}
+	
+	def actualizarUbicacion(){
+		ubicacionActual = destinoElegido
+		ObservableUtils.firePropertyChanged(this, "ubicacionActual")
+		
+	}
+	
+	
 }
