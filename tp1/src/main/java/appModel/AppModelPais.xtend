@@ -65,7 +65,7 @@ class AppModelPais {
 	}
 	
 	def nuevoPais() {
-		model.mapamundi.add(pais)
+		model.mapamundi.agregarPais(pais)
 		ObservableUtils.firePropertyChanged(model, "mapamundi")
 	}
 }

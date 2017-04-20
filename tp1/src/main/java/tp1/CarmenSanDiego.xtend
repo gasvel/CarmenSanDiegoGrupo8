@@ -12,8 +12,8 @@ import appModel.AppModelPartida
 @Observable
 class CarmenSanDiego {
 	List<Villano> villanos
-	//Mapamundi mapamundi
-	List<Pais> mapamundi
+	Mapamundi mapamundi
+	//List<Pais> mapamundi
 	List<Lugar> lugares
 	Pais paisElegido
 	Villano villanoElegido
@@ -21,13 +21,13 @@ class CarmenSanDiego {
 	
 	new(){
 		villanos = new ArrayList<Villano>
-		//mapamundi = new Mapamundi()
-		mapamundi = new ArrayList<Pais>
+		mapamundi = new Mapamundi()
+		//mapamundi = new ArrayList<Pais>
 	}
 	
 	def agregarNuevoPais(Pais pais){
-		mapamundi.add(pais)
-		//mapamundi.agregarPais(pais)
+		//mapamundi.add(pais)
+		mapamundi.agregarPais(pais)
 	}
 	
 	def setLugares(List<Lugar> listLugares){
@@ -40,8 +40,8 @@ class CarmenSanDiego {
 		
 	def eliminarPaisSeleccionado() {
 		
-		//newMapamundi.eliminarPais(paisElegido)
-		mapamundi.remove(paisElegido)
+		mapamundi.eliminarPais(paisElegido)
+		//mapamundi.remove(paisElegido)
 		
    		ObservableUtils.firePropertyChanged(this, "mapamundi")	
 	}
@@ -67,7 +67,7 @@ class CarmenSanDiego {
 		val random = randomGenerator.nextInt(villanos.size())
 		val responsable = villanos.get(random)
 		var longitud = (Math.floor(Math.random()*((mapamundi.size())+1)))as int//+1
-		var paisesDisponibles = mapamundi
+		var paisesDisponibles = mapamundi.paises
 		val planDeEscape = new ArrayList<Pais>
 		for(var i = 0; i < longitud; i++){
 			var posicionPais = randomGenerator.nextInt(longitud)
