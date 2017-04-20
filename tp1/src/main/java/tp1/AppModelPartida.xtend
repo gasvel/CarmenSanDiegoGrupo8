@@ -12,6 +12,7 @@ class AppModelPartida{
 	CarmenSanDiego model
 	Caso casoActual
 	Pais ubicacionActual
+	Pais destinoElegido
 	List<Pais> recorridoCorrecto = new ArrayList<Pais>
 	List<Pais> recorridoIncorrecto = new ArrayList<Pais>
 	
@@ -20,6 +21,10 @@ class AppModelPartida{
 		model = modelo
 		casoActual = caso
 		ubicacionActual = paisDeInicio
+	}
+	
+	def actualizarUbicacion() {
+		ubicacionActual = destinoElegido
 	}
 	
 	

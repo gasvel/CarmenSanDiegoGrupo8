@@ -23,7 +23,6 @@ class CarmenSanDiego {
 		villanos = new ArrayList<Villano>
 		//mapamundi = new Mapamundi()
 		mapamundi = new ArrayList<Pais>
-//		casosDisponibles = new ArrayList<Caso>
 	}
 	
 	def agregarNuevoPais(Pais pais){
@@ -41,9 +40,7 @@ class CarmenSanDiego {
 	
 
 	
-	def setUbicacionActual(Pais paisActual){
-		ubicacionActual = paisActual
-	}
+
 		
 	def eliminarPaisSeleccionado() {
 		
@@ -69,27 +66,20 @@ class CarmenSanDiego {
 		paisElegido
 	}
 	
-	def getCasoActual(){
-		casoActual
-	}
-	
-	def actualizarUbicacion(){
-		ubicacionActual = destinoElegido
-		ObservableUtils.firePropertyChanged(this, "ubicacionActual")
-		
-	}
+
 	
 	def generarPartida() {
 		val randomGenerator = new Random()
 		val random = randomGenerator.nextInt(villanos.size())
 		val responsable = villanos.get(random)
-		val longitud = (Math.floor(Math.random()*(mapamundi.size() - (1 + 1) ) + (1) ))as int //+1
+		var longitud = (Math.floor(Math.random()*((mapamundi.size())+1)))as int//+1
 		var paisesDisponibles = mapamundi
 		val planDeEscape = new ArrayList<Pais>
 		for(var i = 0; i < longitud; i++){
 			var posicionPais = randomGenerator.nextInt(longitud)
 			planDeEscape.add(paisesDisponibles.get(posicionPais))
 			paisesDisponibles.remove(posicionPais)
+			longitud--
 		}
 		
 		val paisDeInicio = planDeEscape.get(0)
