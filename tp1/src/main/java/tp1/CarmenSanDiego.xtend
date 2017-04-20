@@ -6,6 +6,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.utils.Observable
 import java.util.Random
+import appModel.AppModelPartida
 
 @Accessors
 @Observable
@@ -17,7 +18,6 @@ class CarmenSanDiego {
 	Pais paisElegido
 	Villano villanoElegido
 	Pais destinoElegido
-	
 	
 	new(){
 		villanos = new ArrayList<Villano>
@@ -37,10 +37,6 @@ class CarmenSanDiego {
 	def agregarVillano(Villano villano){
 		villanos.add(villano)
 	}
-	
-
-	
-
 		
 	def eliminarPaisSeleccionado() {
 		
@@ -66,8 +62,6 @@ class CarmenSanDiego {
 		paisElegido
 	}
 	
-
-	
 	def generarPartida() {
 		val randomGenerator = new Random()
 		val random = randomGenerator.nextInt(villanos.size())
@@ -86,7 +80,5 @@ class CarmenSanDiego {
 		val caso = new Caso(responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
 		val partida = new AppModelPartida(this, caso, paisDeInicio)
 		return partida
-	}
-	
-	
+	}	
 }

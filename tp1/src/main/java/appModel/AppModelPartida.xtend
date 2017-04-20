@@ -1,9 +1,12 @@
-package tp1
+package appModel
 
 import java.util.List
 import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
+import tp1.CarmenSanDiego
+import tp1.Caso
+import tp1.Pais
 
 @Accessors
 @Observable
@@ -16,7 +19,6 @@ class AppModelPartida{
 	List<Pais> recorridoCorrecto = new ArrayList<Pais>
 	List<Pais> recorridoIncorrecto = new ArrayList<Pais>
 	
-	
 	new(CarmenSanDiego modelo, Caso caso, Pais paisDeInicio){
 		model = modelo
 		casoActual = caso
@@ -26,6 +28,4 @@ class AppModelPartida{
 	def actualizarUbicacion() {
 		ubicacionActual = destinoElegido
 	}
-	
-	
 }
