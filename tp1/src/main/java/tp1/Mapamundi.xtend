@@ -15,6 +15,10 @@ class Mapamundi {
 		paises = newArrayList()
 	}
 	
+	def getAll() {
+		paises
+	}
+	
 	def int size(){
 		paises.size
 	}

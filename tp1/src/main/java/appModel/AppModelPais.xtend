@@ -7,6 +7,7 @@ import tp1.Pais
 import tp1.CarmenSanDiego
 import tp1.Lugar
 
+
 @Accessors
 @Observable
 class AppModelPais {
@@ -60,7 +61,9 @@ class AppModelPais {
 	}
 	
 	def actualizarPaises(){
+		
 		model.paisElegido = pais
+		
 		ObservableUtils.firePropertyChanged(model, "paisElegido")
 	}
 	
@@ -68,4 +71,5 @@ class AppModelPais {
 		model.mapamundi.agregarPais(pais)
 		ObservableUtils.firePropertyChanged(model, "mapamundi")
 	}
+	
 }

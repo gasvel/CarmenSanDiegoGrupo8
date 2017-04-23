@@ -27,6 +27,21 @@ class Pais {
 		lugaresDeInteres = lugares
 	}
 	
+	def nuevoInformante(){
+		lugaresDeInteres.forEach[setOcupante(new Informante())]
+	}
+	
+	def nuevoCuidador(){
+		lugaresDeInteres.forEach[setOcupante(new Cuidador())]
+	}
+	
+	def nuevoVillano(Villano responsable){
+		lugaresDeInteres.forEach[setOcupante(new InformanteFinal())]
+		val ubicacionVillano = (lugaresDeInteres.last())
+		ubicacionVillano.setOcupante(responsable)
+		lugaresDeInteres.remove(lugaresDeInteres.last())
+		lugaresDeInteres.add(ubicacionVillano)
+	}
 	
 
 }

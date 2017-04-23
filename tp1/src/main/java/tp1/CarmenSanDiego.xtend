@@ -5,7 +5,6 @@ import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.utils.Observable
-import java.util.Random
 import appModel.AppModelPartida
 
 @Accessors
@@ -13,20 +12,19 @@ import appModel.AppModelPartida
 class CarmenSanDiego {
 	List<Villano> villanos
 	Mapamundi mapamundi
-	//List<Pais> mapamundi
+
 	List<Lugar> lugares
 	Pais paisElegido
 	Villano villanoElegido
 	Pais destinoElegido
 	
+	
 	new(){
 		villanos = new ArrayList<Villano>
 		mapamundi = new Mapamundi()
-		//mapamundi = new ArrayList<Pais>
 	}
 	
 	def agregarNuevoPais(Pais pais){
-		//mapamundi.add(pais)
 		mapamundi.agregarPais(pais)
 	}
 	
@@ -37,11 +35,15 @@ class CarmenSanDiego {
 	def agregarVillano(Villano villano){
 		villanos.add(villano)
 	}
+	
+
+	
+
 		
 	def eliminarPaisSeleccionado() {
 		
 		mapamundi.eliminarPais(paisElegido)
-		//mapamundi.remove(paisElegido)
+		
 		
    		ObservableUtils.firePropertyChanged(this, "mapamundi")	
 	}
@@ -62,23 +64,57 @@ class CarmenSanDiego {
 		paisElegido
 	}
 	
+	def randomWithRange(int min, int max)
+	{
+   		val range = (max - min) + 1  
+   		return (((Math.random() * range) + min) as int)
+	}
+	
+
+	
 	def generarPartida() {
-		val randomGenerator = new Random()
-		val random = randomGenerator.nextInt(villanos.size())
-		val responsable = villanos.get(random)
-		var longitud = (Math.floor(Math.random()*((mapamundi.size())+1)))as int//+1
-		var paisesDisponibles = mapamundi.paises
+		
+		val responsable = generarResponsable()		
+		val planDeEscape = generarPlanDeEscape(responsable)
+		val paisDeInicio = planDeEscape.get(0)
+		val caso = new Caso(responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
+		val partida = new AppModelPartida(this, caso)
+		return partida
+	}
+	
+	// ESTO ASIGNA MAL
+	
+	def generarPlanDeEscape(Villano responsable) {
+		var longitud = randomWithRange(mapamundi.size(),2)
+		var paisesDisponibles = mapamundi.getAll()
 		val planDeEscape = new ArrayList<Pais>
-		for(var i = 0; i < longitud; i++){
-			var posicionPais = randomGenerator.nextInt(longitud)
-			planDeEscape.add(paisesDisponibles.get(posicionPais))
+		while(longitud > 0){
+			val posicionPais = randomWithRange(longitud, 0)
+			val pais = paisesDisponibles.get(posicionPais)
+			planDeEscape.add(pais)
 			paisesDisponibles.remove(posicionPais)
 			longitud--
 		}
+		asignarOcupantes(planDeEscape,responsable)
+		return planDeEscape
 		
-		val paisDeInicio = planDeEscape.get(0)
-		val caso = new Caso(responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
-		val partida = new AppModelPartida(this, caso, paisDeInicio)
-		return partida
-	}	
+	}
+	
+	def void asignarOcupantes(ArrayList<Pais> paises, Villano responsable) {
+		paises.forEach[ if(it == paises.last()){
+			it.nuevoVillano(responsable)
+		}else{
+			it.nuevoInformante()
+		}]
+		//mapamundi.agregarCuidadores(paises)
+	}
+	
+	def generarResponsable() {
+		val random = randomWithRange(villanos.size(),0)
+		villanos.get(random)
+	}
+	
+
+	
+	
 }

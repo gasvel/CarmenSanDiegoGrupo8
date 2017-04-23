@@ -4,20 +4,23 @@ class Lugar {
 	
 	public Persona ocupante;
 	
-	new(Persona ocupanteLugar){
-		ocupante = ocupanteLugar
+	new(){
+		
 	}
+
 	
 	def obtenerPista(Caso caso){
 		
+	}
+	
+	def setOcupante(Persona nuevoOcupante){
+		ocupante = nuevoOcupante
 	}
 }
 
 class Biblioteca extends Lugar {
 	
-	new(Persona ocupanteLugar) {
-		super(ocupanteLugar)
-	}
+
 	
 	override obtenerPista(Caso caso){
 		val pista = new PistaBiblioteca
@@ -32,10 +35,7 @@ class Biblioteca extends Lugar {
 
 class Embajada extends Lugar {
 
-	new(Persona ocupanteLugar){
-		super(ocupanteLugar)
-	}
-	
+
 	override obtenerPista(Caso caso){
 		val pista = new PistaEmbajada
 		ocupante.darInfo(pista,caso)
@@ -48,10 +48,7 @@ class Embajada extends Lugar {
 
 
 class Banco extends Lugar {
-	new(Persona ocupanteLugar){
-		super(ocupanteLugar)
-	}
-	
+
 	override obtenerPista(Caso caso){
 		val pista = new PistaBanco
 		ocupante.darInfo(pista,caso)
