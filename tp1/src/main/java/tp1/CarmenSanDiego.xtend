@@ -6,27 +6,23 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.utils.Observable
 import appModel.AppModelPartida
+import tp1.RepoPaises
+import org.uqbar.commons.utils.ApplicationContext
 
 @Accessors
 @Observable
 class CarmenSanDiego {
 	List<Villano> villanos
-	Mapamundi mapamundi
-
 	List<Lugar> lugares
-	Pais paisElegido
 	Villano villanoElegido
 	Pais destinoElegido
 	
 	
 	new(){
 		villanos = new ArrayList<Villano>
-		mapamundi = new Mapamundi()
 	}
 	
-	def agregarNuevoPais(Pais pais){
-		mapamundi.agregarPais(pais)
-	}
+
 	
 	def setLugares(List<Lugar> listLugares){
 		lugares = listLugares
@@ -40,13 +36,7 @@ class CarmenSanDiego {
 	
 
 		
-	def eliminarPaisSeleccionado() {
-		
-		mapamundi.eliminarPais(paisElegido)
-		
-		
-   		ObservableUtils.firePropertyChanged(this, "mapamundi")	
-	}
+
 	
 	def actualizarVillanos() {
 		ObservableUtils.firePropertyChanged(this,"villanos")
@@ -59,10 +49,7 @@ class CarmenSanDiego {
 	def getVillanoElegido(){
 		villanoElegido
 	}
-	
-	def getPaisElegido(){
-		paisElegido
-	}
+
 	
 	def randomWithRange(int min, int max)
 	{
@@ -84,8 +71,9 @@ class CarmenSanDiego {
 	
 	
 	def generarPlanDeEscape(Villano responsable) {
-		var longitud = randomWithRange(mapamundi.size(),2)
-		var paisesDisponibles = mapamundi.paises
+		var longitud = randomWithRange(repoPaises.getPaises.size(),2)
+		var paisesDisponibles = new ArrayList<Pais>
+		paisesDisponibles.addAll(repoPaises.getPaises)
 		val planDeEscape = new ArrayList<Pais>
 		while(longitud > 0){
 			val posicionPais = randomWithRange(longitud, 0)
@@ -96,27 +84,44 @@ class CarmenSanDiego {
 			
 		}
 		asignarOcupantes(planDeEscape, responsable)
+		asignarCuidadores(paisesDisponibles)
 
 		return planDeEscape
 		
 	}
 	
+	def asignarCuidadores(ArrayList<Pais> paises) {
+		
+		paises.forEach[ 
+			it.nuevoCuidador() 
+			repoPaises.update(it)
+		]
+	}
+	
 
 	
 	def void asignarOcupantes(ArrayList<Pais> paises, Villano responsable) {
-		paises.forEach[ if(it == paises.last()){
-			it.nuevoVillano(responsable)
-		}else{
+		paises.forEach[ 
 			it.nuevoInformante()
-		}]
-		mapamundi.paises.forEach[if (!paises.contains(it)){
-			it.nuevoCuidador()
-		}]
+			repoPaises.update(it)
+		]
+		val paisModificado = paises.last()
+		paisModificado.nuevoVillano(responsable)
+		repoPaises.update(paisModificado)
+
 	}
 	
 	def generarResponsable() {
-		val random = randomWithRange(villanos.size(),0)
-		villanos.get(random)
+		val random = randomWithRange(repoVillanos.villanos.size(),0)
+		repoVillanos.villanos.get(random)
+	}
+	
+	def RepoVillanos getRepoVillanos(){
+		ApplicationContext.instance.getSingleton(typeof(Villano))
+	}
+	
+	def RepoPaises getRepoPaises() {
+		ApplicationContext.instance.getSingleton(typeof(Pais))
 	}
 	
 

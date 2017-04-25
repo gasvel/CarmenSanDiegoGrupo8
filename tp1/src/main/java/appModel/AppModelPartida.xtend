@@ -13,7 +13,7 @@ import tp1.Pais
 @Observable
 class AppModelPartida{
 	
-	CarmenSanDiego model
+	
 	Caso casoActual
 	Pais ubicacionActual
 	Pais destinoElegido
@@ -22,7 +22,6 @@ class AppModelPartida{
 	List<Pais> recorrido = new ArrayList<Pais>
 	
 	new(CarmenSanDiego modelo, Caso caso){
-		model = modelo
 		casoActual = caso
 		ubicacionActual = caso.lugarDeRobo
 	}
@@ -31,13 +30,6 @@ class AppModelPartida{
 		recorrido.add(ubicacionActual)
 		ubicacionActual = destinoElegido
 		ObservableUtils.firePropertyChanged(this,"ubicacionActual")
-		val ultimo = recorrido.last()
-		if (casoActual.planDeEscape.contains(ultimo)){
-			recorridoCorrecto.add(ultimo)
-		}
-		else{
-			recorridoIncorrecto.add(ultimo)
-		}
 	}
 	
 	

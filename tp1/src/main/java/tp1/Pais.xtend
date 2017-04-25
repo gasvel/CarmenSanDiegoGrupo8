@@ -4,20 +4,21 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.Entity
 
 @Observable
 @Accessors
-class Pais {
+class Pais extends Entity{
 	String nombre;
 	List<String> caracteristicas;
 	List<Lugar> lugaresDeInteres;
-	List<Pais> conexiones;
+	List<Pais> conexiones = new ArrayList<Pais>
 	
-	new(String nombreP, List<String> caracteristicasP, List<Lugar> lugares, List<Pais> paises){
+	new(String nombreP, List<String> caracteristicasP, List<Lugar> lugares){
 		nombre = nombreP
 		caracteristicas = caracteristicasP
 		lugaresDeInteres = lugares
-		conexiones = paises
+
 	}
 	
 	new() {
@@ -39,8 +40,7 @@ class Pais {
 		lugaresDeInteres.forEach[setOcupante(new InformanteFinal())]
 		val ubicacionVillano = (lugaresDeInteres.last())
 		ubicacionVillano.setOcupante(responsable)
-		lugaresDeInteres.remove(lugaresDeInteres.last())
-		lugaresDeInteres.add(ubicacionVillano)
+		
 	}
 	
 

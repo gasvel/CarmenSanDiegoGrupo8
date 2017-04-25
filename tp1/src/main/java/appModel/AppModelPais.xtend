@@ -4,9 +4,9 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.ObservableUtils
 import tp1.Pais
-import tp1.CarmenSanDiego
 import tp1.Lugar
-
+import org.uqbar.commons.utils.ApplicationContext
+import tp1.RepoPaises
 
 @Accessors
 @Observable
@@ -15,12 +15,10 @@ class AppModelPais {
 	String caracteristicaSeleccionada
 	Lugar lugarSeleccionado
 	Pais conexionSeleccionada
-	CarmenSanDiego model
 	Pais pais
 	
-	new(Pais otroPais, CarmenSanDiego modelo) {
+	new(Pais otroPais) {
 		pais = otroPais
-		model = modelo
 		
 	}
 	
@@ -62,14 +60,16 @@ class AppModelPais {
 	
 	def actualizarPaises(){
 		
-		model.paisElegido = pais
+		repoPaises.update(pais)
 		
-		ObservableUtils.firePropertyChanged(model, "paisElegido")
 	}
 	
 	def nuevoPais() {
-		model.mapamundi.agregarPais(pais)
-		ObservableUtils.firePropertyChanged(model, "mapamundi")
+		repoPaises.create(pais)
+	}
+	
+	def RepoPaises getRepoPaises() {
+		ApplicationContext.instance.getSingleton(typeof(Pais))
 	}
 	
 }

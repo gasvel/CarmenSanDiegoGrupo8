@@ -6,6 +6,8 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.model.Entity
+import tp1.RepoVillanos
+import org.uqbar.commons.utils.ApplicationContext
 
 @Observable
 @Accessors
@@ -13,13 +15,12 @@ import org.uqbar.commons.model.Entity
 class AppModelVillano extends Entity {
 	
 	Villano villano
-	CarmenSanDiego model
 	String hobbie
 	String sena
 
-	new(Villano villanoNuevo, CarmenSanDiego modelo){
+	new(Villano villanoNuevo){
 		villano = villanoNuevo
-		model = modelo		
+	
 	}
 	
 	def agregarSenaActual() {
@@ -37,13 +38,17 @@ class AppModelVillano extends Entity {
 	}
 	
 	def nuevoVillano() {
-		model.villanos.add(villano)
+		repoVillanos.create(villano)
 
-		ObservableUtils.firePropertyChanged(model,"villanos")	
+		ObservableUtils.firePropertyChanged(this,"villano")	
 	}
 	
 	def actualizarVillanos() {
-		model.villanoElegido = villano
-		ObservableUtils.firePropertyChanged(model,"villanoElegido")
+		repoVillanos.update(villano)
+		ObservableUtils.firePropertyChanged(this,"villano")
+	}
+	
+	def RepoVillanos getRepoVillanos(){
+		ApplicationContext.instance.getSingleton(typeof(Villano))
 	}
 }
