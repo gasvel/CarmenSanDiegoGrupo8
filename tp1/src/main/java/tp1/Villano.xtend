@@ -3,9 +3,9 @@ package tp1
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
-import org.uqbar.commons.utils.TransactionalAndObservable
+import org.uqbar.commons.utils.Observable
 
-@TransactionalAndObservable
+@Observable
 @Accessors
 class Villano extends Persona {
 	

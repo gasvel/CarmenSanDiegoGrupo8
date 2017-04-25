@@ -82,11 +82,10 @@ class CarmenSanDiego {
 		return partida
 	}
 	
-	// ESTO ASIGNA MAL
 	
 	def generarPlanDeEscape(Villano responsable) {
 		var longitud = randomWithRange(mapamundi.size(),2)
-		var paisesDisponibles = mapamundi.getAll()
+		var paisesDisponibles = mapamundi.paises
 		val planDeEscape = new ArrayList<Pais>
 		while(longitud > 0){
 			val posicionPais = randomWithRange(longitud, 0)
@@ -94,11 +93,15 @@ class CarmenSanDiego {
 			planDeEscape.add(pais)
 			paisesDisponibles.remove(posicionPais)
 			longitud--
+			
 		}
-		asignarOcupantes(planDeEscape,responsable)
+		asignarOcupantes(planDeEscape, responsable)
+
 		return planDeEscape
 		
 	}
+	
+
 	
 	def void asignarOcupantes(ArrayList<Pais> paises, Villano responsable) {
 		paises.forEach[ if(it == paises.last()){
@@ -106,7 +109,9 @@ class CarmenSanDiego {
 		}else{
 			it.nuevoInformante()
 		}]
-		//mapamundi.agregarCuidadores(paises)
+		mapamundi.paises.forEach[if (!paises.contains(it)){
+			it.nuevoCuidador()
+		}]
 	}
 	
 	def generarResponsable() {
