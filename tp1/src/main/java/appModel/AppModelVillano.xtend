@@ -1,25 +1,25 @@
 package appModel
 
 import tp1.Villano
-import tp1.CarmenSanDiego
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.ObservableUtils
-import org.uqbar.commons.model.Entity
 import tp1.RepoVillanos
 import org.uqbar.commons.utils.ApplicationContext
 
 @Observable
 @Accessors
 
-class AppModelVillano extends Entity {
+class AppModelVillano {
 	
 	Villano villano
 	String hobbie
 	String sena
+	AppModelVillanos listVillanos
 
-	new(Villano villanoNuevo){
+	new(Villano villanoNuevo, AppModelVillanos model){
 		villano = villanoNuevo
+		listVillanos = model
 	
 	}
 	
@@ -40,12 +40,12 @@ class AppModelVillano extends Entity {
 	def nuevoVillano() {
 		repoVillanos.create(villano)
 
-		ObservableUtils.firePropertyChanged(this,"villano")	
+		ObservableUtils.firePropertyChanged(listVillanos,"villanos")	
 	}
 	
 	def actualizarVillanos() {
 		repoVillanos.update(villano)
-		ObservableUtils.firePropertyChanged(this,"villano")
+		ObservableUtils.firePropertyChanged(listVillanos,"villanos")
 	}
 	
 	def RepoVillanos getRepoVillanos(){

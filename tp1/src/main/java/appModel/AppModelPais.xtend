@@ -16,9 +16,11 @@ class AppModelPais {
 	Lugar lugarSeleccionado
 	Pais conexionSeleccionada
 	Pais pais
+	AppModelMapamundi mapamundi
 	
-	new(Pais otroPais) {
+	new(Pais otroPais, AppModelMapamundi model) {
 		pais = otroPais
+		mapamundi = model
 		
 	}
 	
@@ -61,11 +63,14 @@ class AppModelPais {
 	def actualizarPaises(){
 		
 		repoPaises.update(pais)
+		ObservableUtils.firePropertyChanged(mapamundi, "paises")
+		
 		
 	}
 	
 	def nuevoPais() {
 		repoPaises.create(pais)
+		ObservableUtils.firePropertyChanged(mapamundi, "paises")
 	}
 	
 	def RepoPaises getRepoPaises() {
