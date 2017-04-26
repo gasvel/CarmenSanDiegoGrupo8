@@ -4,7 +4,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
 import org.uqbar.commons.utils.Observable
-import org.uqbar.commons.model.UserException
+import excepciones.VillanoInvalidoException
 
 @Observable
 @Accessors
@@ -20,27 +20,41 @@ class Villano extends Persona {
 		hobbies = new ArrayList<String>
 	}
 	
-
-	
-	new( String nombreV,String sexoV, List<String> senas, List<String> hobbiesV){
-		
+	new(String nombreV,String sexoV, List<String> senas, List<String> hobbiesV){
 		nombre = nombreV
 		sexo = sexoV
 		senas_particulares = senas
 		hobbies = hobbiesV
 	}
-		
-
 	
 	override darInfo(Pista pista, Caso caso){
 		"Atrapaste al malvado villano!"
 	}
 	
 	def validar() {
-		if((senas_particulares.size() < 2) || (hobbies.size() < 2)){
-			throw new UserException("La cantidad de señas y hobbies debe ser mayor a 2")
-			
+		if(!esVillanoValido){
+			throw new VillanoInvalidoException("El villano tiene que nombre, sexo y la cantidad de señas y hobbies debe ser mayor a 2")
 		}
+	}
+	
+	private def boolean tieneNombreValido(){
+		!nombre.isNullOrEmpty
+	}
+	
+	private def boolean tieneSexoValido(){
+		!sexo.isNullOrEmpty
+	}
+	
+	private def boolean tieneSeniasValido(){
+		senas_particulares.size >= 2
+	}
+	
+	private def boolean tieneHobbiesValido(){
+		hobbies.size >=2
+	}
+	
+	def boolean esVillanoValido(){
+		tieneNombreValido && tieneSexoValido && tieneSeniasValido && tieneHobbiesValido
 	}
 	
 }

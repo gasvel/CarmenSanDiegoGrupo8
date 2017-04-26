@@ -1,3 +1,5 @@
+package test
+
 import static org.junit.Assert.*;
 import org.junit.Before
 import org.junit.Test
@@ -9,7 +11,7 @@ import tp1.Villano
 import tp1.Pais
 import tp1.Lugar
 
-class TestViajar {
+class ViajarTest {
 	
 	AppModelPartida partida
 	CarmenSanDiego modelo

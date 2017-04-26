@@ -8,6 +8,7 @@ import org.uqbar.commons.utils.Observable
 import appModel.AppModelPartida
 import tp1.RepoPaises
 import org.uqbar.commons.utils.ApplicationContext
+import excepciones.VillanoInvalidoException
 
 @Accessors
 @Observable
@@ -29,7 +30,11 @@ class CarmenSanDiego {
 	}
 
 	def agregarVillano(Villano villano){
-		villanos.add(villano)
+		if(villano.esVillanoValido){
+			villanos.add(villano)
+		} else{
+			throw new VillanoInvalidoException("Debe ingresar un villano válido")
+		}
 	}
 	
 
