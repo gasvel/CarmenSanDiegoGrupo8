@@ -79,11 +79,10 @@ class VillanoTest {
 		assertTrue(villano.esVillanoValido)
 	}
 	
-	@Test(expected=VillanoInvalidoException.class)
+	@Test(expected=VillanoInvalidoException)
 	def void testValidarVillanoInvalidoLanzaExcepcion(){
 		val pepe = new Villano()
-		
-    	pepe.validar
+    		pepe.validar 
 	}
 
 }
