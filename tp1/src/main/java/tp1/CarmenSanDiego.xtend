@@ -71,12 +71,12 @@ class CarmenSanDiego {
 	
 	
 	def generarPlanDeEscape(Villano responsable) {
-		var longitud = randomWithRange(repoPaises.getPaises.size(),2)
+		var longitud = randomWithRange(2,repoPaises.getPaises.size())
 		var paisesDisponibles = new ArrayList<Pais>
 		paisesDisponibles.addAll(repoPaises.getPaises)
 		val planDeEscape = new ArrayList<Pais>
 		while(longitud > 0){
-			val posicionPais = randomWithRange(longitud, 0)
+			val posicionPais = randomWithRange(0,longitud)
 			val pais = paisesDisponibles.get(posicionPais)
 			planDeEscape.add(pais)
 			paisesDisponibles.remove(posicionPais)
@@ -112,7 +112,7 @@ class CarmenSanDiego {
 	}
 	
 	def generarResponsable() {
-		val random = randomWithRange(repoVillanos.villanos.size(),0)
+		val random = randomWithRange(0,repoVillanos.villanos.size()-1)
 		repoVillanos.villanos.get(random)
 	}
 	

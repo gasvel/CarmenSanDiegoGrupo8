@@ -3,6 +3,7 @@ package tp1
 import org.uqbar.commons.model.CollectionBasedRepo
 import java.util.List
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.UserException
 
 @Observable
 class RepoPaises extends CollectionBasedRepo<Pais>{
@@ -40,9 +41,31 @@ class RepoPaises extends CollectionBasedRepo<Pais>{
 		new Pais
 	}
 	
-	def filterPaises(List<Pais> paises){
-		paises.filter[pais | !paises.contains(pais)].toList()
+	override validateCreate(Pais pais){
+		pais.validar()
+		validarPaisRepetido(pais)
 	}
+	
+	def validarPaisRepetido(Pais pais) {
+		val nombre = pais.nombre
+		if (! (this.get(nombre) == null)) {
+			throw new UserException("Ya existe un pais con el nombre: " + nombre)
+		}
+	}
+	
+	override def update(Pais pais){
+		pais.validar
+		validarConexiones(pais)
+		super.update(pais)
+	}
+	
+	def validarConexiones(Pais pais) {
+		if(pais.conexiones.size() == 0){
+			throw new UserException("El pais debe tener al menos una conexion con otro pais")
+		}
+	}
+	
+
 	
 	override def Class<Pais> getEntityType() {
 		typeof(Pais)

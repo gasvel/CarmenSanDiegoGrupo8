@@ -4,6 +4,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
 import org.uqbar.commons.utils.Observable
+import org.uqbar.commons.model.UserException
 
 @Observable
 @Accessors
@@ -34,4 +35,12 @@ class Villano extends Persona {
 	override darInfo(Pista pista, Caso caso){
 		"Atrapaste al malvado villano!"
 	}
+	
+	def validar() {
+		if((senas_particulares.size() < 2) || (hobbies.size() < 2)){
+			throw new UserException("La cantidad de señas y hobbies debe ser mayor a 2")
+			
+		}
+	}
+	
 }

@@ -21,4 +21,5 @@ class Caso {
 		lugarDeRobo = lugar
 		objetoRobado = objetoR
 	}
+
 }
