@@ -76,7 +76,7 @@ class CarmenSanDiego {
 	
 	
 	def generarPlanDeEscape(Villano responsable) {
-		var longitud = randomWithRange(2,repoPaises.getPaises.size())
+		var longitud = randomWithRange(1,repoPaises.getPaises.size()-1)
 		var paisesDisponibles = new ArrayList<Pais>
 		paisesDisponibles.addAll(repoPaises.getPaises)
 		val planDeEscape = new ArrayList<Pais>

@@ -28,7 +28,7 @@ class Villano extends Persona {
 	}
 	
 	override darInfo(Pista pista, Caso caso){
-		"Atrapaste al malvado villano!"
+		"ALTO! Detengase: " + nombre
 	}
 	
 	def validar() {

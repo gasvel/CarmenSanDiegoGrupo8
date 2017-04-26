@@ -33,6 +33,7 @@ class AppModelPartida{
 		recorrido.add(ubicacionActual)
 		ubicacionActual = destinoElegido
 		ObservableUtils.firePropertyChanged(this,"ubicacionActual")
+		ObservableUtils.firePropertyChanged(ubicacionActual,"lugaresDeInteres")
 	}
 	
 	def nuevaOrdenDeArresto(Villano villanoElegido) {

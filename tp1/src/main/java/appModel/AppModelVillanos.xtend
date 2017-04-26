@@ -4,7 +4,6 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import tp1.Villano
-import tp1.OrdenDeArresto
 import org.uqbar.commons.utils.ApplicationContext
 import tp1.RepoVillanos
 
@@ -26,7 +25,7 @@ class AppModelVillanos {
 	
 	def nuevaOrdenDeArresto() {
 		partida.nuevaOrdenDeArresto(villanoElegido)
-		
+
 	}
 	
 	def RepoVillanos getRepoVillanos() {
