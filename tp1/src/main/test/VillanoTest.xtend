@@ -1,17 +1,15 @@
-package test;
-
-import static org.junit.Assert.*;
-import java.util.ArrayList;
-import tp1.Villano;
+import static org.junit.Assert.*
+import java.util.ArrayList
+import tp1.Villano
 import org.junit.Before
 import org.junit.Test
 import excepciones.VillanoInvalidoException
 
-public class VillanoTest {
+class VillanoTest {
 	
-	Villano villano;
-	ArrayList<String> senias;
-	ArrayList<String> hobbies;
+	Villano villano
+	ArrayList<String> senias
+	ArrayList<String> hobbies
 	
 	@Before
 	def void init() {
