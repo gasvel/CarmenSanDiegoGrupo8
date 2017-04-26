@@ -37,6 +37,10 @@ class Villano extends Persona {
 		}
 	}
 	
+	def getNombre(){
+		nombre
+	}
+	
 	private def boolean tieneNombreValido(){
 		!nombre.isNullOrEmpty
 	}

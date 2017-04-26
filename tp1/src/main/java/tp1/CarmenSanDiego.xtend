@@ -6,10 +6,21 @@ import org.uqbar.commons.utils.Observable
 import appModel.AppModelPartida
 import tp1.RepoPaises
 import org.uqbar.commons.utils.ApplicationContext
+import java.util.List
 
 @Accessors
 @Observable
 class CarmenSanDiego {
+
+	Caso casoActual
+	Lugar lugar1
+	Lugar lugar2
+	Lugar lugar3
+	List<Pais> recorridoCorrecto = new ArrayList<Pais>
+	List<Pais> recorridoIncorrecto = new ArrayList<Pais>
+	List<Pais> recorrido = new ArrayList<Pais>
+	OrdenDeArresto ordenDeArresto
+	Pais ubicacionActual
 
 	
 	
@@ -23,14 +34,25 @@ class CarmenSanDiego {
    		return (((Math.random() * range) + min) as int)
 	}
 	
+	def actualizarLugares(Pais ubicacionActual){
+		lugar1 = ubicacionActual.lugaresDeInteres.get(0)
+		lugar2 = ubicacionActual.lugaresDeInteres.get(1)
+		lugar3 = ubicacionActual.lugaresDeInteres.get(2)
+		
+		}
+	
+	def actualizarRecorrido(Pais ubicacionActual){
+		recorrido.add(ubicacionActual)
+	}
+	
 	def generarPartida() {
 		
 		val responsable = generarResponsable()		
 		val planDeEscape = generarPlanDeEscape(responsable)
 		val paisDeInicio = planDeEscape.get(0)
-		val caso = new Caso(responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
-		val partida = new AppModelPartida(this, caso)
-		return partida
+		casoActual = new Caso(responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
+		ubicacionActual = paisDeInicio
+		actualizarLugares(ubicacionActual)
 	}
 	
 	
@@ -86,6 +108,58 @@ class CarmenSanDiego {
 	
 	def RepoPaises getRepoPaises() {
 		ApplicationContext.instance.getSingleton(typeof(Pais))
+	}
+	
+	def emitirOrdenDeArresto(Villano villano) {
+		ordenDeArresto = new OrdenDeArresto(villano)
+	}
+	
+	def villanoAtrapadoCorrecto() {
+		ordenDeArresto.villanoConOrden == casoActual.responsable
+	}
+	
+	def generoOrdenDeArresto() {
+		ordenDeArresto != null
+	}
+	
+	def agregarRecorridoCorrectoIncorrecto(Pais pais) {
+			if( !( (recorridoCorrecto.contains(pais) || 
+			(recorridoIncorrecto.contains(pais))
+		))){
+			
+			if(casoActual.planDeEscape.contains(pais)){
+				recorridoCorrecto.add(pais)	
+			}
+			else{
+				recorridoIncorrecto.add(pais)
+			
+			}
+		}
+	}
+	
+	def esResponsable(Persona persona) {
+		persona == casoActual.responsable
+	}
+	
+	def getLugarDeRobo() {
+		casoActual.lugarDeRobo.nombre
+	}
+	
+	def getGetObjetoRobado() {
+		casoActual.objetoRobado
+	}
+	
+	def volverUnPaisAtras() {
+		ubicacionActual = recorrido.last()
+	}
+	
+	def nuevaUbicacion(Pais pais) {
+		ubicacionActual = pais
+		actualizarRecorrido(ubicacionActual)
+		actualizarLugares(ubicacionActual)	}
+	
+	def getResponsable() {
+		casoActual.responsable
 	}
 	
 
