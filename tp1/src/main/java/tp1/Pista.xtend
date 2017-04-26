@@ -69,11 +69,8 @@ class PistaClub implements Pista{
 	
 	override darPista(Caso caso){
 		val senas = caso.responsable.senas_particulares
-		var num = randomWithRange(0,senas.size()-1)
-		val pista1 = senas.get(num)
-		senas.remove(num)
-		num = randomWithRange(0,senas.size()-1)
-		val pista2 = senas.get(num)
+		val pista1 = senas.get(1)
+		val pista2 = senas.get(0)
 		
 		val pista3 = darPistaExtra(caso.responsable.hobbies,0.7)
 		
