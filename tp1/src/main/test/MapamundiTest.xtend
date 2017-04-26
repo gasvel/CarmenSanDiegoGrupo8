@@ -35,15 +35,10 @@ class MapamundiTest {
 		assertEquals(1, mapamundi.paises.size)
 	}
 	
-	@Test //test que no sirve
+	@Test(expected=PaisRepetidoException)
 	def void testAgregarPaisRepetidoAMapamundiEsInvalido() {
 		mapamundi.agregarPais(argentina)
-		
-		try{
-			mapamundi.agregarPais(argentina)
-			} catch(PaisRepetidoException e){
-				println("Lanza excepción de país repetido")
-			}
+		mapamundi.agregarPais(argentina)
 	}
 	
 	@Test
