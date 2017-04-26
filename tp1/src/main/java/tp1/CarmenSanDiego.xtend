@@ -16,19 +16,12 @@ class CarmenSanDiego {
 	new(){
 		
 	}
-	
-
-	
-
-
-	
+		
 	def randomWithRange(int min, int max)
 	{
    		val range = (max - min) + 1  
    		return (((Math.random() * range) + min) as int)
 	}
-	
-
 	
 	def generarPartida() {
 		

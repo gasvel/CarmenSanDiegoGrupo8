@@ -25,12 +25,9 @@ class AppModelPais {
 	Lugar lugarAEliminar
 	Pais conexionSeleccionada
 	Pais pais
-	AppModelMapamundi mapamundi
 	
-	new(Pais otroPais, AppModelMapamundi model) {
+	new(Pais otroPais) {
 		pais = otroPais
-		mapamundi = model
-		
 	}
 	
 	def eliminarConexionSeleccionada(){
@@ -72,21 +69,22 @@ class AppModelPais {
 	}
 	
 	def guardarCaracteristicaSeleccionada() {
-		pais.caracteristicas.add(caracteristicaSeleccionada)
+		pais.caracteristicas.add(caracteristicaNueva)
 		ObservableUtils.firePropertyChanged(pais, "caracteristicas")
+		caracteristicaSeleccionada = pais.caracteristicas.get(0)
 	}
 	
 	def actualizarPaises(){
 		
 		repoPaises.update(pais)
-		ObservableUtils.firePropertyChanged(mapamundi, "paises")
+		ObservableUtils.firePropertyChanged(repoPaises, "paises")
 		
 		
 	}
 	
 	def nuevoPais() {
 		repoPaises.create(pais)
-		ObservableUtils.firePropertyChanged(mapamundi, "paises")
+		ObservableUtils.firePropertyChanged(repoPaises, "paises")
 	}
 	
 

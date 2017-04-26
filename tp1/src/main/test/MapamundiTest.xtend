@@ -35,7 +35,7 @@ class MapamundiTest {
 		assertEquals(1, mapamundi.paises.size)
 	}
 	
-	@Test
+	@Test //test que no sirve
 	def void testAgregarPaisRepetidoAMapamundiEsInvalido() {
 		mapamundi.agregarPais(argentina)
 		

@@ -10,11 +10,11 @@ import appModel.AppModelPartida
 class AppModelLugar {
 	
 	Lugar lugar
-	AppModelPartida partida
 	
-	new(Lugar lugarActual, AppModelPartida partidaActual){
+	new(Lugar lugarActual){
 		
 		lugar = lugarActual
-		partida = partidaActual
 	}
+	
+	
 }

@@ -14,8 +14,10 @@ class AppModelMapamundi {
 	
 	
 	Pais paisSeleccionado
-	List<Pais> paises = repoPaises.getPaises
 	
+	def getPaises() {
+		repoPaises.getPaises
+	}	
 	def eliminarPaisSeleccionado() {
 		repoPaises.delete(paisSeleccionado)
 		ObservableUtils.firePropertyChanged(this, "paises")

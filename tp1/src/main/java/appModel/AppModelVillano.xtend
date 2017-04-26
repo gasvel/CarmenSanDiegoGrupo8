@@ -16,12 +16,9 @@ class AppModelVillano {
 	Villano villano
 	String hobbie
 	String sena
-	AppModelVillanos listVillanos
 
-	new(Villano villanoNuevo, AppModelVillanos model){
-		villano = villanoNuevo
-		listVillanos = model
-	
+	new(Villano villanoNuevo){
+		villano = villanoNuevo	
 	}
 	
 	def agregarSenaActual() {
@@ -52,7 +49,7 @@ class AppModelVillano {
 	def nuevoVillano() {
 		if(!repoVillanos.getVillanos.contains(villano) ){
 			repoVillanos.create(villano)
-			ObservableUtils.firePropertyChanged(listVillanos,"villanos")
+			ObservableUtils.firePropertyChanged(repoVillanos,"villanos")
 		}
 		else{
 			throw new UserException("Villano ya existente")
@@ -62,7 +59,7 @@ class AppModelVillano {
 	def actualizarVillanos() {
 		
 		repoVillanos.update(villano)
-		ObservableUtils.firePropertyChanged(listVillanos,"villanos")
+		ObservableUtils.firePropertyChanged(repoVillanos,"villanos")
 	}
 	
 	def RepoVillanos getRepoVillanos(){

@@ -79,15 +79,11 @@ class VillanoTest {
 		assertTrue(villano.esVillanoValido)
 	}
 	
-	@Test
+	@Test(expected=VillanoInvalidoException.class)
 	def void testValidarVillanoInvalidoLanzaExcepcion(){
 		val pepe = new Villano()
-				
-		try {
-    		pepe.validar
-  		} catch (VillanoInvalidoException e) {
-  			println("Se lanzó la excepción esperada")
-  		}
+		
+    	pepe.validar
 	}
 
 }
