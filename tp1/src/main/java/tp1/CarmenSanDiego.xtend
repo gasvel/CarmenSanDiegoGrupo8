@@ -1,59 +1,25 @@
 package tp1
 
-import java.util.List
 import java.util.ArrayList
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.utils.Observable
 import appModel.AppModelPartida
 import tp1.RepoPaises
 import org.uqbar.commons.utils.ApplicationContext
-import excepciones.VillanoInvalidoException
 
 @Accessors
 @Observable
 class CarmenSanDiego {
-	List<Villano> villanos
-	List<Lugar> lugares
-	Villano villanoElegido
-	Pais destinoElegido
+
 	
 	
 	new(){
-		villanos = new ArrayList<Villano>
-	}
-	
-
-	
-	def setLugares(List<Lugar> listLugares){
-		lugares = listLugares
-	}
-
-	def agregarVillano(Villano villano){
-		if(villano.esVillanoValido){
-			villanos.add(villano)
-		} else{
-			throw new VillanoInvalidoException("Debe ingresar un villano válido")
-		}
-	}
-	
-
-	
-
 		
+	}
+	
 
 	
-	def actualizarVillanos() {
-		ObservableUtils.firePropertyChanged(this,"villanos")
-	}
-	
-	def actualizarVillano() {
-		ObservableUtils.firePropertyChanged(this,"villanoElegido")
-	}
-	
-	def getVillanoElegido(){
-		villanoElegido
-	}
+
 
 	
 	def randomWithRange(int min, int max)
