@@ -40,5 +40,13 @@ class AppModelPartida{
 		ordenDeArresto = new OrdenDeArresto(villanoElegido)
 	}
 	
+	def villanoAtrapadoCorrecto() {
+		ordenDeArresto.villanoConOrden == casoActual.responsable
+	}
+	
+	def generoOrdenDeArresto() {
+		ordenDeArresto != null
+	}
+	
 	
 }
