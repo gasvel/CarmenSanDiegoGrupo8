@@ -13,13 +13,20 @@ import tp1.RepoVillanos
 class AppModelVillanos {
 	
 	List<Villano> villanos = repoVillanos.getVillanos
-	OrdenDeArresto ordenDeArresto
 	Villano villanoElegido
+	AppModelPartida partida
 	
+	new(){
+		
+	}
 	
+	new(AppModelPartida npartida){
+		partida = npartida
+	}
 	
 	def nuevaOrdenDeArresto() {
-		ordenDeArresto = new OrdenDeArresto(villanoElegido)
+		partida.nuevaOrdenDeArresto(villanoElegido)
+		
 	}
 	
 	def RepoVillanos getRepoVillanos() {
