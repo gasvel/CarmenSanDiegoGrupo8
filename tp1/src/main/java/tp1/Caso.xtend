@@ -21,5 +21,9 @@ class Caso {
 		lugarDeRobo = lugar
 		objetoRobado = objetoR
 	}
+	
+	def getResponsable() {
+		responsable
+	}
 
 }
