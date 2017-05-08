@@ -122,16 +122,16 @@ class CarmenSanDiego {
 		ordenDeArresto != null
 	}
 	
-	def agregarRecorridoCorrectoIncorrecto(Pais pais) {
-			if( !( (recorridoCorrecto.contains(pais) || 
-			(recorridoIncorrecto.contains(pais))
+	def agregarRecorridoCorrectoIncorrecto() {
+			if( !( (recorridoCorrecto.contains(ubicacionActual) || 
+			(recorridoIncorrecto.contains(ubicacionActual))
 		))){
 			
-			if(casoActual.planDeEscape.contains(pais)){
-				recorridoCorrecto.add(pais)	
+			if(casoActual.planDeEscape.contains(ubicacionActual)){
+				recorridoCorrecto.add(ubicacionActual)	
 			}
 			else{
-				recorridoIncorrecto.add(pais)
+				recorridoIncorrecto.add(ubicacionActual)
 			
 			}
 		}
@@ -160,6 +160,21 @@ class CarmenSanDiego {
 	
 	def getResponsable() {
 		casoActual.responsable
+	}
+	
+	def getTextoFinal() {
+		if (generoOrdenDeArresto){
+			 "No generaste orden de arresto " + casoActual.responsable.nombre + "Escapo"
+			
+			if(villanoAtrapadoCorrecto){
+				 "Atrapaste a  " + casoActual.responsable.nombre + " felicidades"
+			}
+			else{
+				 "Tenias orden de arresto a  " + ordenDeArresto.villanoConOrden.nombre + " y el responsable era "+ 
+				 casoActual.responsable.nombre
+			}
+		}
+		
 	}
 	
 

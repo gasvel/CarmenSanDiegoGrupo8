@@ -29,6 +29,10 @@ class AppModelPartida{
 
 	}
 	
+	def agregarRecorridoCorrectoIncorrecto(){
+		juego.agregarRecorridoCorrectoIncorrecto()
+	}
+	
 	def nuevaOrdenDeArresto(Villano villanoElegido) {
 		juego.emitirOrdenDeArresto(villanoElegido)
 	}
