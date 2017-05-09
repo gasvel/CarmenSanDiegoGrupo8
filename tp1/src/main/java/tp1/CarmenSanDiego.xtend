@@ -21,6 +21,7 @@ class CarmenSanDiego {
 	List<Pais> recorrido = new ArrayList<Pais>
 	OrdenDeArresto ordenDeArresto
 	Pais ubicacionActual
+	List<Caso> casosDisponibles = new ArrayList<Caso>
 
 	
 	
@@ -46,12 +47,14 @@ class CarmenSanDiego {
 	}
 	
 	def generarPartida() {
+		val generador = new GeneradorDeCasos()
+		casosDisponibles = generador.generarCasosDisponibles(3)
+		casoActual = generador.obtenerCaso()
+		generador.asignarCuidadores(this.repoPaises.getPaises())
+		generador.asignarOcupantes(casoActual.planDeEscape, casoActual.responsable)
 		
-		val responsable = generarResponsable()		
-		val planDeEscape = generarPlanDeEscape(responsable)
-		val paisDeInicio = planDeEscape.get(0)
-		casoActual = new Caso(responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
-		ubicacionActual = paisDeInicio
+		ubicacionActual = casoActual.paisDeInicio
+		
 		actualizarLugares(ubicacionActual)
 	}
 	

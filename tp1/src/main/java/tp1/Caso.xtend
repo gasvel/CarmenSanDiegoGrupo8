@@ -25,5 +25,9 @@ class Caso {
 	def getResponsable() {
 		responsable
 	}
+	
+	def getPaisDeInicio() {
+		lugarDeRobo
+	}
 
 }

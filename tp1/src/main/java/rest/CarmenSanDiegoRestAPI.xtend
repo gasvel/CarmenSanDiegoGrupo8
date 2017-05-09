@@ -24,10 +24,12 @@ class CarmenSanDiegoRestAPI {
 	
 	
 	
-	/* @Post("/iniciarjuego")
+	 @Post("/iniciarjuego")
 	def generarJuego(){
-		
-	}*/
+		response.contentType = ContentType.APPLICATION_JSON
+		this.juego.generarPartida
+		ok(this.juego.casosDisponibles.size().toJson)
+	}
 	
 	/*/@Get("/pistaDelLugar")
 	def obtenerPista(String lugar,int casoId){
