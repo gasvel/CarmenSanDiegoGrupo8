@@ -11,6 +11,7 @@ import org.uqbar.xtrest.http.ContentType
 import org.uqbar.xtrest.json.JSONUtils
 import tp1.CarmenSanDiego
 
+@Controller
 class CarmenSanDiegoRestAPI {
 	   extension JSONUtils = new JSONUtils
 	   
@@ -23,10 +24,28 @@ class CarmenSanDiegoRestAPI {
 	
 	
 	
-	@Get("/iniciarjuego")
+	/* @Post("/iniciarjuego")
 	def generarJuego(){
+		
+	}*/
+	
+	/*/@Get("/pistaDelLugar")
+	def obtenerPista(String lugar,int casoId){
 		response.contentType = ContentType.APPLICATION_JSON
-		ok(this.juego.().toJson)
+		ok(this.juego.toJson)
+	}*/
+	
+	@Get("/villanos")
+	def obtenerVillanos(){
+		response.contentType = ContentType.APPLICATION_JSON
+		ok(this.juego.repoVillanos.getVillanos().toJson)
 	}
+	
+	@Get("/paises")
+	def obtenerPaises(){
+		response.contentType = ContentType.APPLICATION_JSON
+		ok(this.juego.repoPaises.getPaises().toJson)
+	}
+	
 	
 }
