@@ -1,17 +1,16 @@
 package tp1
 
-class Persona {
+import org.uqbar.commons.model.Entity
+
+class Persona extends Entity {
 	
-	String nombre;
 	
 	
-	new(String nombreP){
-		nombre = nombreP
+	new(){
 		
 	}
 	
 	def darInfo(Pista pista, Caso caso){
 		
 	}
-	
 }
