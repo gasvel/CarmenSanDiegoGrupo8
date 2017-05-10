@@ -11,6 +11,10 @@ class PaisSoloNombreAdapter {
 	int id
 	String nombre
 	
+	new(){
+		
+	}
+	
 	new(Pais pais){
 		id = pais.id
 		nombre = pais.nombre

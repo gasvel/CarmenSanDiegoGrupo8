@@ -9,6 +9,10 @@ import org.uqbar.commons.utils.Observable
 class LugarAdapter {
 	String nombre
 	
+	new(){
+		
+	}
+	
 	new(Lugar lugar){
 		nombre = lugar.nombre
 	}

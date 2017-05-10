@@ -48,7 +48,14 @@ class Pais extends Entity{
 		nombre
 	}
 	
-	def validar() {
+	def copiarDatos(Pais pais) {
+		lugaresDeInteres= pais.lugaresDeInteres
+		nombre = pais.nombre
+		conexiones = pais.conexiones
+		
+	}
+	
+	/*def validar() {
 		
 		if(caracteristicas.size()<2){
 			throw new UserException("La cantidad de caracteristicas debe ser al menos 2")
@@ -58,7 +65,7 @@ class Pais extends Entity{
 		}
 
 		
-	}
+	}*/
 	
 
 }

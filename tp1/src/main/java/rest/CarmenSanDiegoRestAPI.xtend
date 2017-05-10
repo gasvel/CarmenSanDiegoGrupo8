@@ -15,6 +15,7 @@ import adapter.CasoAdapter
 import tp1.Villano
 import org.uqbar.xtrest.api.annotation.Put
 import tp1.Pais
+import adapter.PaisAdapter
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -133,11 +134,12 @@ class CarmenSanDiegoRestAPI {
 	}
 	
 	@Put("/villano/:id")
-	def updateVillano(){
+	def updateVillano(@Body String body){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{
-			
+			var Villano villanoActualizado = body.fromJson(Villano)
 			var villano = this.juego.repoVillanos.search(Integer.valueOf(id))
+			villano.copiarDatos(villanoActualizado)
 			if(villano == null){
 				notFound(getErrorJson("Recatate gil no existe villano con ese id"))
             } else {
@@ -212,11 +214,14 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 	
-	@Put("pais/:id")
-	def updatePais(){
+	@Put("/pais/:id")
+	def updatePais(@Body String body){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{	
+			val PaisAdapter paisA = body.fromJson(PaisAdapter)
+	        val paisMod =this.juego.convertirAPais(paisA)
 			var pais = this.juego.repoPaises.search(Integer.valueOf(id))
+			pais.copiarDatos(paisMod)
 			if(pais == null){
 				notFound(getErrorJson("Recatate gil no existe pais con ese id"))
             } else {
@@ -250,8 +255,10 @@ class CarmenSanDiegoRestAPI {
 	def nuevoPais(@Body String body){
 		response.contentType = ContentType.APPLICATION_JSON
         try {
-	        val Pais pais = body.fromJson(Pais)
+	        val PaisAdapter paisA = body.fromJson(PaisAdapter)
+	        val pais =this.juego.convertirAPais(paisA)
 	        try {
+	        	
 				juego.repoPaises.create(pais)
 				ok()	        	
 	        } 

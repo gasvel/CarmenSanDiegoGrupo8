@@ -42,7 +42,7 @@ class RepoPaises extends CollectionBasedRepo<Pais>{
 	}
 	
 	override validateCreate(Pais pais){
-		pais.validar()
+		//pais.validar()
 		validarPaisRepetido(pais)
 	}
 	
@@ -54,7 +54,7 @@ class RepoPaises extends CollectionBasedRepo<Pais>{
 	}
 	
 	override def update(Pais pais){
-		pais.validar
+		//pais.validar
 		validarConexiones(pais)
 		super.update(pais)
 	}

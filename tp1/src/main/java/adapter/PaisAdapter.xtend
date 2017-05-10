@@ -15,6 +15,10 @@ class PaisAdapter {
 	List<LugarAdapter> lugares
 	List<PaisSoloNombreAdapter> conexiones
 	
+	new(){
+		
+	}
+	
 	new(Pais pais){
 		id = pais.id
 		nombre = pais.nombre

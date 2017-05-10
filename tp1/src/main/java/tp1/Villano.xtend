@@ -61,4 +61,11 @@ class Villano extends Persona {
 		tieneNombreValido && tieneSexoValido && tieneSeniasValido && tieneHobbiesValido
 	}
 	
+	def copiarDatos(Villano villano) {
+		nombre = villano.nombre
+		sexo = villano.sexo
+		senas_particulares = villano.senas_particulares
+		hobbies = villano.hobbies
+	}
+	
 }

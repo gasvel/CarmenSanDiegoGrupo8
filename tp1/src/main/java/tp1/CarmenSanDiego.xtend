@@ -142,6 +142,39 @@ class CarmenSanDiego {
 		paisAdapter
 	}
 	
+	def convertirAPais(PaisAdapter adapter) {
+		val conexiones = new ArrayList<Pais>
+		var conexionesAd = adapter.conexiones
+		for(c : conexionesAd){
+			conexiones.add(this.repoPaises.search(c.id))
+		}
+		val lugares = new ArrayList<Lugar>
+		for(l : adapter.lugares){
+			lugares.add(lugarAPartirDeNombre(l.nombre))
+		}
+		val pais =new Pais()
+		pais.lugares = lugares
+		pais.conexiones = conexiones
+		pais.nombre = adapter.nombre
+		return pais
+	}
+	
+	def lugarAPartirDeNombre(String string) {
+		if(string == "Banco"){
+			return new Banco()
+		}
+		if(string == "Club"){
+			return new Club()
+		}
+		if(string == "Embajada"){
+			return new Embajada()
+		}
+		if(string == "Biblioteca"){
+			return new Biblioteca()
+		}
+
+	}
+	
 	
 	
 
