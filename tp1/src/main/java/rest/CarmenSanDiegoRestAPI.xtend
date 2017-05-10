@@ -14,6 +14,7 @@ import tp1.Caso
 import adapter.CasoAdapter
 import tp1.Villano
 import org.uqbar.xtrest.api.annotation.Put
+import tp1.Pais
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -195,7 +196,7 @@ class CarmenSanDiegoRestAPI {
 	}
 	
 	
-	@Get("/paises/:id")
+	@Get("/pais/:id")
 	def getPaisPorId(){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{
@@ -211,7 +212,57 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 	
+	@Put("pais/:id")
+	def updatePais(){
+		response.contentType = ContentType.APPLICATION_JSON
+		try{	
+			var pais = this.juego.repoPaises.search(Integer.valueOf(id))
+			if(pais == null){
+				notFound(getErrorJson("Recatate gil no existe pais con ese id"))
+            } else {
+				this.juego.repoPaises.update(pais)
+				ok()
+			}			
+		}
+		catch(NumberFormatException ex) {
+			badRequest(getErrorJson("El id debe ser un numero gato"))
+		}
+	}
+	
+	@Delete("/pais/:id")
+	def deletePais(){
+		response.contentType = ContentType.APPLICATION_JSON
+		try{	
+			var pais = this.juego.repoPaises.search(Integer.valueOf(id))
+			if(pais == null){
+				notFound(getErrorJson("Recatate gil no existe pais con ese id"))
+            } else {
+				this.juego.repoPaises.delete(pais)
+				ok()
+			}		
+		}
+		catch(NumberFormatException ex) {
+			badRequest(getErrorJson("El id debe ser un numero gato"))
+		}
+	}
 
+	@Post("/pais")
+	def nuevoPais(@Body String body){
+		response.contentType = ContentType.APPLICATION_JSON
+        try {
+	        val Pais pais = body.fromJson(Pais)
+	        try {
+				juego.repoPaises.create(pais)
+				ok()	        	
+	        } 
+	        catch (UserException exception) {
+	        	badRequest(getErrorJson(exception.message))
+	        }
+        } 
+        catch (UnrecognizedPropertyException exception) {
+        	badRequest(getErrorJson("El body debe ser un Pais"))
+        }
+	}
 		
 	private def getErrorJson(String message) {
         '{ "error": "' + message + '" }'
