@@ -47,7 +47,7 @@ class CarmenSanDiegoRestAPI {
             if (caso == null) {
             	notFound(getErrorJson("No existe caso con ese id"))
             } else {
-            	var lugarEnPais = this.juego.getLugar(caso,lugar)
+            	var lugarEnPais = caso.getLugar(lugar)
             	if(lugar == null){
             		notFound(getErrorJson("No existe lugar con ese nombre"))
             	}
@@ -82,6 +82,29 @@ class CarmenSanDiegoRestAPI {
         catch (NumberFormatException ex) {
         	badRequest(getErrorJson("El id debe ser un numero entero"))
         }
+	}
+	
+	@Post("/viajar/:destinoId")
+	def viajarADestino(){
+		response.contentType = ContentType.APPLICATION_JSON
+		try{
+			var pais = juego.repoPaises.search(Integer.valueOf(destinoId))
+			if(pais == null){
+				notFound(getErrorJson("No existe pais con ese id"))
+				
+			}
+			else{
+				juego.viajar(pais)	
+				val caso = adaptarCaso(juego.casoActual)
+				
+				ok(caso.toJson)
+			
+			}
+		}
+		catch (NumberFormatException ex) {
+        	badRequest(getErrorJson("El id debe ser un numero entero"))
+        }
+
 	}
 	
 	@Get("/villanos")

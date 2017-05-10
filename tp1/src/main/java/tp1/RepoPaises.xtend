@@ -75,4 +75,8 @@ class RepoPaises extends CollectionBasedRepo<Pais>{
 		null
 	}
 	
+	def search(Integer id) {
+		paises.findFirst[p| p.id == id]
+	}
+	
 }
