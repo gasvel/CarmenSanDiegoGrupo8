@@ -46,8 +46,28 @@ class CarmenSanDiegoRestAPI {
 	@Get("/paises")
 	def obtenerPaises(){
 		response.contentType = ContentType.APPLICATION_JSON
-		ok(this.juego.repoPaises.getPaises().toJson)
+		ok(this.juego.getPaisesEnc.toJson)
 	}
+	
+	@Get("/paises/:id")
+	def getPaisPorId(){
+		response.contentType = ContentType.APPLICATION_JSON
+		try{
+			var pais = this.juego.getPais(Integer.valueOf(id))
+			if(pais == null){
+				notFound(getErrorJson("Recatate gil no existe pais con ese id"))
+            } else {
+            	ok(pais.toJson)
+			}
+		}
+		catch(NumberFormatException ex) {
+			badRequest(getErrorJson("El id debe ser un numero gato"))
+		}
+	}
+	
+	def getErrorJson(String message) {
+        '{ "pifiaste": "' + message + '" }'
+    }
 	
 	
 }

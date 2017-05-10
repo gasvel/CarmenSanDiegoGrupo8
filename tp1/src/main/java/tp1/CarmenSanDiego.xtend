@@ -180,6 +180,23 @@ class CarmenSanDiego {
 		
 	}
 	
+	def getPaisesEnc() {
+		val res = new ArrayList<PaisEncapsulado> 
+		generarPaisesEnc(repoPaises.getPaises, res)
+	}
+	
+	def generarPaisesEnc(List<Pais> paises, List<PaisEncapsulado> res) {
+		
+		paises.forEach[pais | res.add(new PaisEncapsulado(pais.nombre, pais.id))]
+		res
+	}
+	
+	def getPais(Integer integer) {
+		val pais = repoPaises.getPaises.findFirst[ it.id == integer]
+		val conexEnc = new ArrayList<PaisEncapsulado> 
+		pais.conexiones = (generarPaisesEnc(pais.getConexiones,conexEnc) as List<Pais>)
+	}
+	
 
 	
 	
