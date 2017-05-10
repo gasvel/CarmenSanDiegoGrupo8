@@ -58,6 +58,10 @@ class RepoVillanos extends CollectionBasedRepo<Villano> {
 		typeof(Villano)
 	}
 	
+	def Villano search(Integer id) {
+		villanos.findFirst[v | v.id == id]
+	}
+	
 
 	
 }

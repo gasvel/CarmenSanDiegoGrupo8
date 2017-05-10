@@ -14,13 +14,7 @@ class GeneradorDeCasos {
    		return (((Math.random() * range) + min) as int)
 	}
 	
-	def generarCaso(){
-		val responsable = generarResponsable()		
-		val planDeEscape = generarPlanDeEscape(responsable)
-		val paisDeInicio = planDeEscape.get(0)
-		val caso = new Caso(responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
-		casos.add(caso)
-	}
+
 	
 	def generarPlanDeEscape(Villano responsable) {
 		var longitud = randomWithRange(1,repoPaises.getPaises.size()-1)
@@ -41,7 +35,7 @@ class GeneradorDeCasos {
 		
 	}
 	
-	def asignarCuidadores(List<Pais> paises) {
+	def asignarCuidadores(ArrayList<Pais> paises) {
 		
 		paises.forEach[ 
 			it.nuevoCuidador() 
@@ -49,7 +43,7 @@ class GeneradorDeCasos {
 		]
 	}
 	
-	def void asignarOcupantes(List<Pais> paises, Villano responsable) {
+	def void asignarOcupantes(ArrayList<Pais> paises, Villano responsable) {
 		paises.forEach[ 
 			it.nuevoInformante()
 			repoPaises.update(it)
@@ -69,7 +63,7 @@ class GeneradorDeCasos {
 		val num = randomWithRange(0,casos.size()-1)
 		return casos.get(num)
 		
-		}
+	}
 	
 	def RepoVillanos getRepoVillanos(){
 		ApplicationContext.instance.getSingleton(typeof(Villano))
@@ -80,8 +74,16 @@ class GeneradorDeCasos {
 	}
 	
 	def generarCasosDisponibles(int cantCasos) {
-		for(var i = 0 ; i>cantCasos;i++){
-			generarCaso()
+		for(var i = 0 ; i<cantCasos;i++){
+			val responsable = generarResponsable()		
+			val planDeEscape = generarPlanDeEscape(responsable)
+			val paisDeInicio = planDeEscape.get(0)
+			val caso = new Caso(i,responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
+			casos.add(caso)
+			val paises = new ArrayList<Pais>
+			paises.addAll(repoPaises.paises)
+			asignarCuidadores(paises)
+			asignarOcupantes(planDeEscape, responsable)
 		}
 		return casos
 	}
