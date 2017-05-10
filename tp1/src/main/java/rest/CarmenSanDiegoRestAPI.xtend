@@ -12,6 +12,8 @@ import org.uqbar.xtrest.json.JSONUtils
 import tp1.CarmenSanDiego
 import tp1.Caso
 import adapter.CasoAdapter
+import tp1.Villano
+import org.uqbar.xtrest.api.annotation.Put
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -113,11 +115,85 @@ class CarmenSanDiegoRestAPI {
 		ok(this.juego.repoVillanos.getVillanos().toJson)
 	}
 	
+	@Get("/villano/:id")
+	def getVillano(){
+		response.contentType = ContentType.APPLICATION_JSON
+		try{
+			var villano = this.juego.repoVillanos.search(Integer.valueOf(id))
+			if(villano == null){
+				notFound(getErrorJson("Recatate gil no existe villano con ese id"))
+            } else {
+            	ok(villano.toJson)
+			}
+		}
+		catch(NumberFormatException ex) {
+			badRequest(getErrorJson("El id debe ser un numero gato"))
+		}
+	}
+	
+	@Put("/villano/:id")
+	def updateVillano(){
+		response.contentType = ContentType.APPLICATION_JSON
+		try{
+			
+			var villano = this.juego.repoVillanos.search(Integer.valueOf(id))
+			if(villano == null){
+				notFound(getErrorJson("Recatate gil no existe villano con ese id"))
+            } else {
+				this.juego.repoVillanos.update(villano)
+				ok()
+			}
+			
+		}
+		catch(NumberFormatException ex) {
+			badRequest(getErrorJson("El id debe ser un numero gato"))
+		}
+	}
+	
+	@Delete("/villano/:id")
+	def deleteVillano(){
+		response.contentType = ContentType.APPLICATION_JSON
+		try{
+			
+			var villano = this.juego.repoVillanos.search(Integer.valueOf(id))
+			if(villano == null){
+				notFound(getErrorJson("Recatate gil no existe villano con ese id"))
+            } else {
+				this.juego.repoVillanos.delete(villano)
+				ok()
+			}
+			
+		}
+		catch(NumberFormatException ex) {
+			badRequest(getErrorJson("El id debe ser un numero gato"))
+		}
+	}
+	
+	@Post("/villano")
+	def nuevoVillano(@Body String body){
+		response.contentType = ContentType.APPLICATION_JSON
+        try {
+	        val Villano villano = body.fromJson(Villano)
+	        try {
+				juego.repoVillanos.create(villano)
+				ok()	        	
+	        } 
+	        catch (UserException exception) {
+	        	badRequest(getErrorJson(exception.message))
+	        }
+        } 
+        catch (UnrecognizedPropertyException exception) {
+        	badRequest(getErrorJson("El body debe ser un Villano"))
+        }
+	}
+	
+	
 	@Get("/paises")
 	def obtenerPaises(){
 		response.contentType = ContentType.APPLICATION_JSON
 		ok(this.juego.getPaisesEnc.toJson)
 	}
+	
 	
 	@Get("/paises/:id")
 	def getPaisPorId(){
@@ -134,6 +210,8 @@ class CarmenSanDiegoRestAPI {
 			badRequest(getErrorJson("El id debe ser un numero gato"))
 		}
 	}
+	
+
 		
 	private def getErrorJson(String message) {
         '{ "error": "' + message + '" }'
