@@ -84,6 +84,29 @@ class CarmenSanDiegoRestAPI {
         }
 	}
 	
+	@Post("/viajar/:destinoId")
+	def viajarADestino(){
+		response.contentType = ContentType.APPLICATION_JSON
+		try{
+			var pais = juego.repoPaises.search(Integer.valueOf(destinoId))
+			if(pais == null){
+				notFound(getErrorJson("No existe pais con ese id"))
+				
+			}
+			else{
+				juego.viajar(pais)	
+				val caso = adaptarCaso(juego.casoActual)
+				
+				ok(caso.toJson)
+			
+			}
+		}
+		catch (NumberFormatException ex) {
+        	badRequest(getErrorJson("El id debe ser un numero entero"))
+        }
+
+	}
+	
 	@Get("/villanos")
 	def obtenerVillanos(){
 		response.contentType = ContentType.APPLICATION_JSON
@@ -100,11 +123,11 @@ class CarmenSanDiegoRestAPI {
 	def getPaisPorId(){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{
-			var pais = this.juego.getPais(Integer.valueOf(id))
+			var pais = this.juego.repoPaises.search(Integer.valueOf(id))
 			if(pais == null){
 				notFound(getErrorJson("Recatate gil no existe pais con ese id"))
             } else {
-            	ok(pais.toJson)
+            	ok(juego.adaptarPais(pais).toJson)
 			}
 		}
 		catch(NumberFormatException ex) {

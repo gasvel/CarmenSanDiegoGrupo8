@@ -15,14 +15,6 @@ import adapter.PaisAdapter
 class CarmenSanDiego {
 
 	Caso casoActual
-	Lugar lugar1
-	Lugar lugar2
-	Lugar lugar3
-	List<Pais> recorridoCorrecto = new ArrayList<Pais>
-	List<Pais> recorridoIncorrecto = new ArrayList<Pais>
-	List<Pais> recorrido = new ArrayList<Pais>
-	OrdenDeArresto ordenDeArresto
-	Pais ubicacionActual
 	List<Caso> casosDisponibles = new ArrayList<Caso>
 	GeneradorDeCasos generador = new GeneradorDeCasos()
 		
@@ -40,30 +32,12 @@ class CarmenSanDiego {
    		return (((Math.random() * range) + min) as int)
 	}
 	
-	def actualizarLugares(Pais ubicacionActual){
-		lugar1 = ubicacionActual.lugaresDeInteres.get(0)
-		lugar2 = ubicacionActual.lugaresDeInteres.get(1)
-		lugar3 = ubicacionActual.lugaresDeInteres.get(2)
-		
-		}
 	
-	def actualizarRecorrido(Pais ubicacionActual){
-		casoActual.recorrido.add(ubicacionActual)
-	}
+
 	
 	def generarPartida() {
-		val generador = new GeneradorDeCasos()
+		
 		casoActual = generador.obtenerCaso()
-		val paises = new ArrayList<Pais>
-		val plan = new ArrayList<Pais>
-		paises.addAll(this.repoPaises.getPaises())
-		plan.addAll(casoActual.planDeEscape)
-		generador.asignarCuidadores(paises)
-		generador.asignarOcupantes(plan, casoActual.responsable)
-		
-		ubicacionActual = casoActual.paisDeInicio
-		
-		actualizarLugares(ubicacionActual)
 	}
 	
 	
@@ -76,28 +50,25 @@ class CarmenSanDiego {
 		ApplicationContext.instance.getSingleton(typeof(Pais))
 	}
 	
-	def emitirOrdenDeArresto(Villano villano) {
-		ordenDeArresto = new OrdenDeArresto(villano)
-	}
-	
+
 	def villanoAtrapadoCorrecto() {
-		ordenDeArresto.villanoConOrden == casoActual.responsable
+		casoActual.orden.villanoConOrden == casoActual.responsable
 	}
 	
 	def generoOrdenDeArresto() {
-		ordenDeArresto != null
+		casoActual.orden != null
 	}
 	
 	def agregarRecorridoCorrectoIncorrecto() {
-			if( !( (casoActual.recorridoCorrecto.contains(ubicacionActual) || 
-			(casoActual.recorridoIncorrecto.contains(ubicacionActual))
+			if( !( (casoActual.recorridoCorrecto.contains(casoActual.ubicacionActual) || 
+			(casoActual.recorridoIncorrecto.contains(casoActual.ubicacionActual))
 		))){
 			
-			if(casoActual.planDeEscape.contains(ubicacionActual)){
-				casoActual.recorridoCorrecto.add(ubicacionActual)	
+			if(casoActual.planDeEscape.contains(casoActual.ubicacionActual)){
+				casoActual.recorridoCorrecto.add(casoActual.ubicacionActual)	
 			}
 			else{
-				casoActual.recorridoIncorrecto.add(ubicacionActual)
+				casoActual.recorridoIncorrecto.add(casoActual.ubicacionActual)
 			
 			}
 		}
@@ -116,13 +87,12 @@ class CarmenSanDiego {
 	}
 	
 	def volverUnPaisAtras() {
-		ubicacionActual = recorrido.last()
+		casoActual.volverPaisAtras()
 	}
 	
-	def nuevaUbicacion(Pais pais) {
-		ubicacionActual = pais
-		actualizarRecorrido(ubicacionActual)
-		actualizarLugares(ubicacionActual)	}
+	def void nuevaUbicacion(Pais pais) {
+		casoActual.nuevaUbicacion(pais)
+	}
 	
 	def getResponsable() {
 		casoActual.responsable
@@ -136,7 +106,7 @@ class CarmenSanDiego {
 				 "Atrapaste a  " + casoActual.responsable.nombre + " felicidades"
 			}
 			else{
-				 "Tenias orden de arresto a  " + ordenDeArresto.villanoConOrden.nombre + " y el responsable era "+ 
+				 "Tenias orden de arresto a  " + casoActual.orden.villanoConOrden.nombre + " y el responsable era "+ 
 				 casoActual.responsable.nombre
 			}
 		}
@@ -154,11 +124,6 @@ class CarmenSanDiego {
 		res
 	}
 	
-	def getPais(Integer integer) {
-		val pais = repoPaises.getPaises.findFirst[ it.id == integer]
-		val paisAdapter = new PaisAdapter(pais) 
-		paisAdapter
-	}
 	
 	def getCaso(Integer idCaso) {
 		return casosDisponibles.findFirst[c | c.id == idCaso]
@@ -166,8 +131,18 @@ class CarmenSanDiego {
 	
 	def getLugar(Caso caso,String string) {
 		return caso.lugarDeRobo.lugaresDeInteres.findFirst[l | l.nombre == string]
-
 	}
+	
+	def viajar(Pais pais) {
+		casoActual.nuevaUbicacion(pais)
+	}
+	
+	def adaptarPais(Pais pais) {
+		val paisAdapter = new PaisAdapter(pais)
+		paisAdapter
+	}
+	
+	
 	
 
 	
