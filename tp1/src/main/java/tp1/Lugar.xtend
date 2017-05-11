@@ -10,7 +10,6 @@ import org.uqbar.commons.model.Entity
 class Lugar extends Entity {
 	String nombre
 	
-	public Persona ocupante;
 	
 	new(){
 		
@@ -19,15 +18,33 @@ class Lugar extends Entity {
 	def getNombre(){
 		nombre
 	}
+	
+	def darInfo(Pista pista,Caso caso){
+		caso.agregarRecorridoCorrectoIncorrecto
+		
+		if(!caso.ubicacionEnPlanDeEscape()){
+			return "Quien te conoce boludo! Tomatela te dije!"
+		}
+		else{
+			if(caso.esPaisFinal()){
+				if(nombre == caso.ubicacionActual.lugarVillano.nombre){
+					caso.getTextoFinal()
+				}
+				else{
+					return "It's a trap!!"
+				}
+			}
+			else{
+				pista.darPista(caso)
+			}
+		}
+	}
 
 	
 	def obtenerPista(Caso caso){
 		
 	}
-	
-	def setOcupante(Persona nuevoOcupante){
-		ocupante = nuevoOcupante
-	}
+
 
 
 }
@@ -39,7 +56,7 @@ class Club extends Lugar{
 	}
 	override obtenerPista(Caso caso){
 		val pista = new PistaClub
-		ocupante.darInfo(pista,caso)
+		darInfo(pista,caso)
 	}
 	
 		
@@ -57,7 +74,7 @@ class Biblioteca extends Lugar {
 	
 	override obtenerPista(Caso caso){
 		val pista = new PistaBiblioteca
-		ocupante.darInfo(pista,caso)
+		darInfo(pista,caso)
 	}
 
 	
@@ -74,7 +91,7 @@ class Embajada extends Lugar {
 	}
 	override obtenerPista(Caso caso){
 		val pista = new PistaEmbajada
-		ocupante.darInfo(pista,caso)
+		darInfo(pista,caso)
 	}
 	
 
@@ -92,8 +109,11 @@ class Banco extends Lugar {
 	}
 	override obtenerPista(Caso caso){
 		val pista = new PistaBanco
-		ocupante.darInfo(pista,caso)
+		this.darInfo(pista,caso)
 	}
+	
+	
+	
 
 	
 	override toString(){

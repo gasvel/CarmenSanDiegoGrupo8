@@ -51,30 +51,10 @@ class CarmenSanDiego {
 	}
 	
 
-	def villanoAtrapadoCorrecto() {
-		casoActual.orden.villanoConOrden == casoActual.responsable
-	}
 	
-	def generoOrdenDeArresto() {
-		casoActual.orden != null
-	}
 	
-	def agregarRecorridoCorrectoIncorrecto() {
-			if( !( (casoActual.recorridoCorrecto.contains(casoActual.ubicacionActual) || 
-			(casoActual.recorridoIncorrecto.contains(casoActual.ubicacionActual))
-		))){
-			
-			if(casoActual.planDeEscape.contains(casoActual.ubicacionActual)){
-				casoActual.recorridoCorrecto.add(casoActual.ubicacionActual)	
-			}
-			else{
-				casoActual.recorridoIncorrecto.add(casoActual.ubicacionActual)
-			
-			}
-		}
-	}
 	
-	def esResponsable(Persona persona) {
+	def esResponsable(Villano persona) {
 		persona == casoActual.responsable
 	}
 	
@@ -98,20 +78,7 @@ class CarmenSanDiego {
 		casoActual.responsable
 	}
 	
-	def getTextoFinal() {
-		if (generoOrdenDeArresto){
-			 "No generaste orden de arresto " + casoActual.responsable.nombre + "Escapo"
-			
-			if(villanoAtrapadoCorrecto){
-				 "Atrapaste a  " + casoActual.responsable.nombre + " felicidades"
-			}
-			else{
-				 "Tenias orden de arresto a  " + casoActual.orden.villanoConOrden.nombre + " y el responsable era "+ 
-				 casoActual.responsable.nombre
-			}
-		}
-		
-	}
+	
 	
 	def getPaisesEnc() {
 		val res = new ArrayList<PaisSoloNombreAdapter> 
@@ -160,18 +127,23 @@ class CarmenSanDiego {
 	}
 	
 	def lugarAPartirDeNombre(String string) {
-		if(string == "Banco"){
-			return new Banco()
+		
+		switch (string){
+		case "Banco":  {
+			return new Banco()}
+		
+		case "Club" :{
+			return new Club();}
+		
+		case "Embajada":{
+			return new Embajada();}
+		
+		case "Biblioteca":{
+			return new Biblioteca();}
+		
+			
 		}
-		if(string == "Club"){
-			return new Club()
-		}
-		if(string == "Embajada"){
-			return new Embajada()
-		}
-		if(string == "Biblioteca"){
-			return new Biblioteca()
-		}
+		
 
 	}
 	

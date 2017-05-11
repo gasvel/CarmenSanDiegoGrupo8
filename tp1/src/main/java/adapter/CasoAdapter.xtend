@@ -18,7 +18,7 @@ class CasoAdapter {
 	
 	new(Caso caso){
 		id = caso.id
-		pais = new PaisAdapter(caso.lugarDeRobo)
+		pais = new PaisAdapter(caso.ubicacionActual)
 		paisesVisitados = adaptarPaises(caso.recorrido)
 		paisesFallidos = adaptarPaises(caso.recorridoIncorrecto)
 	}

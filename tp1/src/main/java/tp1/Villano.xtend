@@ -5,10 +5,11 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import java.util.ArrayList
 import org.uqbar.commons.utils.Observable
 import excepciones.VillanoInvalidoException
+import org.uqbar.commons.model.Entity
 
 @Observable
 @Accessors
-class Villano extends Persona {
+class Villano extends Entity{
 	
 	String nombre;
 	String sexo;
@@ -27,9 +28,7 @@ class Villano extends Persona {
 		hobbies = hobbiesV
 	}
 	
-	override darInfo(Pista pista, Caso caso){
-		"ALTO! Detengase: " + nombre
-	}
+
 	
 	def validar() {
 		if(!esVillanoValido){

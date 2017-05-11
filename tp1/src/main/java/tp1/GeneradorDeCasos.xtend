@@ -35,24 +35,7 @@ class GeneradorDeCasos {
 		
 	}
 	
-	def asignarCuidadores(ArrayList<Pais> paises) {
-		
-		paises.forEach[ 
-			it.nuevoCuidador() 
-			repoPaises.update(it)
-		]
-	}
 	
-	def void asignarOcupantes(ArrayList<Pais> paises, Villano responsable) {
-		paises.forEach[ 
-			it.nuevoInformante()
-			repoPaises.update(it)
-		]
-		val paisModificado = paises.last()
-		paisModificado.nuevoVillano(responsable)
-		repoPaises.update(paisModificado)
-
-	}
 	
 	def generarResponsable() {
 		val random = randomWithRange(0,repoVillanos.villanos.size()-1)
@@ -82,8 +65,7 @@ class GeneradorDeCasos {
 			casos.add(caso)
 			val paises = new ArrayList<Pais>
 			paises.addAll(repoPaises.paises)
-			asignarCuidadores(paises)
-			asignarOcupantes(planDeEscape, responsable)
+
 		}
 		return casos
 	}

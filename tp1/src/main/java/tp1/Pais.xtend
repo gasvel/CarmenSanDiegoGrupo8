@@ -14,6 +14,7 @@ class Pais extends Entity{
 	List<String> caracteristicas;
 	List<Lugar> lugaresDeInteres = new ArrayList<Lugar>
 	List<Pais> conexiones = new ArrayList<Pais>
+	Lugar lugarVillano
 	
 	new(String nombreP, List<String> caracteristicasP, List<Lugar> lugares){
 		nombre = nombreP
@@ -29,20 +30,7 @@ class Pais extends Entity{
 		lugaresDeInteres = lugares
 	}
 	
-	def nuevoInformante(){
-		lugaresDeInteres.forEach[setOcupante(new Informante())]
-	}
-	
-	def nuevoCuidador(){
-		lugaresDeInteres.forEach[setOcupante(new Cuidador())]
-	}
-	
-	def nuevoVillano(Villano responsable){
-		lugaresDeInteres.forEach[setOcupante(new InformanteFinal())]
-		val ubicacionVillano = (lugaresDeInteres.last())
-		ubicacionVillano.setOcupante(responsable)
-		
-	}
+
 	
 	def getNombre() {
 		nombre
@@ -53,6 +41,16 @@ class Pais extends Entity{
 		nombre = pais.nombre
 		conexiones = pais.conexiones
 		
+	}
+	
+	def randomWithRange(int min, int max){
+   		val range = (max - min) + 1  
+   		return (((Math.random() * range) + min) as int)
+	}
+	
+	def generarLugarVillano() {
+		val num = randomWithRange(0,2)
+		lugarVillano = lugaresDeInteres.get(num)
 	}
 	
 	/*def validar() {

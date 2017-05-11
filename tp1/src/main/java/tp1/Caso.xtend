@@ -34,6 +34,21 @@ class Caso{
 		ubicacionActual = lugar
 	}
 	
+	def agregarRecorridoCorrectoIncorrecto() {
+			if( !( (recorridoCorrecto.contains(ubicacionActual) || 
+			(recorridoIncorrecto.contains(ubicacionActual))
+		))){
+			
+			if(planDeEscape.contains(ubicacionActual)){
+				recorridoCorrecto.add(ubicacionActual)	
+			}
+			else{
+				recorridoIncorrecto.add(ubicacionActual)
+			
+			}
+		}
+	}
+	
 	def getResponsable() {
 		responsable
 	}
@@ -58,6 +73,7 @@ class Caso{
 		ubicacionActual = pais
 		actualizarRecorrido(ubicacionActual)
 		actualizarLugares(ubicacionActual)
+		ubicacionActual.generarLugarVillano()
 	}
 	
 	
@@ -78,5 +94,43 @@ class Caso{
 	def getOrdenDeArresto() {
 		orden
 	}
+	
+	def ubicacionEnPlanDeEscape() {
+		return planDeEscape.contains(ubicacionActual)
+	}
+	
+	def esPaisFinal() {
+		return ubicacionActual == planDeEscape.last()
+	}
+	
+	
+	def villanoAtrapadoCorrecto() {
+		orden.villanoConOrden == responsable
+	}
+	
+	def generoOrdenDeArresto() {
+		orden != null
+	}
+	
+	def getTextoFinal() {
+		if (generoOrdenDeArresto){
+			
+			if(villanoAtrapadoCorrecto){
+				 "Atrapaste a  " + responsable.nombre + " felicidades"
+			}
+			else{
+				 "Tenias orden de arresto a  " + orden.villanoConOrden.nombre + " y el responsable era "+ 
+				 responsable.nombre
+			}
+		}
+		else{
+			"No generaste orden de arresto " + responsable.nombre + "Escapo"
+			
+		}
+
+		
+	}
+	
+
 
 }
