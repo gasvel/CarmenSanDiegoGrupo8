@@ -10,40 +10,11 @@ import org.uqbar.commons.model.UserException
 
 @Observable
 @Accessors
-
 class AppModelVillano {
-	
 	Villano villano
-	String hobbie
-	String sena
 
 	new(Villano villanoNuevo){
 		villano = villanoNuevo	
-	}
-	
-	def agregarSenaActual() {
-		if(!villano.senas_particulares.contains(sena)){
-		villano.senas_particulares.add(sena)
-		sena = null
-		
-		ObservableUtils.firePropertyChanged(villano,"senas_particulares")
-		
-		}
-		else{
-			throw new UserException("Error:Seña repetida")
-		}
-	}
-	
-	def agregarHobbieActual() {
-		if(!villano.hobbies.contains(hobbie)){
-		villano.hobbies.add(hobbie)
-		hobbie= null
-		ObservableUtils.firePropertyChanged(villano,"hobbies")
-		
-		}
-		else{
-			throw new UserException("Error:Hobbie repetido")
-		}
 	}
 	
 	def nuevoVillano() {
@@ -57,7 +28,6 @@ class AppModelVillano {
 	}
 	
 	def actualizarVillanos() {
-		
 		repoVillanos.update(villano)
 		ObservableUtils.firePropertyChanged(repoVillanos,"villanos")
 	}
