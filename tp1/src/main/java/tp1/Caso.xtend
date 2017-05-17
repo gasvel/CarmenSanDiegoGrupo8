@@ -4,6 +4,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import java.util.ArrayList
+import excepciones.NoPuedeViajarPaisFueraDeLaConexionException
 
 @Accessors
 @Observable
@@ -69,11 +70,17 @@ class Caso{
 		ubicacionActual = recorrido.last()
 	}
 	
-	def nuevaUbicacion(Pais pais){
-		ubicacionActual = pais
-		actualizarRecorrido(ubicacionActual)
-		actualizarLugares(ubicacionActual)
-		ubicacionActual.generarLugarVillano()
+	def nuevaUbicacion(Pais pais) throws NoPuedeViajarPaisFueraDeLaConexionException{
+		
+		if(ubicacionActual.conexiones.contains(pais)){
+			ubicacionActual = pais
+			actualizarRecorrido(ubicacionActual)
+			actualizarLugares(ubicacionActual)
+			ubicacionActual.generarLugarVillano()
+		}
+		else{
+			throw new NoPuedeViajarPaisFueraDeLaConexionException("No te pases de listo chaval que no puedes viajar ahi")
+		}
 	}
 	
 	

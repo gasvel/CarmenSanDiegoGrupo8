@@ -16,6 +16,7 @@ import tp1.Villano
 import org.uqbar.xtrest.api.annotation.Put
 import tp1.Pais
 import adapter.PaisAdapter
+import excepciones.NoPuedeViajarPaisFueraDeLaConexionException
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -98,11 +99,15 @@ class CarmenSanDiegoRestAPI {
 				
 			}
 			else{
-				juego.viajar(pais)	
-				val caso = adaptarCaso(juego.casoActual)
 				
-				ok(caso.toJson)
-			
+				try{
+					juego.viajar(pais)	
+					 val caso = adaptarCaso(juego.casoActual)
+					 ok(caso.toJson)
+					}
+				catch (NoPuedeViajarPaisFueraDeLaConexionException ex){ 
+						badRequest(getErrorJson("No te pases de listo chaval que no puedes viajar ahi"))
+					}
 			}
 		}
 		catch (NumberFormatException ex) {
