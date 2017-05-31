@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="rickyApp">
 <head>
   <meta charset="utf-8">
   <title>Where on earth is Ricky Fort</title>
@@ -10,25 +10,13 @@
 
   <!-- ANGULAR  -->
   <script src="node_modules/angular/angular.min.js"></script>
-<style>
-.container { 
-background: url("http://static.wixstatic.com/media/9f2aca_5d7c4d26457542dda69da6f7b2992e64~mv2_d_1920_1200_s_2.jpg") no-repeat center center fixed; 
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
-width:1350px;
-height:700px;
-}
-.col-md-4 {
-	background-color: #c1cdcd; 
-	padding:20px;
-	height:600px;
+  <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+  <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+  
+  
 
-}
-</style>
 </head>
-<body>
+<body ng-controller="JuegoCtrl" >
 
 
 <div class="container">
@@ -40,10 +28,8 @@ height:700px;
 		<div class="col-md-4 text-center"> 
 			<div class="well">
 			<ul class="list-group">
- 			<li class="list-group-item">Ricky Fort</li>
-  			<li class="list-group-item">Un sirio random(si no explota no es racismo (?</li>
- 			<li class="list-group-item">un nigga</li>
-  			<li class="list-group-item">el gato</li>
+ 				<li ng-repeat="villano in villanos" class="list-group-item"><p ng-bind="villano.nombre"></p>{{villano.nombre}} </li>
+  			
 
 			</ul>
 
@@ -51,6 +37,9 @@ height:700px;
 			<button class="btn btn btn-primary" type="button">Editar</button>
 			<button class="btn btn btn-primary" type="button">Eliminar</button>
 			</div>
+		</div>
+	</div>
+</div>
 
 		</div>
 		<div class="col-md-4 text-center"> 
@@ -80,8 +69,11 @@ height:700px;
 
     </div>
 
-<br/>
 
+
+<!-- nuestro jscript -->
+<script src="js/controller.js"></script>
+<script src="js/services.js"></script>
 
 </body>
 </html>

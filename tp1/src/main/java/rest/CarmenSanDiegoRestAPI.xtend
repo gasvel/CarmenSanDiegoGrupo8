@@ -17,6 +17,7 @@ import org.uqbar.xtrest.api.annotation.Put
 import tp1.Pais
 import adapter.PaisAdapter
 import excepciones.NoPuedeViajarPaisFueraDeLaConexionException
+import org.uqbar.xtrest.api.Result
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -117,12 +118,12 @@ class CarmenSanDiegoRestAPI {
 	}
 	
 	@Get("/villanos")
-	def obtenerVillanos(){
+	def Result obtenerVillanos(){
 		response.contentType = ContentType.APPLICATION_JSON
 		ok(this.juego.repoVillanos.getVillanos().toJson)
 	}
 	
-	@Get("/villano/:id")
+	@Get("/villanos/:id")
 	def getVillano(){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{
@@ -138,7 +139,7 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 	
-	@Put("/villano/:id")
+	@Put("/villanos/:id")
 	def updateVillano(@Body String body){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{
@@ -158,7 +159,7 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 	
-	@Delete("/villano/:id")
+	@Delete("/villanos/:id")
 	def deleteVillano(){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{
@@ -177,7 +178,7 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 	
-	@Post("/villano")
+	@Post("/villanos")
 	def nuevoVillano(@Body String body){
 		response.contentType = ContentType.APPLICATION_JSON
         try {
@@ -203,7 +204,7 @@ class CarmenSanDiegoRestAPI {
 	}
 	
 	
-	@Get("/pais/:id")
+	@Get("/paises/:id")
 	def getPaisPorId(){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{
@@ -219,7 +220,7 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 	
-	@Put("/pais/:id")
+	@Put("/paises/:id")
 	def updatePais(@Body String body){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{	
@@ -239,7 +240,7 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 	
-	@Delete("/pais/:id")
+	@Delete("/paises/:id")
 	def deletePais(){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{	
@@ -256,7 +257,7 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 
-	@Post("/pais")
+	@Post("/paises")
 	def nuevoPais(@Body String body){
 		response.contentType = ContentType.APPLICATION_JSON
         try {

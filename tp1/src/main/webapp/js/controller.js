@@ -1,7 +1,12 @@
-app.controller('JuegoCtrl', function($resource, $timeout, cfpLoadingBar, Villanos, Paises) {
-    'use strict';
+console.log("funco controller");
+var app = angular.module('rickyApp',['ngResource']).controller('JuegoCtrl', function($resource , Villanos) {
+	console.log("funco controller0");
+
+	'use strict';
 
     var self = this;
+    
+    console.log("funco controller1");
 
     self.villanos = [];
 
@@ -11,57 +16,49 @@ app.controller('JuegoCtrl', function($resource, $timeout, cfpLoadingBar, Villano
 
     this.actualizarLista = function() {
         Villanos.query(function(data) {
+        	console.log(data);
             self.villanos = data;
         }, errorHandler);
     };
-    
+    console.log("funco");
     this.actualizarLista();
-
-    // AGREGAR
+    
+    console.log("funco controller2");
+    
     this.nuevoVillano = function() {
-        Villanos.save(this.nuevoLibro, function(data) {
-            self.notificarMensaje('Libro agregado con id:' + data.id);
+        Villanos.save(this.nuevoVillano, function(data) {
+            self.notificarMensaje('Villano agregado con id:' + data.id);
             self.actualizarLista();
-            self.nuevoLibro = null;
+            self.nuevoVillano = null;
         }, errorHandler);
     };
 
-    // ELIMINAR
-    this.eliminar = function(libro) {
+    this.eliminar = function(villano) {
         
-                Libros.remove(libro, function() {
-                    self.notificarMensaje('Libro eliminado!');
+                Villanos.remove(villano, function() {
+                    self.notificarMensaje('Villano eliminado!');
                     self.actualizarLista();
                 }, errorHandler);
  
      };
 
-    // VER DETALLE
-    this.libroSeleccionado = null;
 
-    this.verDetalle = function(libro) {
-        self.libroSeleccionado = libro;
-        $("#verLibroModal").modal({});
+
+    
+    this.editarVillano= function(villano) {
+    	self.villanoSeleccionado = villano;
     };
 
-    // EDITAR LIBRO
-    this.editarLibro = function(libro) {
-    	self.libroSeleccionado = libro;
-        $("#editarLibroModal").modal({});
-    };
-
-    this.guardarLibro = function() {
-    	console.log(this.libroSeleccionado);
-        Libros.update(this.libroSeleccionado, function() {
-            self.notificarMensaje('Libro actualizado!');
+    this.guardarVillano = function() {
+    	console.log(this.villanoSeleccionado);
+        Villanos.update(this.villanoSeleccionado, function() {
+            self.notificarMensaje('Villano actualizado!');
             self.actualizarLista();
         }, errorHandler);
 
-        this.libroSeleccionado = null;
-        $("#editarLibroModal").modal('toggle');
+        this.villanoSeleccionado = null;
     };
 
-    // FEEDBACK & ERRORES
     this.msgs = [];
     this.notificarMensaje = function(mensaje) {
         this.msgs.push(mensaje);
