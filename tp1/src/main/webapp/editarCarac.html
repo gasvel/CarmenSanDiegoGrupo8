@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> Editar caracteristicas </title>
+
+<!-- BOOTSTRAP -->
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+
+</head>
+
+<body>
+
+
+<br>
+<div class= "container">
+
+	<div class ="col-md-3">
+	</div>
+	<div class="col-md-1">
+	</div>
+
+	<div class="col-md-4">
+	<div class="well">
+
+	<div class="panelCarac">
+		<p class="lead"> <strong> Caracteristicas </strong> </p>
+		
+		<div class="selector">
+		<select>
+ 		<option>No le gusta que le corten la loz</option>
+		<option>Suele visitar maiameeeee</option>
+		</select>
+		</div>
+
+	</div>
+
+	<button class= "btn btn-large btn-primary" type="button"> Eliminar</button>
+	
+
+	<br>
+	<br>
+
+	<div class="panelInput">
+	
+		<form>
+ 		 	<fieldset>
+    			<label>Agregar caracteristica</label>
+    			<input type="text" placeholder="Escribi algo prro">
+    			<span class="help-block">Ex: Basta chicos</span>
+    			</label>
+  			</fieldset>
+			</form>
+
+		
+	</div>
+
+	<br>
+
+	<div class="form-actions">
+ 		<button type="submit" class="btn btn-primary">Guardar cambios</button>
+  		<button type="button" class="btn btn-primary">Tirar todo a la basura</button>
+	</div>
+
+	</div>
+	</div>
+
+</div>	
+</body>
+</html>
+
+<style>
+
+.container {
+	background: url("http://static.wixstatic.com/media/9f2aca_5d7c4d26457542dda69da6f7b2992e64~mv2_d_1920_1200_s_2.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	width:1350px;
+	height:700px;
+	font-family: "Times New Roman", serif; 
+  	font-style: italic;
+}
+
+
+.col-md-4 {
+	background-color: #c1cdcd; 
+	padding:25px;
+	height:350px;
+
+}
+	
+.panelCarac{
+	display: flex;
+	
+}
+
+.btn {
+	border-radius: 4px;
+	background-color: blue;
+	border: none;
+	color: white;
+	text-align: center;
+	width: 150px;
+	cursor: pointer;
+	flex: 1;
+	padding: 1em;
+}
+
+.selector{
+	text-align: center;
+	width: 150px;
+	cursor: pointer;
+	padding: 1em;
+}
+
+
+</style>
