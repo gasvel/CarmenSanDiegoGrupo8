@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="rickyApp">
     <head>
         <meta charset="utf-8">
         <title> Mapamundi </title>
@@ -8,9 +8,14 @@
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
         
+        <!-- ANGULAR  -->
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+        <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+        
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
-    <body>
+    <body ng-controller="JuegoCtrl as ctrl">
         <div class="container">
             <div class="page-header">
                 <h1 class = "text-center"> <strong> Mapamundi </strong> </h1>
@@ -19,11 +24,10 @@
                 <div class="col-md-5 col-md-offset-1">
                     <div class="well">
                         <p class="lead"> <strong> Paises </strong> </p>
-                        <ul>
-                            <li>Argentina</li>
-                            <li>Allahu Akbar</li>
-                            <li>Ricky was here</li>
-                        </ul>
+                        <div class="list-group">
+                        	<a href="#" ng-click="ctrl.editarPais(pais)" ng-repeat="pais in ctrl.paises"  class="list-group-item">{{pais.nombre}}</a>
+                        </div>
+         
                         <button class="btn btn-large btn-primary btn-mapamundi" type="button">Eliminar</button>
                         <button class="btn btn-large btn-primary btn-mapamundi" type="button">Editar</button>
                         <button class="btn btn-large btn-primary btn-mapamundi" type="button">Nuevo</button>
@@ -34,29 +38,27 @@
                 </div>
                 <div class="col-md-3 col-md-offset-1">
                     <div class="well">
-                        <p class="lead"> <strong> Nombre: </strong> </p>
+                        <p class="lead"> <strong> Nombre: </strong> {{ctrl.paisSeleccionado.nombre}} </p>
                         <br>
                         <p class="lead"> <strong> Caracteristicas </strong> </p>
-                        <ul>
-                            <li>No le gusta que le corten la loz</li>
-                            <li>Suele visitar maiameeeee</li>
-                        </ul>
+                       <div class="list-group">
+                        	<a ng-repeat="caracteristica in ctrl.paisSeleccionado.caracteristicas" class="list-group-item">{{caracteristica}}</a>
+                        </div>
                         <br>
                         <p class="lead"> <strong> Conexiones </strong> </p>
-                        <ul>
-                            <li>Brasil</li>
-                            <li>EEUU</li>
-                        </ul>
+                        <div class="list-group">
+                        	<a ng-repeat="conexion in ctrl.paisSeleccionado.conexiones" class="list-group-item">{{conexion}}</a>
+                        </div>
                         <br>
                         <p class="lead"> <strong> Lugares de interes </strong> </p>
-                        <ul>
-                            <li>Banco</li>
-                            <li>Club</li>
-                            <li>Biblioteca</li>
-                        </ul>
+                        <div class="list-group">
+                        	<a ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugaresDeInteres" class="list-group-item">{{lugarDeInteres}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script src="js/controllerMapamundi.js"></script>
+        <script src="js/services.js"></script>
     </body>
 </html>
