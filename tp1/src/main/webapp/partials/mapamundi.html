@@ -1,0 +1,44 @@
+
+        <div class="container">
+            <div class="page-header">
+                <h1 class = "text-center"> <strong> Mapamundi </strong> </h1>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-md-offset-1">
+                    <div class="well">
+                        <p class="lead"> <strong> Paises </strong> </p>
+                        <div class="list-group">
+                        	<a href="" ng-click="ctrl.editarPais(pais.id)" ng-repeat="pais in ctrl.paises"  class="list-group-item">{{pais.nombre}}</a>
+                        </div>
+         
+                        <button class="btn btn-large btn-primary btn-mapamundi" type="button">Eliminar</button>
+                        <button class="btn btn-large btn-primary btn-mapamundi" type="button">Editar</button>
+                        <button class="btn btn-large btn-primary btn-mapamundi" type="button">Nuevo</button>
+                        <div class="imgMundo">
+                            <img src="https://68.media.tumblr.com/f92e88bc7b252bd143640538944f1216/tumblr_o9kus20Jbc1rf0j0eo1_500.gif" width = 400px;>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <div class="well">
+                        <p class="lead"> <strong> Nombre: </strong> {{ctrl.paisSeleccionado.nombre}} </p>
+                        <br>
+                        <p class="lead"> <strong> Caracteristicas </strong> </p>
+                       <div class="list-group">
+                        	<a ng-repeat="caracteristica in ctrl.paisSeleccionado.caracteristicas" class="list-group-item">{{caracteristica}}</a>
+                        </div>
+                        <br>
+                        <p class="lead"> <strong> Conexiones </strong> </p>
+                        <div class="list-group">
+                        	<a ng-repeat="conexion in ctrl.paisSeleccionado.conexiones" class="list-group-item">{{conexion.nombre}}</a>
+                        </div>
+                        <br>
+                        <p class="lead"> <strong> Lugares de interes </strong> </p>
+                        <div class="list-group">
+                        	<a ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugaresDeInteres" class="list-group-item">{{lugarDeInteres.nombre}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      

@@ -1,0 +1,162 @@
+.container { 
+	background: url("http://static.wixstatic.com/media/9f2aca_5d7c4d26457542dda69da6f7b2992e64~mv2_d_1920_1200_s_2.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	width:1350px;
+	height:700px;
+}
+
+.btn {
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px #999;
+}
+
+.btn-primary{
+	background-color:#006400;
+}
+
+.btn-orden{
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-family: "Times New Roman", serif; 
+  font-style: italic;
+}
+
+.btn-editar-carac {
+	border-radius: 4px;
+	background-color: blue;
+	border: none;
+	color: white;
+	text-align: center;
+	width: 150px;
+	cursor: pointer;
+	flex: 1;
+	padding: 1em;
+}
+
+.btn-mapamundi {
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-family: "Times New Roman", serif; 
+  font-style: italic;
+}
+
+.btn:hover {
+	background-color: #c1cdcd
+}
+
+.btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}
+
+.col-md-3 {
+	background-color: #c1cdcd; 
+	padding:30px;
+	height:530px;
+}
+
+.col-md-4 {
+	background-color: #c1cdcd; 
+	padding:40px;
+	height:600px;
+}
+
+
+.col-md-4.viajar {
+	background-color: #c1cdcd; 
+	padding:25px;
+	width: 600px;
+	height:600px;
+}
+
+.col-md-4.orden{
+	background-color: #c1cdcd; 
+	padding:25px;
+	width: 500px;
+	height:500px;	
+}
+
+.col-md-4.editar-carac {
+	background-color: #c1cdcd; 
+	padding:25px;
+	height:350px;
+}
+
+.col-md-5 {
+	background-color: #c1cdcd; 
+	padding:30px;
+	height:450px;
+}
+
+.col-md-5.resolver-misterio {
+	background-color: #c1cdcd; 
+	padding:30px;
+	height:600px;
+}
+
+.col-md-8 {
+	background-color: #c1cdcd; 
+	padding:20px;
+	height:600px;
+}
+
+.col-md-10{
+	padding:50px;
+}
+
+.selector {
+	padding:10px;
+}
+
+.selector-editar-carac {
+	text-align: center;
+	width: 150px;
+	cursor: pointer;
+	padding: 1em;
+}
+
+.selector.viajar {
+	padding: 30px;
+}
+
+.panelVillanos {
+	display: flex;
+}
+
+.panelInfo {
+	display: flex;
+}
+
+.panelCarac {
+	display: flex;
+}
+
+.panelConex {
+	display: flex;
+}
+
+.panelLugares{
+	display: flex;
+}
+
+.panelPaises {
+	display: flex;
+}
+
+.table {
+	width: 200px;
+}
