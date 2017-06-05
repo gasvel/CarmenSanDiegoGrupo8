@@ -21,7 +21,7 @@ app.factory('Paises', function($resource) {
 
 app.factory('Inicio', function($resource) {
     return $resource('/iniciarjuego', {
-        'iniciar': { method: 'POST' }
+        'save': { method: 'POST' }
 
     });
 });
@@ -48,5 +48,17 @@ app.factory('Pista', function($resource) {
     	'obtenerPista': { method: 'GET', isArray: true},
     });
 });
+
+app.service('CasoActual',function Caso(){
+	var casoActual=this;
+	casoActual.get=null;
+	});
+
+app.service('UbicacionActual',function Ubicacion(){
+	var ubicacionActual=this;
+	ubicacionActual.get=null;
+	});
+
+
 
 console.log("funco services2");

@@ -1,0 +1,43 @@
+
+<div class="container">
+
+    <div class="row">
+		<div class="col-md-2">
+		
+		</div>
+		<div class="col-md-4 text-center"> 
+			<div class="well" >
+			<div class="list-group" >
+ 				<a href="" ng-click="ctrl.editarVillano(villano)" ng-repeat="villano in ctrl.villanos"  class="list-group-item">{{villano.nombre}}</a>
+			
+
+			
+			</div>
+
+			<button class="btn btn btn-primary" type="button">Nuevo</button>
+			<button ui-sref= "editarVillano"class="btn btn btn-primary" type="button">Editar</button>
+			<button class="btn btn btn-primary" type="button">Eliminar</button>
+			</div>
+		</div>
+		<div class="col-md-4 text-center">
+			<div class="well">
+			
+				<h5>Nombre: {{ctrl.villanoSeleccionado.nombre}}</h5>
+				<br>
+				<h5>Hobbies</h5>
+				<br>
+				<div class="list-group">
+					<a ng-repeat="hobbie in ctrl.villanoSeleccionado.hobbies" class="list-group-item">{{hobbie}}</a>
+				</div>
+				
+				<h5>Señas particulares</h5>
+				<br>
+				<div class="list-group">
+					<a ng-repeat="sena in ctrl.villanoSeleccionado.senas_particulares" class="list-group-item">{{sena}}</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+

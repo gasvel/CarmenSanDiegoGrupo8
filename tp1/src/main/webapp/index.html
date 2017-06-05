@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='rickyApp'>
 <head>
   <meta charset="utf-8">
   <title>Where on earth is Ricky Fort</title>
@@ -10,53 +10,25 @@
 
   <!-- ANGULAR  -->
   <script src="node_modules/angular/angular.min.js"></script>
-<style>
-.container { 
-background: url("http://static.wixstatic.com/media/9f2aca_5d7c4d26457542dda69da6f7b2992e64~mv2_d_1920_1200_s_2.jpg") no-repeat center center fixed; 
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
-width:1350px;
-height:700px;
-}
-.btn-primary{
-	background-color:#006400;
-}
-.col-md-10{
-	padding:50px;
-}
-</style>
+  <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+  <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>  
+      <!-- STYLESHEET -->
+      
+    <link rel="icon" type="PNG" href="https://k61.kn3.net/F/A/5/B/9/3/CB4.png" />
+  
+  <link rel="stylesheet" href="style.css" type="text/css">
+  
 </head>
 <body>
-
-
-<div class="container">
-<div class="col-md-1 text-center">
-
-</div>
-<div class="col-md-10 text-center"> 
-
-<img src="https://k61.kn3.net/F/A/5/B/9/3/CB4.png">
-<br>
-<br>
-<br>
+<div ui-view>
 </div>
 
 
-<div class="col-md-12 text-center"> 
-
-<a href="inicio.html" class="btn btn-primary">Iniciar juego</a>
-
-
-<button class="btn btn btn-primary" type="button">Expedientes</button>
-
-<button class="btn btn btn-primary" type="button">Mapamundi</button>
-</div>
-</div>
 
 <br/>
 
-
+<script src="js/controller.js"></script>
+<script src="js/routes.js"></script>
+<script src="js/services.js"></script>
 </body>
 </html>

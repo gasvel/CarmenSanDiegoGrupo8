@@ -1,14 +1,21 @@
 console.log("funco controller");
-var app = angular.module('rickyApp',['ngResource']).controller('JuegoCtrl', function($resource , Villanos) {
+var app = angular.module('rickyApp',['ngResource','ui.router']).controller('JuegoCtrl', function($resource,$state,$stateParams ,UbicacionActual, CasoActual,Villanos, Inicio,Viajar,Paises) {
 	console.log("funco controller0");
 
 	'use strict';
 
     var self = this;
     
-    console.log("funco controller1");
 
     self.villanos = [];
+	self.casoActual =CasoActual;
+	self.ubicacionActual = UbicacionActual;
+	console.log(self.casoActual);
+	console.log(self.ubicacionActual);
+
+
+
+    
 
     function errorHandler(error) {
         self.notificarError(error.data);
@@ -31,6 +38,7 @@ var app = angular.module('rickyApp',['ngResource']).controller('JuegoCtrl', func
             self.actualizarLista();
             self.nuevoVillano = null;
         }, errorHandler);
+        
     };
 
     this.eliminar = function(villano) {
@@ -58,6 +66,27 @@ var app = angular.module('rickyApp',['ngResource']).controller('JuegoCtrl', func
 
         this.villanoSeleccionado = null;
     };
+    
+    
+    this.iniciarJuego= function(){
+    	console.log("inicio juego");
+    	Inicio.save(function(data){
+    		console.log(data);
+    		self.casoActual.get =data;
+    	},errorHandler);
+    	$state.go('presentarCaso');
+    };
+    
+    this.resolverMisterio= function(){
+    	self.ubicacionActual.get = self.casoActual.get.pais;
+    	$state.go('resolverMisterio');
+    }
+
+    
+    
+    this.viajarA= function(pais){
+    	Viajar.viajar(pais);
+    }
 
     this.msgs = [];
     this.notificarMensaje = function(mensaje) {
