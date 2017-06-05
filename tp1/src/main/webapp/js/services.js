@@ -18,7 +18,7 @@ app.factory('Paises', function($resource) {
 
 app.factory('Pais', function($resource) {
     return $resource('/pais/:id', {'id': '@id'}, {
-    	'query': { method: 'GET'},
+    	'get': { method: 'GET'},
         'update': { method: 'PUT' },
         'save': { method: 'POST' },
         'remove': { method:'DELETE' }

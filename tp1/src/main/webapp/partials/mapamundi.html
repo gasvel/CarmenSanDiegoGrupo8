@@ -8,7 +8,7 @@
                     <div class="well">
                         <p class="lead"> <strong> Paises </strong> </p>
                         <div class="list-group">
-                        	<a href="" ng-click="ctrl.editarPais(pais.id)" ng-repeat="pais in ctrl.paises"  class="list-group-item">{{pais.nombre}}</a>
+                        	<a href="" ng-click="ctrl.editarPais(pais)" ng-repeat="pais in ctrl.paises"  class="list-group-item">{{pais.nombre}}</a>
                         </div>
          
                         <button class="btn btn-large btn-primary btn-mapamundi" type="button">Eliminar</button>
@@ -35,7 +35,7 @@
                         <br>
                         <p class="lead"> <strong> Lugares de interes </strong> </p>
                         <div class="list-group">
-                        	<a ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugaresDeInteres" class="list-group-item">{{lugarDeInteres.nombre}}</a>
+                        	<a ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugares" class="list-group-item">{{lugarDeInteres.nombre}}</a>
                         </div>
                     </div>
                 </div>

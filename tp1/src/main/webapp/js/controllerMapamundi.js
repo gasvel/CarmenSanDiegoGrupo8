@@ -37,8 +37,10 @@ app.controller('MapamundiCtrl', function($resource , Paises,Pais, $state, $state
 
 
     
-    this.editarPais= function(id) {
-    	self.paisSeleccionado=Pais.query(id);
+    this.editarPais= function(pais) {
+    	Pais.get({id: pais.id}, function(data){
+    		self.paisSeleccionado= data;
+    	});
     	console.log(self.paisSeleccionado);
     };
 
