@@ -21,7 +21,7 @@ app.controller("ViajeCtrl", function($resource, $state,$timeout, $stateParams, V
    }
    
    this.viajar= function(){
-	   Viajar.save(this.paisSeleccionado,{destinoId: self.paisSeleccionado.id},function(data){
+	   Viajar.save({destinoId: self.paisSeleccionado.id},function(data){
 		   self.notificarMensaje(data.id);
 		   self.ultimoPais.get= self.ubicacionActual.get;
 		   self.ubicacionActual.get = self.paisSeleccionado;
@@ -31,20 +31,15 @@ app.controller("ViajeCtrl", function($resource, $state,$timeout, $stateParams, V
 	   
    }
    
-   this.getPais= function(idPais){
-	   Pais.get({id:idPais},function(data){
-		   return data;
-	   },errorHandler);
-   }
-   
    this.volverPais= function(){
 	   Viajar.save({destinoId: self.ultimoPais.get.id},function(data){
-		   this.notificarMensaje(data);
+		   self.notificarMensaje("Viaje a pais "+ data.pais.nombre);
+		   self.ultimoPais.get =  self.ubicacionActual.get;
+		   self.ubicacionActual.get= data.pais;
+		   self.paisSeleccionado=null;
 		   
 	   }, errorHandler);
-	   self.paisSeleccionado= self.ubicacionActual.get;
-	   self.ubicacionActual.get = self.ultimoPais.get;
-	   self.ultimoPais.get = self.paisSeleccionado;
+	  
    }
 
 
