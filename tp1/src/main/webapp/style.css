@@ -1,0 +1,17 @@
+
+.container { 
+background: url("http://static.wixstatic.com/media/9f2aca_5d7c4d26457542dda69da6f7b2992e64~mv2_d_1920_1200_s_2.jpg") no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+width:1350px;
+height:700px;
+}
+.btn-primary{
+	background-color:#006400;
+}
+.col-md-10{
+	padding:50px;
+}
+

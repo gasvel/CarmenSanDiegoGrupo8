@@ -20,7 +20,7 @@ console.log("ruta");
     .state('resolverMisterio', {
       url: "/resolver",
       templateUrl: "partials/resolverMisterio.html",
-  	controller: "JuegoCtrl as juego"
+  	controller: "ResolverMisterioCtrl as juego"
 
     })
     
@@ -40,6 +40,24 @@ console.log("ruta");
     	url: "/paises",
     	templateUrl: "partials/mapamundi.html",
     	controller: "MapamundiCtrl as ctrl"
+    })
+    
+     .state('emitirOrden',{
+    	url: "/emitirOrden",
+    	templateUrl: "partials/orden_de_arresto.html",
+    	controller: "OrdenDeArrestoCtrl as ctrl"
+    })
+    
+    .state('obtenerPista',{
+    	url: "/pista",
+    	templateUrl: "partials/pistaLugar.html",
+    	controller: "PistaCtrl as ctrl"
+    })
+    
+    .state('viajar',{
+    	url: "/viajar",
+    	templateUrl: "partials/viajar.html",
+    	controller: "ViajeCtrl as ctrl"
     })
 
     	

@@ -10,7 +10,7 @@ interface Pista {
    		return (((Math.random() * range) + min) as int)
 	}
 	
-	def darPista(Caso caso){
+	def String darPista(Caso caso){
 		
 	}
 	

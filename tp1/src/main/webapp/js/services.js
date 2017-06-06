@@ -37,14 +37,14 @@ app.factory('Inicio', function($resource) {
 app.factory('Viajar', function($resource) {
     return $resource('/viajar/:destinoId', {'destinoId': '@destinoId'}, {
 
-        'viajar': { method: 'POST' }
+        'save': { method: 'POST' }
 
     });
 });
 
 app.factory('Orden', function($resource) {
-    return $resource('/emitirOrdenPara/:villanoId/:casoId', {'villanoId': '@villanoId'}, {'casoId':'@casoId'}, {
-        'emitirOrden': { method: 'POST' }
+    return $resource('/emitirOrdenPara/:villanoId/:casoId', {'villanoId':'@villanoId','casoId':'@casoId'}, {
+        'save': { method: 'POST' }
 
     });
 });
@@ -52,8 +52,8 @@ app.factory('Orden', function($resource) {
 
 
 app.factory('Pista', function($resource) {
-    return $resource('/pistaDelLugar/:lugar/:casoId', {'lugar': '@lugar'},{'casoId' : '@casoId'}, {
-    	'obtenerPista': { method: 'GET', isArray: false},
+    return $resource('/pistaDelLugar/:lugar/:casoId', {'lugar':'@lugar','casoId':'@casoId'}, {
+    	'get': { method: 'GET'}
     });
 });
 
@@ -65,6 +65,21 @@ app.service('CasoActual',function Caso(){
 app.service('UbicacionActual',function Ubicacion(){
 	var ubicacionActual=this;
 	ubicacionActual.get=null;
+	});
+
+app.service('UltimoPais',function Ubicacion(){
+	var ultimoPais=this;
+	ultimoPais.get=null;
+	});
+
+app.service('VillanoConOrden',function Villano(){
+	var villanoActual=this;
+	villanoActual.get=null;
+	});
+
+app.service('LugarVisitado',function Lugar(){
+	var lugarActual=this;
+	lugarActual.get=null;
 	});
 
 

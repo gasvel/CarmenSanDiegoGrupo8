@@ -1,5 +1,4 @@
-console.log("funco controller");
-var app = angular.module('rickyApp',['ngResource','ui.router']).controller('JuegoCtrl', function($resource,$state,$stateParams ,UbicacionActual, CasoActual, Inicio) {
+app.controller('ResolverMisterioCtrl', function($resource,$state,$stateParams ,UbicacionActual, CasoActual,LugarVisitado, Inicio) {
 	console.log("funco controller0");
 
 	'use strict';
@@ -7,9 +6,8 @@ var app = angular.module('rickyApp',['ngResource','ui.router']).controller('Jueg
     var self = this;
     
 
-	self.casoActual =CasoActual;
 	self.ubicacionActual = UbicacionActual;
-	console.log(self.casoActual);
+	self.lugar= LugarVisitado;
 	console.log(self.ubicacionActual);
 
 
@@ -21,19 +19,13 @@ var app = angular.module('rickyApp',['ngResource','ui.router']).controller('Jueg
     }
 
    
-    this.iniciarJuego= function(){
-    	console.log("inicio juego");
-    	Inicio.save(function(data){
-    		console.log(data);
-    		self.casoActual.get =data;
-    	},errorHandler);
-    	$state.go('presentarCaso');
-    };
 
-    this.resolverMisterio= function(){
-    	self.ubicacionActual.get = self.casoActual.get.pais;
-    	$state.go('resolverMisterio');
+    this.irALugar= function(lugar){
+    	self.lugar.get=lugar;
+    	$state.go("obtenerPista");
     };
+    
+
 
     
 
