@@ -72,15 +72,23 @@ class Caso{
 	
 	def nuevaUbicacion(Pais pais) throws NoPuedeViajarPaisFueraDeLaConexionException{
 		
-		if(ubicacionActual.conexiones.contains(pais)){
-			ubicacionActual = pais
-			actualizarRecorrido(ubicacionActual)
-			actualizarLugares(ubicacionActual)
-			ubicacionActual.generarLugarVillano()
-		}
-		else{
-			throw new NoPuedeViajarPaisFueraDeLaConexionException("No te pases de listo chaval que no puedes viajar ahi")
-		}
+			
+			if(ubicacionActual.conexiones.contains(pais)){
+				actualizarRecorrido(ubicacionActual)
+				
+				ubicacionActual = pais
+				actualizarLugares(ubicacionActual)
+				ubicacionActual.generarLugarVillano()
+			}
+			else{
+				if(pais.nombre == recorrido.last().nombre){
+					volverPaisAtras()
+			
+				}else{
+					throw new NoPuedeViajarPaisFueraDeLaConexionException("No te pases de listo chaval que no puedes viajar ahi")
+				}
+			
+			}
 	}
 	
 	
