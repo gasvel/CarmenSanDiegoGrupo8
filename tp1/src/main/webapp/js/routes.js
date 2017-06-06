@@ -42,6 +42,12 @@ console.log("ruta");
     	controller: "MapamundiCtrl as ctrl"
     })
     
+    .state('nuevoPais',{
+    	url: "/paises/nuevo",
+    	templateUrl: "partials/nuevo_pais.html",
+    	controller: "NuevoPaisCtrl as ctrl"
+    })
+    
      .state('emitirOrden',{
     	url: "/emitirOrden",
     	templateUrl: "partials/orden_de_arresto.html",

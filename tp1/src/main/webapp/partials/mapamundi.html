@@ -11,9 +11,9 @@
                         	<a href="" ng-click="ctrl.editarPais(pais)" ng-repeat="pais in ctrl.paises"  class="list-group-item">{{pais.nombre}}</a>
                         </div>
          
-                        <button class="btn btn-large btn-primary btn-mapamundi" type="button">Eliminar</button>
+                        <a ng-click="ctrl.eliminar(pais)" class="btn btn-large btn-primary btn-mapamundi" type="button">Eliminar</a>
                         <button class="btn btn-large btn-primary btn-mapamundi" type="button">Editar</button>
-                        <button class="btn btn-large btn-primary btn-mapamundi" type="button">Nuevo</button>
+                        <a ui-sref="nuevoPais" class="btn btn-large btn-primary btn-mapamundi" type="button">Nuevo</a>
                         <div class="imgMundo">
                             <img src="https://68.media.tumblr.com/f92e88bc7b252bd143640538944f1216/tumblr_o9kus20Jbc1rf0j0eo1_500.gif" width = 400px;>
                         </div>
