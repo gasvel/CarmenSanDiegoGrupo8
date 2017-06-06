@@ -48,6 +48,7 @@ console.log("ruta");
     	controller: "NuevoPaisCtrl as ctrl"
     })
     
+    
      .state('emitirOrden',{
     	url: "/emitirOrden",
     	templateUrl: "partials/orden_de_arresto.html",

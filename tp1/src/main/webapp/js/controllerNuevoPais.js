@@ -17,6 +17,7 @@ app.controller('NuevoPaisCtrl', function($resource, Paises, Pais, $state, $state
     };
     this.actualizarLista();
     
+    
     this.nuevoPais = function() {
         Pais.save(this.nuevoPais, function(data) {
             self.notificarMensaje('Pais agregado con id:' + data.id);

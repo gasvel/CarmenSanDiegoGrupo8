@@ -1,4 +1,4 @@
-app.controller('MapamundiCtrl', function($resource , Paises, Pais, $state, $stateParams) {
+app.controller('MapamundiCtrl', function($resource, Paises, Pais, $state, $stateParams) {
 
 	'use strict';
 

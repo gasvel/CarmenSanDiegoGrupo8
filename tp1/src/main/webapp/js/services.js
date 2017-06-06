@@ -26,7 +26,6 @@ app.factory('Pais', function($resource) {
 });
 
 
-
 app.factory('Inicio', function($resource) {
     return $resource('/iniciarjuego', {
         'save': { method: 'POST' }

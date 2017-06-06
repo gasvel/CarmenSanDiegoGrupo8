@@ -33,6 +33,7 @@ app.controller('MapamundiCtrl', function($resource , Paises,Pais, $state, $state
                 }, errorHandler);
  
      };
+     
 
 
 
