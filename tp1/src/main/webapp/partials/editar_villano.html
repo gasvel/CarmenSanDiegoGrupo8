@@ -1,5 +1,13 @@
 
-<div class="container">
+<div>
+<div ng-if= "ctrl.esNuevo()" class="page-header">
+            
+                <h1 class = "text-center"> <strong> Nuevo Villano </strong> </h1>
+            </div>
+            <div ng-if= "ctrl.esEdit()" class="page-header">
+            
+                <h1 class = "text-center"> <strong> Editar Villano </strong> </h1>
+</div>
 
     <div class="row">
 		<div class="col-md-2">
@@ -20,18 +28,32 @@
 			</div>
 			
 			
-			<h4> Sexo: <span ng-bind="villanoSeleccionado.sexo"></span></h4>
+			<h4> Sexo: <span ng-bind="ctrl.villanoSeleccionado.sexo"></span></h4>
 			<br>
-			<input ng-model="villanoSeleccionado.sexo">
+			<input ng-model="ctrl.villanoSeleccionado.sexo">
 			<br>
 			<h4> Hobbies </h4>
+			<div class="list-group">
+                <a ng-repeat="hobbie in ctrl.villanoSeleccionado.hobbies" class="list-group-item">{{hobbie}}</a>
+            </div>
 			
+			<input ng-model="ctrl.hobbieInput">
+			<a class="btn btn-primary" type="button" ng-click="ctrl.addHobbie()">Agregar</a>
 			
-			<input type="text" id="hobbie" size="30">
-			<button id="addbutton" class="btn btn-primary" type="button" onClick="addHobbie();">Agregar</button>
-			<input type="text" id="sena" size="30">
-			<button class="btn btn-primary" type="button"  onClick="addHobbie();">Agregar</button>
+			<h4> Señas </h4>
 
+			<div class="list-group">
+                <a ng-repeat="sena in ctrl.villanoSeleccionado.senas_particulares" class="list-group-item">{{sena}}</a>
+            </div>
+			
+			<input ng-model="ctrl.senaInput">
+			<a class="btn btn-primary" type="button"  ng-click="ctrl.addSena()">Agregar</a>
+
+
+ 			<div class="form-actions">
+               <a ng-click="ctrl.guardarVillano()" class="btn btn-primary">Guardar cambios</a>
+               <a ng-click="ctrl.cancel()" class="btn btn-primary">Tirar todo a la basura</a>
+            </div>
 			</div>
 
 
@@ -46,4 +68,5 @@
 
 
     </div>
+</div>
 

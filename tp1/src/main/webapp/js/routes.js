@@ -24,16 +24,25 @@ console.log("ruta");
 
     })
     
-    .state('expedientes',{
+    .state('expediente',{
     	url: "/villanos",
     	templateUrl: "partials/expedientes.html",
-    	controller: "JuegoCtrl as ctrl"
+    	controller: "ExpedienteCtrl as ctrl"
     })
     
      .state('editarVillano',{
-    	url: "/villanos/edicion",
+    	url: "/villano/:id",
+    	params:{
+    		id:null
+    	},
     	templateUrl: "partials/editar_villano.html",
-    	controller: "JuegoCtrl as ctrl"
+    	controller: "EditVillanoCtrl as ctrl"
+    })
+    
+    .state('nuevoVillano',{
+    	url: "/villano",
+    	templateUrl: "partials/editar_villano.html",
+    	controller: "NuevoVillanoCtrl as ctrl"
     })
     
     .state('mapamundi',{
