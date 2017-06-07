@@ -6,7 +6,7 @@ app.controller('NuevoVillanoCtrl', function($resource,$timeout, Villano, $state,
 
     var self = this;
     
-    self.villanoSeleccionado={
+    self.villano={
     		  "nombre": "",
     		  "sexo": "",
     		  "senas_particulares": [],
@@ -30,7 +30,7 @@ app.controller('NuevoVillanoCtrl', function($resource,$timeout, Villano, $state,
     
     
     this.guardarVillano= function() {
-        Villano.save(this.villanoSeleccionado, function() {
+        Villano.save(this.villano, function() {
             self.notificarMensaje('Villano creado!');
         }, errorHandler);
 
@@ -41,11 +41,11 @@ app.controller('NuevoVillanoCtrl', function($resource,$timeout, Villano, $state,
     }
     
     this.addHobbie= function(){
-    	self.villanoSeleccionado.hobbies.push(self.hobbieInput)
+    	self.villano.hobbies.push(self.hobbieInput)
     }
     
     this.addSena= function(){
-    	self.villanoSeleccionado.senas_particulares.push(self.senaInput)
+    	self.villano.senas_particulares.push(self.senaInput)
     }
     
 
