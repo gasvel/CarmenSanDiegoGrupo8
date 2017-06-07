@@ -2,55 +2,79 @@
         <div class= "container">
             <div class="col-md-4 col-md-offset-4 editar-carac">
                 <div class="well">
+                
+                
                     <div class="panelCarac">
                     	<div ng-if= "ctrl.esCarac()" class="carac">
                         <p class="lead"> <strong> Caracteristicas </strong> </p>
-                        <div class="selector-editar-carac">
-                            <select>
-                                <option>No le gusta que le corten la loz</option>
-                                <option>Suele visitar maiameeeee</option>
-                            </select>
+                        <div class="list-group">
+                        	<a ng-repeat="caracteristica in ctrl.paisSeleccionado.caracteristicas" class="list-group-item">{{caracteristica}}</a>
                         </div>
                         </div>
                         
                         <div ng-if= "ctrl.esConex()" class="conex">
                         <p class="lead"> <strong> Conexiones </strong> </p>
-                        <div class="selector-editar-carac">
-                            <select>
-                                <option>No le gusta que le corten la loz</option>
-                                <option>Suele visitar maiameeeee</option>
-                            </select>
+                        <div class="list-group">
+                        	<a ng-repeat="conexion in ctrl.paisSeleccionado.conexiones" class="list-group-item">{{conexion.nombre}}</a>
                         </div>
                         </div>
                         
-                        <div ng-if= "ctrl.esLugaresDeInteres()" class="lugaresInteres">
+                        <div ng-if= "ctrl.esLugaresDeInteres()" class="lugares">
                         <p class="lead"> <strong> Lugares de interes </strong> </p>
-                        <div class="selector-editar-carac">
-                            <select>
-                                <option>No le gusta que le corten la loz</option>
-                                <option>Suele visitar maiameeeee</option>
-                            </select>
+                        <div class="list-group">
+                        	<a ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugares" class="list-group-item">{{lugarDeInteres.nombre}}</a>
                         </div>
                         </div>
                         
                     </div>
-                    <button class="btn btn-large btn-primary btn-editar-carac" type="button"> Eliminar</button>
+                    <div ng-if="ctrl.esCarac()">
+                    <a ng-click="ctrl.eliminar(caracteristica)" class="btn btn-large btn-primary btn-editar-carac" type="button"> Eliminar</a>
+                    </div>
+                    
+                    </div>
+                    <div ng-if="ctrl.esConex()">
+                    <a ng-click="ctrl.eliminar(conexion)" class="btn btn-large btn-primary btn-editar-carac" type="button"> Eliminar</a>
+                    </div>
+                    
+                    </div>
+                    <div ng-if="ctrl.esLugaresDeInteres()">
+                    <a ng-click="ctrl.eliminar(lugarDeInteres)" class="btn btn-large btn-primary btn-editar-carac" type="button"> Eliminar</a>
+                    </div>
+                    
                     <br>
                     <br>
                     <div class="panelInput">
+                    	<div ng-if="ctrl.esCarac()">
                         <form>
                             <fieldset>
                                 <label>Agregar caracteristica</label>
-                                <input type="text" placeholder="Escribi algo prro">
+                                < <!-- input ng-model="ctrl.paisNuevo.caracteristicas"--> type="text" placeholder="Escribi algo prro">
                                 <span class="help-block">Ex: Basta chicos</span>
                                 </label>
                             </fieldset>
                         </form>
+                        </div>
+                        
+                        <div ng-if="ctrl.esConex()">
+                        <div class="list-group">
+                        	<a ng-repeat="conexion in ctrl.paisSeleccionado.conexiones" class="list-group-item">{{conexion.nombre}}</a>
+                        </div>
+                        </div>
+                        
+                        <div ng-if= "ctrl.esLugaresDeInteres()" class="lugares">
+                        
+                        <div class="list-group">
+                        	<a ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugares" class="list-group-item">{{lugarDeInteres.nombre}}</a>
+                        </div>
+                        </div>
+                        
+                       
+                        
                     </div>
                     <br>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary btn-editar-carac">Guardar cambios</button>
-                        <button type="button" class="btn btn-primary btn-editar-carac">Tirar todo a la basura</button>
+                        <a ng-click="ctrl.guardar()" type="submit" class="btn btn-primary btn-editar-carac">Guardar cambios</a>
+                        <a ng-click="ctrl.cancel()" type="button" class="btn btn-primary btn-editar-carac">Tirar todo a la basura</a>
                     </div>
                 </div>
             </div>

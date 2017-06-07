@@ -22,7 +22,19 @@ app.controller('EditarConexCtrl', function($resource, Pais, $state, $stateParams
     	$state.go("nuevoPais");
     }
     
+    this.getPais=function(){
+    	Pais.get({id: $stateParams.id},function(data){
+    		self.paisSeleccionado= data;
+    	},errorHandler);
+    };
     
+    self.getPais();
+    this.guardar= function() {
+        Pais.update(this.paisSeleccionado, function() {
+            self.notificarMensaje('Pais actualizado!');
+        }, errorHandler);
+
+    };
 
     this.msgs = [];
     this.notificarMensaje = function(mensaje) {

@@ -5,6 +5,11 @@ app.controller('EditarCaracCtrl', function($resource, Pais, $state, $stateParams
     var self = this;
     
 
+    self.paisNuevo={
+  		  "nombre": "",
+  		  "lugares": [],
+  		  "conexiones": []
+  		};
     
     this.esCarac= function(){
     	return true;
@@ -22,7 +27,19 @@ app.controller('EditarCaracCtrl', function($resource, Pais, $state, $stateParams
         self.notificarError(error.data);
     };
     
-  
+    this.getPais=function(){
+    	Pais.get({id: $stateParams.id},function(data){
+    		self.paisSeleccionado= data;
+    	},errorHandler);
+    };
+    
+    
+    this.guardar= function() {
+        Pais.save(this.paisNuevo, function() {
+            self.notificarMensaje('Pais creado!');
+        }, errorHandler);
+
+    };
     
     this.cancel= function(){
     	$state.go("nuevoPais");

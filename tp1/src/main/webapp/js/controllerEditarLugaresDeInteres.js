@@ -22,6 +22,19 @@ app.controller('EditarLugaresDeInteresCtrl', function($resource, Pais, $state, $
         self.notificarError(error.data);
     };
     
+    this.getPais=function(){
+    	Pais.get({id: $stateParams.id},function(data){
+    		self.paisSeleccionado= data;
+    	},errorHandler);
+    };
+    
+    self.getPais();
+    this.guardar= function() {
+        Pais.update(this.paisSeleccionado, function() {
+            self.notificarMensaje('Pais actualizado!');
+        }, errorHandler);
+
+    };
 
     
     this.cancel= function(){
