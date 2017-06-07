@@ -123,7 +123,7 @@ class CarmenSanDiegoRestAPI {
 		ok(this.juego.repoVillanos.getVillanos().toJson)
 	}
 	
-	@Get("/villanos/:id")
+	@Get("/villano/:id")
 	def getVillano(){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{
@@ -139,7 +139,7 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 	
-	@Put("/villanos/:id")
+	@Put("/villano/:id")
 	def updateVillano(@Body String body){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{
@@ -159,7 +159,7 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 	
-	@Delete("/villanos/:id")
+	@Delete("/villano/:id")
 	def deleteVillano(){
 		response.contentType = ContentType.APPLICATION_JSON
 		try{
@@ -178,7 +178,7 @@ class CarmenSanDiegoRestAPI {
 		}
 	}
 	
-	@Post("/villanos")
+	@Post("/villano")
 	def nuevoVillano(@Body String body){
 		response.contentType = ContentType.APPLICATION_JSON
         try {

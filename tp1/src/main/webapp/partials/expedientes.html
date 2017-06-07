@@ -1,5 +1,5 @@
 
-<div class="container">
+<div>
 
     <div class="row">
 		<div class="col-md-2">
@@ -8,21 +8,23 @@
 		<div class="col-md-4 text-center"> 
 			<div class="well" >
 			<div class="list-group" >
- 				<a href="" ng-click="ctrl.editarVillano(villano)" ng-repeat="villano in ctrl.villanos"  class="list-group-item">{{villano.nombre}}</a>
+ 				<a href="" ng-click="ctrl.seleccionarVillano(villano)" ng-repeat="villano in ctrl.villanos"  class="list-group-item">{{villano.nombre}}</a>
 			
 
 			
 			</div>
 
-			<button class="btn btn btn-primary" type="button">Nuevo</button>
-			<button ui-sref= "editarVillano"class="btn btn btn-primary" type="button">Editar</button>
-			<button class="btn btn btn-primary" type="button">Eliminar</button>
+			<a ng-click="ctrl.nuevoVillano()" class="btn btn btn-primary" type="button">Nuevo</a>
+			<a ng-click="ctrl.editarVillano()" class="btn btn btn-primary" type="button">Editar</a>
+			<a ng-click="ctrl.eliminarVillano()" class="btn btn btn-primary" type="button">Eliminar</a>
 			</div>
 		</div>
 		<div class="col-md-4 text-center">
 			<div class="well">
 			
 				<h5>Nombre: {{ctrl.villanoSeleccionado.nombre}}</h5>
+				<br>
+				<h5>Sexo: {{ctrl.villanoSeleccionado.sexo}}</h5>
 				<br>
 				<h5>Hobbies</h5>
 				<br>

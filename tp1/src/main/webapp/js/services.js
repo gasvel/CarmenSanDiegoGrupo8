@@ -1,6 +1,14 @@
 app.factory('Villanos', function($resource) {
-    return $resource('/villanos/:id', {'id': '@id'}, {
+    return $resource('/villanos' , {
     	'query': { method: 'GET', isArray: true},
+        
+    });
+});
+
+
+app.factory('Villano', function($resource) {
+    return $resource('/villano/:id', {'id': '@id'}, {
+    	'get': { method: 'GET'},
         'update': { method: 'PUT' },
         'save': { method: 'POST' },
         'remove': { method:'DELETE' }
