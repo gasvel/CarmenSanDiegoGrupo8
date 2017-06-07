@@ -15,31 +15,21 @@
                         <div ng-if= "ctrl.esConex()" class="conex">
                         <p class="lead"> <strong> Conexiones </strong> </p>
                         <div class="list-group">
-                        	<a ng-repeat="conexion in ctrl.paisSeleccionado.conexiones" class="list-group-item">{{conexion.nombre}}</a>
+                        	<a href="" ng-repeat="conexion in ctrl.paisSeleccionado.conexiones" class="list-group-item" ng-click="ctrl.seleccionar(conexion)">{{conexion.nombre}}</a>
                         </div>
                         </div>
                         
                         <div ng-if= "ctrl.esLugaresDeInteres()" class="lugares">
                         <p class="lead"> <strong> Lugares de interes </strong> </p>
                         <div class="list-group">
-                        	<a ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugares" class="list-group-item">{{lugarDeInteres.nombre}}</a>
+                        	<a href="" ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugares" class="list-group-item" ng-click="ctrl.seleccionar(lugarDeInteres)">{{lugarDeInteres.nombre}}</a>
                         </div>
                         </div>
                         
                     </div>
-                    <div ng-if="ctrl.esCarac()">
-                    <a ng-click="ctrl.eliminar(caracteristica)" class="btn btn-large btn-primary btn-editar-carac" type="button"> Eliminar</a>
-                    </div>
+                    <a ng-click="ctrl.eliminarSeleccion()" class="btn btn-large btn-primary btn-editar-carac" type="button"> Eliminar</a>
                     
-                    </div>
-                    <div ng-if="ctrl.esConex()">
-                    <a ng-click="ctrl.eliminar(conexion)" class="btn btn-large btn-primary btn-editar-carac" type="button"> Eliminar</a>
-                    </div>
                     
-                    </div>
-                    <div ng-if="ctrl.esLugaresDeInteres()">
-                    <a ng-click="ctrl.eliminar(lugarDeInteres)" class="btn btn-large btn-primary btn-editar-carac" type="button"> Eliminar</a>
-                    </div>
                     
                     <br>
                     <br>
@@ -57,18 +47,18 @@
                         
                         <div ng-if="ctrl.esConex()">
                         <div class="list-group">
-                        	<a ng-repeat="conexion in ctrl.paisSeleccionado.conexiones" class="list-group-item">{{conexion.nombre}}</a>
+                        	<a href="" ng-click="ctrl.seleccionAAgregar(pais)" ng-repeat="pais in ctrl.paises" class="list-group-item">{{pais.nombre}}</a>
                         </div>
                         </div>
                         
                         <div ng-if= "ctrl.esLugaresDeInteres()" class="lugares">
                         
                         <div class="list-group">
-                        	<a ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugares" class="list-group-item">{{lugarDeInteres.nombre}}</a>
+                        	<a href="" ng-click="ctrl.seleccionAAgregar(lugar)" ng-repeat="lugar in ctrl.lugares" class="list-group-item">{{lugar.nombre}}</a>
                         </div>
                         </div>
                         
-                       
+                       <a ng-click="ctrl.addSeleccion()" class="btn btn-primary" >Agregar</a>
                         
                     </div>
                     <br>

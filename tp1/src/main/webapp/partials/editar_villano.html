@@ -16,25 +16,25 @@
 		<div class="col-md-8 text-center"> 
 			
 			<div class="well">
-			<h4> Nombre: <span id="nombre" ng-bind="ctrl.villanoSeleccionado.nombre"></span> </h4>
+			<h4> Nombre: <span id="nombre" ng-bind="ctrl.villano.nombre"></span> </h4>
 			<br>
-			<input ng-model="ctrl.villanoSeleccionado.nombre">
+			<input ng-model="ctrl.villano.nombre">
 			<br>	
-			<div ng-if="name == 'Ricky Fort'">
+			<div ng-if="ctrl.villano.nombre == 'Ricky Fort'">
 				<img src="https://k33.kn3.net/taringa/C/2/1/C/4/8/vagonettas/251.gif?ricardo-fort-gif-transparente-baila-vagonettas">
 			</div>
-			<div ng-if="name=='allahu akbar'">
+			<div ng-if="nombre=='allahu akbar'">
 				<img src="https://media.giphy.com/media/HhTXt43pk1I1W/giphy.gif">
 			</div>
 			
 			
-			<h4> Sexo: <span ng-bind="ctrl.villanoSeleccionado.sexo"></span></h4>
+			<h4> Sexo: <span ng-bind="ctrl.villano.sexo"></span></h4>
 			<br>
-			<input ng-model="ctrl.villanoSeleccionado.sexo">
+			<input ng-model="ctrl.villano.sexo">
 			<br>
 			<h4> Hobbies </h4>
 			<div class="list-group">
-                <a ng-repeat="hobbie in ctrl.villanoSeleccionado.hobbies" class="list-group-item">{{hobbie}}</a>
+                <a ng-repeat="hobbie in ctrl.villano.hobbies" class="list-group-item">{{hobbie}}</a>
             </div>
 			
 			<input ng-model="ctrl.hobbieInput">
@@ -43,7 +43,7 @@
 			<h4> Señas </h4>
 
 			<div class="list-group">
-                <a ng-repeat="sena in ctrl.villanoSeleccionado.senas_particulares" class="list-group-item">{{sena}}</a>
+                <a ng-repeat="sena in ctrl.villano.senas_particulares" class="list-group-item">{{sena}}</a>
             </div>
 			
 			<input ng-model="ctrl.senaInput">

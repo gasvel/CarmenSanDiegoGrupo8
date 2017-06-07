@@ -1,10 +1,29 @@
-app.controller('EditarLugaresDeInteresCtrl', function($resource, Pais, $state, $stateParams) {
+app.controller('EditarLugaresDeInteresCtrl', function($resource, Pais, $state,$timeout, $stateParams) {
 
 	'use strict';
 
     var self = this;
+    self.lugares= [{nombre:Banco}, {nombre:Club },{nombre:Embajada},{nombre:Biblioteca}];
     
+    function errorHandler(error) {
+        self.notificarError(error.data);
+    };
 
+    this.seleccionAAgregar= function(lugar){
+    	self.lugarAAgregar= lugar;
+    }
+    
+    this.seleccionar= function(lugar){
+    	self.lugarAEliminar= lugar;
+    }
+    
+    this.eliminarSeleccion= function(){
+    	self.paisSeleccionado.lugares.remove(self.lugarAEliminar);
+    }
+    
+    this.addSeleccion= function(){
+    	self.paisSeleccionado.lugares.push(self.lugarAEliminar);
+    }
     
     this.esCarac= function(){
     	return false;
@@ -30,7 +49,7 @@ app.controller('EditarLugaresDeInteresCtrl', function($resource, Pais, $state, $
     
     self.getPais();
     this.guardar= function() {
-        Pais.update(this.paisSeleccionado, function() {
+        Pais.update(this.paisSeleccionado,{id:$stateParams.id}, function() {
             self.notificarMensaje('Pais actualizado!');
         }, errorHandler);
 

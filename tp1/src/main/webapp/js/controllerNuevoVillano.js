@@ -1,8 +1,8 @@
-app.controller('NuevoVillanoCtrl', function($resource, Villano, $state, $stateParams) {
+app.controller('NuevoVillanoCtrl', function($resource,$timeout, Villano, $state, $stateParams) {
 
 	'use strict';
 
-	console.log("funcoCtrlPaisEdit");
+	console.log("funcoCtrlPaisNew");
 
     var self = this;
     

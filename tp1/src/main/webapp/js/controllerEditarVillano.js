@@ -4,8 +4,10 @@ app.controller('EditVillanoCtrl', function($resource, Villano, $state, $timeout,
 	
 
     var self = this;
+   
     self.senaInput="";
     self.hobbieInput="";
+    self.villano={};
 
 
     function errorHandler(error) {
@@ -14,15 +16,27 @@ app.controller('EditVillanoCtrl', function($resource, Villano, $state, $timeout,
     
     this.getVillano=function(){
     	Villano.get({id: $stateParams.id},function(data){
-    		self.villanoSeleccionado= data;
+    		console.log(data);
+    		self.villanoSel= data;
+    		self.villano.id= self.villanoSel.id;
+    		self.villano.nombre= self.villanoSel.nombre;
+    	    self.villano.sexo= self.villanoSel.sexo;
+    	    self.villano.hobbies= self.villanoSel.hobbies;
+    	    self.villano.senas_particulares= self.villanoSel.senas_particulares;
+    		
     	},errorHandler);
     };
     
-    self.getVillano();
+    this.getVillano();
+    
+ 
 
     this.guardarVillano= function() {
-        Villano.update(this.villanoSeleccionado,{id:self.villanoSeleccionado.id}, function() {
+ 
+    	console.log(this.villanoSel);
+        Villano.update(this.villano, function() {
             self.notificarMensaje('Villano actualizado!');
+            $state.go("expediente");
         }, errorHandler);
 
     };
@@ -32,11 +46,13 @@ app.controller('EditVillanoCtrl', function($resource, Villano, $state, $timeout,
     }
     
     this.addHobbie= function(){
-    	self.villanoSeleccionado.hobbies.push(self.hobbieInput);
+    	self.villano.hobbies.push(self.hobbieInput);
+    	self.hobbieInput="";
     }
     
     this.addSena= function(){
-    	self.villanoSeleccionado.senas_particulares.push(self.senaInput);
+    	self.villano.senas_particulares.push(self.senaInput);
+    	self.senaInput="";
     }
     
     this.esEdit= function(){

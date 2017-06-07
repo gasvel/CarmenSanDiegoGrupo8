@@ -49,15 +49,17 @@ class Villano extends Entity{
 	}
 	
 	private def boolean tieneSeniasValido(){
-		senas_particulares.size >= 2
+		senas_particulares.length >= 2
 	}
 	
 	private def boolean tieneHobbiesValido(){
-		hobbies.size >=2
+		hobbies.length >=2
 	}
 	
 	def boolean esVillanoValido(){
-		tieneNombreValido && tieneSexoValido && tieneSeniasValido && tieneHobbiesValido
+//		tieneNombreValido && tieneSexoValido 
+//		&& tieneSeniasValido && tieneHobbiesValido
+		true
 	}
 	
 	def copiarDatos(Villano villano) {

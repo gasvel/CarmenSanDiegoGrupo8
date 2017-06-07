@@ -14,13 +14,18 @@ app.controller('EditarPaisCtrl', function($resource, Pais, $state, $timeout, $st
     this.getPais=function(){
     	Pais.get({id: $stateParams.id},function(data){
     		self.paisSeleccionado= data;
+    		self.pais.id= self.data.id;
+    		self.pais.nombre= self.data.nombre;
+    		self.pais.conexiones= self.data.conexiones;
+    		self.pais.lugares= self.data.lugares;
+
     	},errorHandler);
     };
     
     self.getPais();
 
     this.guardarPais= function() {
-        Pais.update(this.paisSeleccionado, function() {
+        Pais.update(this.pais, function() {
             self.notificarMensaje('Pais actualizado!');
         }, errorHandler);
 
