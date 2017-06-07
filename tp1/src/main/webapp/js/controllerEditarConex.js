@@ -91,7 +91,7 @@ app.controller('EditarConexCtrl', function($resource, Pais,Paises,PaisAEditar, $
 
 });
 
-app.controller('NuevasConexCtrl', function($resource, Pais,Paises,PaisAEditar, $state, $stateParams, $timeout) {
+app.controller('NuevasConexCtrl', function($resource, Pais,Paises,PaisNuevo, $state, $stateParams, $timeout) {
 
 	'use strict';
 
@@ -99,7 +99,7 @@ app.controller('NuevasConexCtrl', function($resource, Pais,Paises,PaisAEditar, $
     
     self.paises=[];
     
-    self.paisEditando=PaisAEditar;
+    self.paisEditando=PaisNuevo;
     
 
     

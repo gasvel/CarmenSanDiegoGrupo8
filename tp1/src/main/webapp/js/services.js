@@ -79,6 +79,15 @@ app.service('PaisAEditar',function Pais(){
 	pais.get={};
 	});
 
+app.service('PaisNuevo',function Pais(){
+	var pais=this;
+	pais.get={
+			"nombre":"",
+			"conexiones": [],
+			"lugares":[]
+	};
+	});
+
 app.service('UltimoPais',function Ubicacion(){
 	var ultimoPais=this;
 	ultimoPais.get=null;

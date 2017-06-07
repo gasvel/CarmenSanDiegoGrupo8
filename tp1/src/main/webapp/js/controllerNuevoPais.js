@@ -1,4 +1,4 @@
-app.controller('NuevoPaisCtrl', function($resource, Pais,PaisAEditar, $state, $stateParams) {
+app.controller('NuevoPaisCtrl', function($resource, Pais,PaisNuevo, $state, $stateParams,$timeout) {
 
 	'use strict';
 
@@ -6,13 +6,8 @@ app.controller('NuevoPaisCtrl', function($resource, Pais,PaisAEditar, $state, $s
 
     var self = this;
     
-    self.paisSeleccionado=PaisAEditar;
-    self.paisSeleccionado.get={
-    		  "nombre": "",
-    		  "lugares": [],
-    		  "conexiones": []
-    		};
-
+    self.pais=PaisNuevo;
+   
 
     
     this.esEdit= function(){
@@ -29,9 +24,11 @@ app.controller('NuevoPaisCtrl', function($resource, Pais,PaisAEditar, $state, $s
     
     
     this.guardarPais= function() {
-        Pais.save(this.paisSeleccionado, function() {
+        Pais.save(this.pais.get, function() {
             self.notificarMensaje('Pais creado!');
         }, errorHandler);
+        self.pais.get={"nombre":"","conexiones":[],"lugares":[]};
+        $state.go("mapamundi");
 
     };
     

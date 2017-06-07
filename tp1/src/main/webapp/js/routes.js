@@ -96,15 +96,15 @@ console.log("ruta");
     })
     
     .state('editarConexNew',{
-    	url: "/pais/editarConexiones",
+    	url: "/editarConexiones",
     	templateUrl: "partials/editar_carac.html",
-    	controller: "EditarConexCtrl as ctrl"
+    	controller: "NuevasConexCtrl as ctrl"
     })
     
     .state('editarLugaresDeInteresNew',{
-    	url: "/paisEditarLugares",
+    	url: "/EditarLugares",
     	templateUrl: "partials/editar_carac.html",
-    	controller: "EditarLugaresDeInteresCtrl as ctrl"
+    	controller: "NuevosLugaresDeInteresCtrl as ctrl"
     })
     
     
