@@ -60,6 +60,7 @@ app.controller('NuevoVillanoCtrl', function($resource,$timeout, Villano, $state,
     this.deleteHobbie= function(){
     	var index= self.villano.hobbies.indexOf(self.hobbieSeleccionado);
     	self.villano.hobbies.splice(index,1);
+
     }
     
     this.addSena= function(){
