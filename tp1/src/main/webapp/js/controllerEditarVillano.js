@@ -55,6 +55,16 @@ app.controller('EditVillanoCtrl', function($resource, Villano, $state, $timeout,
     	self.senaInput="";
     }
     
+    this.deleteSena= function(){
+    	var index= self.villano.senas_particulares.indexOf(self.senaSeleccionada);
+    	self.villano.senas_particulares.splice(index,1);
+    }
+   
+    this.deleteHobbie= function(){
+    	var index= self.villano.hobbies.indexOf(self.hobbieSeleccionado);
+    	self.villano.hobbies.splice(index,1);
+    }
+    
     this.esEdit= function(){
     	return true;
     }

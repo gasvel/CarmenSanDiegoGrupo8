@@ -57,9 +57,8 @@ class Villano extends Entity{
 	}
 	
 	def boolean esVillanoValido(){
-//		tieneNombreValido && tieneSexoValido 
-//		&& tieneSeniasValido && tieneHobbiesValido
-		true
+		tieneNombreValido && tieneSexoValido && tieneSeniasValido && tieneHobbiesValido
+		
 	}
 	
 	def copiarDatos(Villano villano) {

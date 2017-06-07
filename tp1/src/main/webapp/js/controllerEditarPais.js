@@ -1,10 +1,11 @@
-app.controller('EditarPaisCtrl', function($resource, Pais, $state, $timeout, $stateParams) {
+app.controller('EditarPaisCtrl', function($resource, Pais,PaisAEditar, $state, $timeout, $stateParams) {
 
 	'use strict';
 	
 	console.log("funcoCtrlPaisEdit");
 
     var self = this;
+    self.pais= PaisAEditar;
 
 
     function errorHandler(error) {
@@ -13,11 +14,15 @@ app.controller('EditarPaisCtrl', function($resource, Pais, $state, $timeout, $st
     
     this.getPais=function(){
     	Pais.get({id: $stateParams.id},function(data){
-    		self.paisSeleccionado= data;
-    		self.pais.id= self.data.id;
-    		self.pais.nombre= self.data.nombre;
-    		self.pais.conexiones= self.data.conexiones;
-    		self.pais.lugares= self.data.lugares;
+    		self.paisDevuelto = data;
+    		self.pais.get.id= self.paisDevuelto.id;
+    		self.pais.get.nombre= self.paisDevuelto.nombre;
+    		self.pais.get.conexiones= self.paisDevuelto.conexiones;
+    		self.pais.get.lugares= self.paisDevuelto.lugares;
+    		
+
+    		console.log(self.pais);
+
 
     	},errorHandler);
     };
@@ -25,7 +30,7 @@ app.controller('EditarPaisCtrl', function($resource, Pais, $state, $timeout, $st
     self.getPais();
 
     this.guardarPais= function() {
-        Pais.update(this.pais, function() {
+        Pais.update(this.pais.get, function() {
             self.notificarMensaje('Pais actualizado!');
         }, errorHandler);
 
@@ -44,15 +49,15 @@ app.controller('EditarPaisCtrl', function($resource, Pais, $state, $timeout, $st
     }
     
     this.editarCarac=function(){
-    	$state.go("editarCarac", {id: self.paisSeleccionado.id});
+    	$state.go("editarCarac", {id: $stateParams.id});
     };
     
     this.editarConex=function(){
-    	$state.go("editarConex", {id: self.paisSeleccionado.id});
+    	$state.go("editarConex", {id: $stateParams.id});
     };
 
     this.editarLugaresDeInteres=function(){
-    	$state.go("editarLugaresDeInteres", {id: self.paisSeleccionado.id});
+    	$state.go("editarLugaresDeInteres", {id: $stateParams.id});
     };
     
     this.msgs = [];

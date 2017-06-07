@@ -34,20 +34,24 @@
 			<br>
 			<h4> Hobbies </h4>
 			<div class="list-group">
-                <a ng-repeat="hobbie in ctrl.villano.hobbies" class="list-group-item">{{hobbie}}</a>
+                <a href="" ng-click="ctrl.seleccionarHobbie(hobbie)" ng-repeat="hobbie in ctrl.villano.hobbies" class="list-group-item">{{hobbie}}</a>
             </div>
 			
 			<input ng-model="ctrl.hobbieInput">
 			<a class="btn btn-primary" type="button" ng-click="ctrl.addHobbie()">Agregar</a>
+			<a class="btn btn-primary" type="button" ng-click="ctrl.deleteHobbie()">Eliminar</a>
+			
 			
 			<h4> Señas </h4>
 
 			<div class="list-group">
-                <a ng-repeat="sena in ctrl.villano.senas_particulares" class="list-group-item">{{sena}}</a>
+                <a href="" ng-click="ctrl.seleccionarSena(sena)" ng-repeat="sena in ctrl.villano.senas_particulares" class="list-group-item">{{sena}}</a>
             </div>
 			
 			<input ng-model="ctrl.senaInput">
 			<a class="btn btn-primary" type="button"  ng-click="ctrl.addSena()">Agregar</a>
+			<a class="btn btn-primary" type="button"  ng-click="ctrl.deleteSena()">Agregar</a>
+			
 
 
  			<div class="form-actions">

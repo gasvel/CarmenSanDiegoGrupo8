@@ -95,6 +95,18 @@ console.log("ruta");
     	controller: "EditarLugaresDeInteresCtrl as ctrl"
     })
     
+    .state('editarConexNew',{
+    	url: "/pais/editarConexiones",
+    	templateUrl: "partials/editar_carac.html",
+    	controller: "EditarConexCtrl as ctrl"
+    })
+    
+    .state('editarLugaresDeInteresNew',{
+    	url: "/paisEditarLugares",
+    	templateUrl: "partials/editar_carac.html",
+    	controller: "EditarLugaresDeInteresCtrl as ctrl"
+    })
+    
     
      .state('emitirOrden',{
     	url: "/emitirOrden",

@@ -14,9 +14,9 @@
                     <div class="well">
                     
                         
-                        <h4 class="lead"> <strong> Nombre: </strong>  <span id="nombre" ng-bind="ctrl.paisSeleccionado.nombre"></span> </h4>
+                        <h4 class="lead"> <strong> Nombre: </strong>  <span id="nombre" ng-bind="ctrl.pais.get.nombre"></span> </h4>
 						
-						<input ng-model="ctrl.pais.nombre">
+						<input ng-model="ctrl.pais.get.nombre">
 						<br>
                         <div class="panelCarac">
                             <p class="lead"> <strong> Caracteristicas </strong> </p>
@@ -29,7 +29,7 @@
                             <a ng-click="ctrl.editarConex()" class="btn btn-large btn-primary" type="button">Editar</a>
                         </div>
                        <div class="list-group">
-                        	<a ng-repeat="conexion in ctrl.pais.conexiones" class="list-group-item">{{conexion.nombre}}</a>
+                        	<a ng-repeat="conexion in ctrl.pais.get.conexiones" class="list-group-item">{{conexion.nombre}}</a>
                         </div>
                         <br>
                         <div class="panelLugares">
@@ -37,7 +37,7 @@
                             <a ng-click="ctrl.editarLugaresDeInteres()" class="btn btn-large btn-primary" type="button">Editar</a>
                         </div>
                         <div class="list-group">
-                        	<a ng-repeat="lugarDeInteres in ctrl.pais.lugares" class="list-group-item">{{lugarDeInteres.nombre}}</a>
+                        	<a ng-repeat="lugarDeInteres in ctrl.pais.get.lugares" class="list-group-item">{{lugarDeInteres.nombre}}</a>
                         </div>
                         <br>	
                         <div class="form-actions">

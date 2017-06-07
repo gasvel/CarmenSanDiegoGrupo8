@@ -2,11 +2,10 @@ app.controller('NuevoVillanoCtrl', function($resource,$timeout, Villano, $state,
 
 	'use strict';
 
-	console.log("funcoCtrlPaisNew");
 
     var self = this;
     
-    self.villanoSeleccionado={
+    self.villano={
     		  "nombre": "",
     		  "sexo": "",
     		  "senas_particulares": [],
@@ -30,7 +29,7 @@ app.controller('NuevoVillanoCtrl', function($resource,$timeout, Villano, $state,
     
     
     this.guardarVillano= function() {
-        Villano.save(this.villanoSeleccionado, function() {
+        Villano.save(this.villano, function() {
             self.notificarMensaje('Villano creado!');
         }, errorHandler);
 
@@ -41,11 +40,31 @@ app.controller('NuevoVillanoCtrl', function($resource,$timeout, Villano, $state,
     }
     
     this.addHobbie= function(){
-    	self.villanoSeleccionado.hobbies.push(self.hobbieInput)
+    	self.villano.hobbies.push(self.hobbieInput);
+    	self.hobbieInput="";
+    }
+    
+    this.seleccionarHobbie= function(hobbie){
+    	self.hobbieSeleccionado=hobbie;
+    }
+    
+    this.seleccionarSena= function(sena){
+    	self.senaSeleccionada=sena;
+    }
+    
+    this.deleteSena= function(){
+    	var index= self.villano.senas_particulares.indexOf(self.senaSeleccionada);
+    	self.villano.senas_particulares.splice(index,1);
+    }
+   
+    this.deleteHobbie= function(){
+    	var index= self.villano.hobbies.indexOf(self.hobbieSeleccionado);
+    	self.villano.hobbies.splice(index,1);
     }
     
     this.addSena= function(){
-    	self.villanoSeleccionado.senas_particulares.push(self.senaInput)
+    	self.villano.senas_particulares.push(self.senaInput);
+    	self.senaInput="";
     }
     
 

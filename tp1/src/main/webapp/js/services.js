@@ -74,6 +74,11 @@ app.service('UbicacionActual',function Ubicacion(){
 	ubicacionActual.get=null;
 	});
 
+app.service('PaisAEditar',function Pais(){
+	var pais=this;
+	pais.get={};
+	});
+
 app.service('UltimoPais',function Ubicacion(){
 	var ultimoPais=this;
 	ultimoPais.get=null;

@@ -12,17 +12,17 @@
                         </div>
                         </div>
                         
-                        <div ng-if= "ctrl.esConex()" class="conex">
+                        <div ng-if="ctrl.esConex()" class="conex">
                         <p class="lead"> <strong> Conexiones </strong> </p>
                         <div class="list-group">
-                        	<a href="" ng-repeat="conexion in ctrl.paisSeleccionado.conexiones" class="list-group-item" ng-click="ctrl.seleccionar(conexion)">{{conexion.nombre}}</a>
+                        	<a href="" ng-repeat="conexion in ctrl.paisEditando.get.conexiones" class="list-group-item" ng-click="ctrl.seleccionar(conexion)">{{conexion.nombre}}</a>
                         </div>
                         </div>
                         
-                        <div ng-if= "ctrl.esLugaresDeInteres()" class="lugares">
+                        <div ng-if="ctrl.esLugaresDeInteres()" class="lugares">
                         <p class="lead"> <strong> Lugares de interes </strong> </p>
                         <div class="list-group">
-                        	<a href="" ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugares" class="list-group-item" ng-click="ctrl.seleccionar(lugarDeInteres)">{{lugarDeInteres.nombre}}</a>
+                        	<a href="" ng-repeat="lugarDeInteres in ctrl.paisEditando.get.lugares" class="list-group-item" ng-click="ctrl.seleccionar(lugarDeInteres)">{{lugarDeInteres.nombre}}</a>
                         </div>
                         </div>
                         

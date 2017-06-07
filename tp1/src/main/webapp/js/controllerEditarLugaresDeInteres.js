@@ -1,10 +1,11 @@
-app.controller('EditarLugaresDeInteresCtrl', function($resource, Pais, $state,$timeout, $stateParams) {
+app.controller('EditarLugaresDeInteresCtrl', function($resource, Pais,PaisAEditar, $state,$timeout, $stateParams) {
 
 	'use strict';
 
     var self = this;
-    self.lugares= [{nombre:Banco}, {nombre:Club },{nombre:Embajada},{nombre:Biblioteca}];
-    
+    self.lugares= [{"nombre":"Banco"}, {"nombre":"Club" },{"nombre":"Embajada"},{"nombre":"Biblioteca"}];
+    self.paisEditando=PaisAEditar;
+
     function errorHandler(error) {
         self.notificarError(error.data);
     };
@@ -18,11 +19,12 @@ app.controller('EditarLugaresDeInteresCtrl', function($resource, Pais, $state,$t
     }
     
     this.eliminarSeleccion= function(){
-    	self.paisSeleccionado.lugares.remove(self.lugarAEliminar);
+    	var index = self.paisEditando.get.lugares.indexOf(self.lugarAEliminar);
+    	self.paisEditando.get.lugares.splice(index,1);
     }
     
     this.addSeleccion= function(){
-    	self.paisSeleccionado.lugares.push(self.lugarAEliminar);
+    	self.paisEditando.get.lugares.push(self.lugarAEliminar);
     }
     
     this.esCarac= function(){
@@ -41,17 +43,19 @@ app.controller('EditarLugaresDeInteresCtrl', function($resource, Pais, $state,$t
         self.notificarError(error.data);
     };
     
-    this.getPais=function(){
-    	Pais.get({id: $stateParams.id},function(data){
-    		self.paisSeleccionado= data;
-    	},errorHandler);
-    };
+ 
     
-    self.getPais();
     this.guardar= function() {
-        Pais.update(this.paisSeleccionado,{id:$stateParams.id}, function() {
+    	if( $stateParams.id != null){
+        Pais.update(this.paisEditando.get, function() {
             self.notificarMensaje('Pais actualizado!');
         }, errorHandler);
+    	$state.go("editarPais",{id:$stateParams.id});
+
+    	}
+    	else{
+    		$state.go("nuevoPais");
+    	};
 
     };
 

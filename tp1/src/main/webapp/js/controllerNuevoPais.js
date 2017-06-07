@@ -1,4 +1,4 @@
-app.controller('NuevoPaisCtrl', function($resource, Pais, $state, $stateParams) {
+app.controller('NuevoPaisCtrl', function($resource, Pais,PaisAEditar, $state, $stateParams) {
 
 	'use strict';
 
@@ -6,7 +6,8 @@ app.controller('NuevoPaisCtrl', function($resource, Pais, $state, $stateParams) 
 
     var self = this;
     
-    self.paisSeleccionado={
+    self.paisSeleccionado=PaisAEditar;
+    self.paisSeleccionado.get={
     		  "nombre": "",
     		  "lugares": [],
     		  "conexiones": []
@@ -39,15 +40,15 @@ app.controller('NuevoPaisCtrl', function($resource, Pais, $state, $stateParams) 
     }
     
     this.editarCarac=function(){
-    	$state.go("editarCarac", {id: self.paisSeleccionado.id});
+    	$state.go("editarCarac");
     };
     
     this.editarConex=function(){
-    	$state.go("editarConex", {id: self.paisSeleccionado.id});
+    	$state.go("editarConexNew");
     };
 
     this.editarLugaresDeInteres=function(){
-    	$state.go("editarLugaresDeInteres", {id: self.paisSeleccionado.id});
+    	$state.go("editarLugaresDeInteresNew");
     };
     
 
