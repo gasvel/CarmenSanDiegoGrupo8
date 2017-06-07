@@ -1,17 +1,19 @@
-app.controller('NuevoPaisCtrl', function($resource, Pais, $state, $stateParams) {
+app.controller('NuevoVillanoCtrl', function($resource,$timeout, Villano, $state, $stateParams) {
 
 	'use strict';
 
-	console.log("funcoCtrlPaisEdit");
+	console.log("funcoCtrlPaisNew");
 
     var self = this;
     
-    self.paisSeleccionado={
+    self.villano={
     		  "nombre": "",
-    		  "lugares": [],
-    		  "conexiones": []
+    		  "sexo": "",
+    		  "senas_particulares": [],
+    		  "hobbies": []
     		};
-
+    self.senaInput="";
+    self.hobbieInput="";
 
     
     this.esEdit= function(){
@@ -27,28 +29,24 @@ app.controller('NuevoPaisCtrl', function($resource, Pais, $state, $stateParams) 
     };
     
     
-    this.guardarPais= function() {
-        Pais.save(this.paisSeleccionado, function() {
-            self.notificarMensaje('Pais creado!');
+    this.guardarVillano= function() {
+        Villano.save(this.villano, function() {
+            self.notificarMensaje('Villano creado!');
         }, errorHandler);
 
     };
     
     this.cancel= function(){
-    	$state.go("mapamundi");
+    	$state.go("expediente");
     }
     
-    this.editarCarac=function(){
-    	$state.go("editarCarac", {id: self.paisSeleccionado.id});
-    };
+    this.addHobbie= function(){
+    	self.villano.hobbies.push(self.hobbieInput)
+    }
     
-    this.editarConex=function(){
-    	$state.go("editarConex", {id: self.paisSeleccionado.id});
-    };
-
-    this.editarLugaresDeInteres=function(){
-    	$state.go("editarLugaresDeInteres", {id: self.paisSeleccionado.id});
-    };
+    this.addSena= function(){
+    	self.villano.senas_particulares.push(self.senaInput)
+    }
     
 
     this.msgs = [];
