@@ -1,30 +1,43 @@
-app.controller('NuevoPaisCtrl', function($resource, Paises, Pais, $state, $stateParams) {
+app.controller('NuevoPaisCtrl', function($resource, Pais, $state, $stateParams) {
 
 	'use strict';
 
-    var self = this;
+	console.log("funcoCtrlPaisEdit");
 
-    self.paises = [];
+    var self = this;
+    
+    self.paisSeleccionado={
+    		  "nombre": "",
+    		  "lugares": [],
+    		  "conexiones": []
+    		}
+
+    
+    this.esEdit= function(){
+    	return false;
+    }
+    
+    this.esNuevo= function(){
+    	return true;
+    }
 
     function errorHandler(error) {
         self.notificarError(error.data);
-    }
+    };
+    
+    
+    this.guardarPais= function() {
+        Pais.save(this.paisSeleccionado, function() {
+            self.notificarMensaje('Pais creado!');
+        }, errorHandler);
 
-    this.actualizarLista = function() {
-        Paises.query(function(data) {
-            self.paises = data;
-        }, errorHandler);
     };
-    this.actualizarLista();
+    
+    this.cancel= function(){
+    	$state.go("mapamundi");
+    }
     
     
-    this.nuevoPais = function() {
-        Pais.save(this.nuevoPais, function(data) {
-            self.notificarMensaje('Pais agregado con id:' + data.id);
-            self.actualizarLista();
-            self.nuevoPais = null;
-        }, errorHandler);
-    };
 
     this.msgs = [];
     this.notificarMensaje = function(mensaje) {

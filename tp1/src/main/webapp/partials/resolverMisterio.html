@@ -13,7 +13,7 @@
 	<div class="well" style="height:500px;">
 	<div class="text-center">
 	
-	<p>Estas en: {{juego.ubicacionActual.get.nombre}} </p>
+	<p>Estas en: {{juego.casoActual.get.pais.nombre}} </p>
 	<div ng-if="ubicacion.nombre == 'Mexico'">
 		<img  src="http://www.gifsanimados.org/data/media/829/bandera-de-mexico-imagen-animada-0015.gif" >
 	</div>
@@ -48,10 +48,16 @@
 	<br>
 	<br>
 	<br>
-	<div ng-repeat="lugar in juego.ubicacionActual.get.lugares">
-	<div class="btn-group-vertical">
-		<a ng-click="juego.irALugar(lugar)" class="btn btn btn-primary" type="button">{{lugar.nombre}}</a>
+	
+	<div >
+		<a ng-click="juego.irALugar(juego.casoActual.get.pais.lugares[0])" class="btn btn btn-primary" type="button">{{juego.casoActual.get.pais.lugares[0].nombre}}</a>
 		<br>
+		<br>
+		<a ng-click="juego.irALugar(juego.casoActual.get.pais.lugares[1])" class="btn btn btn-primary" type="button">{{juego.casoActual.get.pais.lugares[1].nombre}}</a>
+		<br>
+		<br>
+		<a ng-click="juego.irALugar(juego.casoActual.get.pais.lugares[2])" class="btn btn btn-primary" type="button">{{juego.casoActual.get.pais.lugares[2].nombre}}</a>
+		
 	
 	</div>
 	</div>

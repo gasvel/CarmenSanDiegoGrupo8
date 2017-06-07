@@ -1,17 +1,22 @@
 
     
         <div class= "container">
-            <div class="page-header">
+            <div ng-if= "ctrl.esNuevo()" class="page-header">
+            
                 <h1 class = "text-center"> <strong> Nuevo pais </strong> </h1>
+            </div>
+            <div ng-if= "ctrl.esEdit()" class="page-header">
+            
+                <h1 class = "text-center"> <strong> Editar pais </strong> </h1>
             </div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="well">
                     
                         
-                        <h4 class="lead"> <strong> Nombre: </strong>  <span id="nombre" ng-bind="ctrl.nuevoPais.nombre"></span> </h4>
+                        <h4 class="lead"> <strong> Nombre: </strong>  <span id="nombre" ng-bind="ctrl.paisSeleccionado.nombre"></span> </h4>
 						
-						<input ng-model="ctrl.nuevoPais.nombre">
+						<input ng-model="ctrl.paisSeleccionado.nombre">
 						<br>
                         <div class="panelCarac">
                             <p class="lead"> <strong> Caracteristicas </strong> </p>
@@ -24,7 +29,7 @@
                             <button class="btn btn-large btn-primary" type="button">Editar</button>
                         </div>
                        <div class="list-group">
-                        	<a ng-repeat="conexion in ctrl.nuevoPais.conexiones" class="list-group-item">{{conexion.nombre}}</a>
+                        	<a ng-repeat="conexion in ctrl.paisSeleccionado.conexiones" class="list-group-item">{{conexion.nombre}}</a>
                         </div>
                         <br>
                         <div class="panelLugares">
@@ -32,12 +37,12 @@
                             <button class="btn btn-large btn-primary" type="button">Editar</button>
                         </div>
                         <div class="list-group">
-                        	<a ng-repeat="lugarDeInteres in ctrl.nuevoPais.lugares" class="list-group-item">{{lugarDeInteres.nombre}}</a>
+                        	<a ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugares" class="list-group-item">{{lugarDeInteres.nombre}}</a>
                         </div>
                         <br>	
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                            <button type="button" class="btn btn-primary">Tirar todo a la basura</button>
+                            <a ng-click="ctrl.guardarPais()" class="btn btn-primary">Guardar cambios</a>
+                            <a ng-click="ctrl.cancel()" class="btn btn-primary">Tirar todo a la basura</a>
                         </div>
                     </div>
                 </div>

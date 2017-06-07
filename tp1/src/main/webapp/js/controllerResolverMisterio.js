@@ -1,4 +1,4 @@
-app.controller('ResolverMisterioCtrl', function($resource,$state,$stateParams ,UbicacionActual, CasoActual,LugarVisitado, Inicio) {
+app.controller('ResolverMisterioCtrl', function($resource,$state,$stateParams , CasoActual,LugarVisitado, Inicio) {
 	console.log("funco controller0");
 
 	'use strict';
@@ -6,7 +6,7 @@ app.controller('ResolverMisterioCtrl', function($resource,$state,$stateParams ,U
     var self = this;
     
 
-	self.ubicacionActual = UbicacionActual;
+	self.casoActual = CasoActual;
 	self.lugar= LugarVisitado;
 	console.log(self.ubicacionActual);
 

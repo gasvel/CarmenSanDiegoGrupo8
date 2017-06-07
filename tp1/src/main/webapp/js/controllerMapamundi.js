@@ -1,4 +1,4 @@
-app.controller('MapamundiCtrl', function($resource , Paises,Pais, $state, $stateParams) {
+app.controller('MapamundiCtrl', function($resource , Paises,Pais, $state, $stateParams, $timeout) {
 
 	'use strict';
 
@@ -18,16 +18,13 @@ app.controller('MapamundiCtrl', function($resource , Paises,Pais, $state, $state
     this.actualizarLista();
     
     this.nuevoPais = function() {
-        Pais.save(this.nuevoPais, function(data) {
-            self.notificarMensaje('Pais agregado con id:' + data.id);
-            self.actualizarLista();
-            self.nuevoPais = null;
-        }, errorHandler);
+    	$state.go("nuevoPais");
+        
     };
 
-    this.eliminar = function(pais) {
+    this.eliminarPais= function() {
        
-                Pais.remove(pais, function() {
+                Pais.remove({id:self.paisSeleccionado.id}, function() {
                     self.notificarMensaje('Pais eliminado!');
                     self.actualizarLista();
                 }, errorHandler);
@@ -35,25 +32,20 @@ app.controller('MapamundiCtrl', function($resource , Paises,Pais, $state, $state
      };
      
 
-
+     this.seleccionarPais=function(pais){
+    	 
+    	  Pais.get({id: pais.id},function(data){
+    	  	self.paisSeleccionado= data;
+    	  },errorHandler);
+    	
+     };
 
     
-    this.editarPais= function(pais) {
-    	Pais.get({id: pais.id}, function(data){
-    		self.paisSeleccionado= data;
-    	});
-    	console.log(self.paisSeleccionado);
+    this.editarPais= function() {
+    	$state.go("editarPais", {id: self.paisSeleccionado.id});
     };
 
-    this.guardarPais = function() {
-        Pais.update(this.paisSeleccionado, function() {
-            self.notificarMensaje('Pais actualizado!');
-            self.actualizarLista();
-        }, errorHandler);
-
-        this.paisSeleccionado = null;
-    };
-
+  
     this.msgs = [];
     this.notificarMensaje = function(mensaje) {
         this.msgs.push(mensaje);

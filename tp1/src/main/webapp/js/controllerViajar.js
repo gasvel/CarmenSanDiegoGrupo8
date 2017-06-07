@@ -1,4 +1,4 @@
-app.controller("ViajeCtrl", function($resource, $state,$timeout, $stateParams, Viajar,UbicacionActual,UltimoPais, Pais) {
+app.controller("ViajeCtrl", function($resource, $state,$timeout, $stateParams, Viajar,UbicacionActual,UltimoPais,CasoActual, Pais) {
 	
 	'use strict';
 
@@ -6,6 +6,7 @@ app.controller("ViajeCtrl", function($resource, $state,$timeout, $stateParams, V
     
     self.ubicacionActual = UbicacionActual;
     self.ultimoPais = UltimoPais;
+    self.casoActual = CasoActual;
     console.log(self.ubicacionActual.get);
 
     
@@ -22,6 +23,7 @@ app.controller("ViajeCtrl", function($resource, $state,$timeout, $stateParams, V
    
    this.viajar= function(){
 	   Viajar.save({destinoId: self.paisSeleccionado.id},function(data){
+		   self.casoActual.get = data;
 		   self.notificarMensaje(data.id);
 		   self.ultimoPais.get= self.ubicacionActual.get;
 		   self.ubicacionActual.get = self.paisSeleccionado;
@@ -33,6 +35,8 @@ app.controller("ViajeCtrl", function($resource, $state,$timeout, $stateParams, V
    
    this.volverPais= function(){
 	   Viajar.save({destinoId: self.ultimoPais.get.id},function(data){
+		   self.casoActual.get = data;
+
 		   self.notificarMensaje("Viaje a pais "+ data.pais.nombre);
 		   self.ultimoPais.get =  self.ubicacionActual.get;
 		   self.ubicacionActual.get= data.pais;

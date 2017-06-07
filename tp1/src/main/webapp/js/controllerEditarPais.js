@@ -1,37 +1,44 @@
-app.controller('MapamundiCtrl', function($resource, Paises, Pais, $state, $stateParams) {
+app.controller('EditarPaisCtrl', function($resource, Pais, $state, $timeout, $stateParams) {
 
 	'use strict';
+	
+	console.log("funcoCtrlPaisEdit");
 
     var self = this;
 
-    self.paises = [];
 
     function errorHandler(error) {
         self.notificarError(error.data);
-    }
-
-    this.actualizarLista = function() {
-        Paises.query(function(data) {
-            self.paises = data;
-        }, errorHandler);
     };
-    this.actualizarLista();
     
-    this.editarPais= function(pais) {
-    	Pais.get({id: pais.id}, function(data){
+    this.getPais=function(){
+    	Pais.get({id: $stateParams.id},function(data){
     		self.paisSeleccionado= data;
-    	});
-    	console.log(self.paisSeleccionado);
+    	},errorHandler);
     };
+    
+    self.getPais();
 
-    this.guardarPais = function() {
+    this.guardarPais= function() {
         Pais.update(this.paisSeleccionado, function() {
             self.notificarMensaje('Pais actualizado!');
-            self.actualizarLista();
         }, errorHandler);
 
-        this.paisSeleccionado = null;
     };
+    
+    this.cancel= function(){
+    	$state.go("mapamundi");
+    }
+    
+    this.esEdit= function(){
+    	return true;
+    }
+    
+    this.esNuevo= function(){
+    	return false;
+    }
+    
+    
 
     this.msgs = [];
     this.notificarMensaje = function(mensaje) {

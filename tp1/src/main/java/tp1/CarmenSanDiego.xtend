@@ -97,7 +97,7 @@ class CarmenSanDiego {
 	}
 	
 	def getLugar(Caso caso,String string) {
-		return caso.lugarDeRobo.lugaresDeInteres.findFirst[l | l.nombre == string]
+		return caso.ubicacionActual.lugaresDeInteres.findFirst[l | l.nombre == string]
 	}
 	
 	def viajar(Pais pais) {

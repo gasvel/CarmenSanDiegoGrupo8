@@ -43,9 +43,19 @@ console.log("ruta");
     })
     
     .state('nuevoPais',{
-    	url: "/paises/nuevo",
+    	url: "/pais",
     	templateUrl: "partials/nuevo_pais.html",
     	controller: "NuevoPaisCtrl as ctrl"
+    })
+    
+    
+    .state('editarPais',{
+    	url: "/pais/:id",
+    	params: {
+    		id: null
+    	},
+    	templateUrl: "partials/nuevo_pais.html",
+    	controller: "EditarPaisCtrl as ctrl"
     })
     
     
