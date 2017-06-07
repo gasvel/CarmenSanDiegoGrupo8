@@ -37,6 +37,17 @@ app.controller('NuevoPaisCtrl', function($resource, Pais, $state, $stateParams) 
     	$state.go("mapamundi");
     }
     
+    this.editarCarac=function(){
+    	$state.go("editarCarac", {id: self.paisSeleccionado.id});
+    };
+    
+    this.editarConex=function(){
+    	$state.go("editarConex", {id: self.paisSeleccionado.id});
+    };
+
+    this.editarLugaresDeInteres=function(){
+    	$state.go("editarLugaresDeInteres", {id: self.paisSeleccionado.id});
+    };
     
 
     this.msgs = [];

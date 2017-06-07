@@ -49,6 +49,7 @@ console.log("ruta");
     })
     
     
+    
     .state('editarPais',{
     	url: "/pais/:id",
     	params: {
@@ -56,6 +57,33 @@ console.log("ruta");
     	},
     	templateUrl: "partials/nuevo_pais.html",
     	controller: "EditarPaisCtrl as ctrl"
+    })
+    
+    .state('editarCarac',{
+    	url: "/pais/:id",
+    	params: {
+    		id: null
+    	},
+    	templateUrl: "partials/editar_carac.html",
+    	controller: "EditarCaracCtrl as ctrl"
+    })
+    
+    .state('editarConex',{
+    	url: "/pais/:id",
+    	params: {
+    		id: null
+    	},
+    	templateUrl: "partials/editar_carac.html",
+    	controller: "EditarConexCtrl as ctrl"
+    })
+    
+    .state('editarLugaresDeInteres',{
+    	url: "/pais/:id",
+    	params: {
+    		id: null
+    	},
+    	templateUrl: "partials/editar_carac.html",
+    	controller: "EditarLugaresDeInteresCtrl as ctrl"
     })
     
     

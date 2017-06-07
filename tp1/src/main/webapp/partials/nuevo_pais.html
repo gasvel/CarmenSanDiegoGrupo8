@@ -20,13 +20,13 @@
 						<br>
                         <div class="panelCarac">
                             <p class="lead"> <strong> Caracteristicas </strong> </p>
-                            <button class="btn btn-large btn-primary" type="button">Editar</button>
+                            <a ng-click="ctrl.editarCarac()" class="btn btn-large btn-primary" type="button">Editar</a>
                         </div>
                         <br>
                        
                         <div class="panelConex">
                             <p class="lead"> <strong> Conexiones </strong> </p>
-                            <button class="btn btn-large btn-primary" type="button">Editar</button>
+                            <a ng-click="ctrl.editarConex()" class="btn btn-large btn-primary" type="button">Editar</a>
                         </div>
                        <div class="list-group">
                         	<a ng-repeat="conexion in ctrl.paisSeleccionado.conexiones" class="list-group-item">{{conexion.nombre}}</a>
@@ -34,7 +34,7 @@
                         <br>
                         <div class="panelLugares">
                             <p class="lead"> <strong> Lugares de interes </strong> </p>
-                            <button class="btn btn-large btn-primary" type="button">Editar</button>
+                            <a ng-click="ctrl.editarLugaresDeInteres()" class="btn btn-large btn-primary" type="button">Editar</a>
                         </div>
                         <div class="list-group">
                         	<a ng-repeat="lugarDeInteres in ctrl.paisSeleccionado.lugares" class="list-group-item">{{lugarDeInteres.nombre}}</a>
