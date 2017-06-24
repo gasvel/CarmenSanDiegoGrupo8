@@ -43,8 +43,13 @@ class GeneradorDeCasos {
 	}
 	
 	def obtenerCaso(){
-		val num = randomWithRange(0,casos.size()-1)
-		return casos.get(num)
+		//val num = randomWithRange(0,casos.size()-1)
+		val responsable = generarResponsable()		
+			val planDeEscape = generarPlanDeEscape(responsable)
+			val paisDeInicio = planDeEscape.get(0)
+			val caso = new Caso(randomWithRange(0,10),responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
+//		return casos.get(num)
+			return caso;
 		
 	}
 	
