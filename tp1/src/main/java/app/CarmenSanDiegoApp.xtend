@@ -14,12 +14,16 @@ import tp1.Banco
 import org.uqbar.xtrest.api.XTRest
 import rest.CarmenSanDiegoRestAPI
 import tp1.CarmenSanDiego
+import tp1.Caso
+import tp1.RepoCasos
 
 class CarmenSanDiegoApp {
 	
 	def static void main(String[] args){
 		ApplicationContext.instance.configureSingleton(typeof(Pais), new RepoPaises)
 		ApplicationContext.instance.configureSingleton(typeof(Villano), new RepoVillanos)
+		ApplicationContext.instance.configureSingleton(typeof(Caso), new RepoCasos)
+		
 		
 		val repoPaises = ApplicationContext.instance.getSingleton(typeof(Pais)) as RepoPaises
 		val repoVillanos = ApplicationContext.instance.getSingleton(typeof(Villano)) as RepoVillanos
@@ -43,6 +47,16 @@ class CarmenSanDiegoApp {
 		hobbies2.add( "corta toda la looz")
 		repoVillanos.create("Ricky Fort", "Macho alfa", senas2,
 			hobbies2
+		)
+		
+				var senas3 = new ArrayList<String>
+		senas3.add("es presidente")
+		senas3.add("tiene ojos celeste")
+		var hobbies3 = new ArrayList<String>
+		hobbies3.add("privatizar")
+		hobbies3.add( "bailar a lo Freddy Mercury")
+		repoVillanos.create("El Gato", "Masculino", senas3,
+			hobbies3
 		)
 		
 		var caracArg= new ArrayList<String>

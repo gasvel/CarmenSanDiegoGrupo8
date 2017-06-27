@@ -12,4 +12,8 @@ class PistaAdapter {
 	new (String pistaObtenida){
 		pista = pistaObtenida;
 	}
+	
+	new(){
+		
+	}
 }

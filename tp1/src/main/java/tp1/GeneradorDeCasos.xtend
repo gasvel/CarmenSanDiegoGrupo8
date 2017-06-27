@@ -6,7 +6,6 @@ import java.util.List
 
 class GeneradorDeCasos {
 	
-	List<Caso> casos = new ArrayList<Caso>
 	
 	def randomWithRange(int min, int max)
 	{
@@ -30,7 +29,7 @@ class GeneradorDeCasos {
 			
 		}
 
-
+		planDeEscape.get(longitud).generarLugarVillano
 		return planDeEscape
 		
 	}
@@ -43,12 +42,10 @@ class GeneradorDeCasos {
 	}
 	
 	def obtenerCaso(){
-		//val num = randomWithRange(0,casos.size()-1)
 		val responsable = generarResponsable()		
 			val planDeEscape = generarPlanDeEscape(responsable)
 			val paisDeInicio = planDeEscape.get(0)
-			val caso = new Caso(randomWithRange(0,10),responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
-//		return casos.get(num)
+			val caso = getRepoCasos.create(responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
 			return caso;
 		
 	}
@@ -61,19 +58,23 @@ class GeneradorDeCasos {
 		ApplicationContext.instance.getSingleton(typeof(Pais))
 	}
 	
-	def generarCasosDisponibles(int cantCasos) {
-		for(var i = 0 ; i<cantCasos;i++){
-			val responsable = generarResponsable()		
-			val planDeEscape = generarPlanDeEscape(responsable)
-			val paisDeInicio = planDeEscape.get(0)
-			val caso = new Caso(i,responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
-			casos.add(caso)
-			val paises = new ArrayList<Pais>
-			paises.addAll(repoPaises.paises)
-
-		}
-		return casos
+	def RepoCasos getRepoCasos() {
+		ApplicationContext.instance.getSingleton(typeof(Caso))
 	}
+	
+//	def generarCasosDisponibles(int cantCasos) {
+//		for(var i = 0 ; i<cantCasos;i++){
+//			val responsable = generarResponsable()		
+//			val planDeEscape = generarPlanDeEscape(responsable)
+//			val paisDeInicio = planDeEscape.get(0)
+//			val caso = new Caso(i,responsable, planDeEscape, paisDeInicio ,"Las Manos de Peron")
+//			casos.add(caso)
+//			val paises = new ArrayList<Pais>
+//			paises.addAll(repoPaises.paises)
+//
+//		}
+//		return casos
+//	}
 	
 
 	

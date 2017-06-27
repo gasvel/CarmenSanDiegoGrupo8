@@ -15,14 +15,13 @@ import adapter.PaisAdapter
 class CarmenSanDiego {
 
 	Caso casoActual
-	List<Caso> casosDisponibles = new ArrayList<Caso>
 	GeneradorDeCasos generador = new GeneradorDeCasos()
 		
 
 	
 	
 	new(){
-		casosDisponibles = generador.generarCasosDisponibles(4)
+		//casosDisponibles = generador.generarCasosDisponibles(4)
 		
 	}
 		
@@ -50,7 +49,9 @@ class CarmenSanDiego {
 		ApplicationContext.instance.getSingleton(typeof(Pais))
 	}
 	
-
+	def RepoCasos getRepoCasos() {
+		ApplicationContext.instance.getSingleton(typeof(Caso))
+	}
 	
 	
 	
@@ -93,7 +94,7 @@ class CarmenSanDiego {
 	
 	
 	def getCaso(Integer idCaso) {
-		return casosDisponibles.findFirst[c | c.id == idCaso]
+		return getRepoCasos.search(idCaso)
 	}
 	
 	def getLugar(Caso caso,String string) {

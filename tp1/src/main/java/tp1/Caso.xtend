@@ -5,12 +5,12 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import java.util.ArrayList
 import excepciones.NoPuedeViajarPaisFueraDeLaConexionException
+import org.uqbar.commons.model.Entity
 
 @Accessors
 @Observable
-class Caso{
+class Caso extends Entity{
 	
-	int id
 	Lugar lugar1
 	Lugar lugar2
 	Lugar lugar3
@@ -25,9 +25,11 @@ class Caso{
 	OrdenDeArresto orden
 	
 
+	new(){
+		
+	}
 	
-	new(int idC,Villano villano, List<Pais> plan, Pais lugar, String objetoR){
-		id = idC
+	new(Villano villano, List<Pais> plan, Pais lugar, String objetoR){
 		responsable = villano
 		planDeEscape = plan
 		lugarDeRobo = lugar
