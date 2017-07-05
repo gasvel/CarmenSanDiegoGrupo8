@@ -5,11 +5,13 @@ import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.utils.Observable
 import org.uqbar.commons.model.Entity
 import adapter.PistaAdapter
+import org.uqbar.commons.utils.ApplicationContext
 
 @Observable
 @Accessors
 class Lugar extends Entity {
 	String nombre
+	Pregunta preguntaActual
 	
 	
 	new(){
@@ -45,7 +47,27 @@ class Lugar extends Entity {
 	def obtenerPista(Caso caso){
 		
 	}
-
+	
+	def Pregunta nuevaPregunta(){
+		
+	}
+	
+	def RepoPreguntas getRepoPreguntas() {
+		ApplicationContext.instance.getSingleton(typeof(Pregunta))
+	}
+	
+	def nuevaRespuesta(int id,Caso caso){
+		if(preguntaActual.idCorrecta == id){
+			this.obtenerPista(caso)
+		}
+		else{
+			"Respuesta incorrecta"
+		}
+	}
+	
+	def getRespuestaCorrecta(){
+		preguntaActual.idCorrecta
+	}
 
 
 }
@@ -60,7 +82,11 @@ class Club extends Lugar{
 		darInfo(pista,caso)
 	}
 	
-		
+	
+	override nuevaPregunta(){
+		preguntaActual = getRepoPreguntas.getByCat("Deportes")
+		preguntaActual
+	}
 
 	override toString(){
 		"Club"
@@ -78,6 +104,11 @@ class Biblioteca extends Lugar {
 		darInfo(pista,caso)
 	}
 
+
+	override nuevaPregunta(){
+		preguntaActual= getRepoPreguntas.getByCat("Literatura")
+		preguntaActual
+	}
 	
 	override toString(){
 		"Biblioteca"
@@ -95,6 +126,11 @@ class Embajada extends Lugar {
 		darInfo(pista,caso)
 	}
 	
+	
+	override nuevaPregunta(){
+		preguntaActual = getRepoPreguntas.getByCat("Geografia")
+		preguntaActual
+	}
 
 	
 	override toString(){
@@ -114,7 +150,10 @@ class Banco extends Lugar {
 	}
 	
 	
-	
+	override nuevaPregunta(){
+		preguntaActual = getRepoPreguntas.getByCat("Matematicas")
+		preguntaActual
+	}
 
 	
 	override toString(){

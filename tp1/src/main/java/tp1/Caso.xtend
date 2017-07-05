@@ -11,9 +11,6 @@ import org.uqbar.commons.model.Entity
 @Observable
 class Caso extends Entity{
 	
-	Lugar lugar1
-	Lugar lugar2
-	Lugar lugar3
 	Villano responsable
 	List<Pais> planDeEscape
 	String objetoRobado
@@ -23,6 +20,7 @@ class Caso extends Entity{
 	List<Pais> recorridoCorrecto = new ArrayList<Pais>
 	List<Pais> recorridoIncorrecto = new ArrayList<Pais>
 	OrdenDeArresto orden
+	
 	
 
 	new(){
@@ -79,7 +77,6 @@ class Caso extends Entity{
 				actualizarRecorrido(ubicacionActual)
 				
 				ubicacionActual = pais
-				actualizarLugares(ubicacionActual)
 				ubicacionActual.generarLugarVillano()
 			}
 			else{
@@ -95,13 +92,7 @@ class Caso extends Entity{
 	
 	
 	
-	def actualizarLugares(Pais pais) {
-		lugar1 = ubicacionActual.lugaresDeInteres.get(0)
-		lugar2 = ubicacionActual.lugaresDeInteres.get(1)
-		lugar3 = ubicacionActual.lugaresDeInteres.get(2)
-		
-		
-	}
+
 	
 	def actualizarRecorrido(Pais pais) {
 	

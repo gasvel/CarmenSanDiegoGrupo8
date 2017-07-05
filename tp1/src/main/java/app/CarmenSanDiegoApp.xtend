@@ -16,6 +16,9 @@ import rest.CarmenSanDiegoRestAPI
 import tp1.CarmenSanDiego
 import tp1.Caso
 import tp1.RepoCasos
+import tp1.RepoPreguntas
+import tp1.Pregunta
+import service.DataService
 
 class CarmenSanDiegoApp {
 	
@@ -23,11 +26,15 @@ class CarmenSanDiegoApp {
 		ApplicationContext.instance.configureSingleton(typeof(Pais), new RepoPaises)
 		ApplicationContext.instance.configureSingleton(typeof(Villano), new RepoVillanos)
 		ApplicationContext.instance.configureSingleton(typeof(Caso), new RepoCasos)
-		
+		ApplicationContext.instance.configureSingleton(typeof(Pregunta),new RepoPreguntas)
 		
 		val repoPaises = ApplicationContext.instance.getSingleton(typeof(Pais)) as RepoPaises
 		val repoVillanos = ApplicationContext.instance.getSingleton(typeof(Villano)) as RepoVillanos
+		val repoPreguntas = ApplicationContext.instance.getSingleton(typeof(Pregunta)) as RepoPreguntas
 		
+		val datos = new DataService(repoPreguntas)
+		
+		datos.setPreguntasIniciales()
 		
 		var senas1 = new ArrayList<String>
 		senas1.add("tiene el cabello pelirrojo")

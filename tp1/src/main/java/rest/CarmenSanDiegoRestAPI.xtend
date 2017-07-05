@@ -18,6 +18,7 @@ import tp1.Pais
 import adapter.PaisAdapter
 import excepciones.NoPuedeViajarPaisFueraDeLaConexionException
 import org.uqbar.xtrest.api.Result
+import adapter.PreguntaAdapter
 
 @Controller
 class CarmenSanDiegoRestAPI {
@@ -58,13 +59,60 @@ class CarmenSanDiegoRestAPI {
             		notFound(getErrorJson("No existe lugar con ese nombre"))
             	}
             	else{
-            		ok(lugarEnPais.obtenerPista(caso).toJson)
+            		val pregunta = new PreguntaAdapter(lugarEnPais.nuevaPregunta)
+            		ok(pregunta.toJson)
             	}
             }
         }
         catch (NumberFormatException ex) {
         	badRequest(getErrorJson("El id debe ser un numero entero"))
         }
+	}
+	
+	@Post("/enviarRespuesta/:lugar/:casoId")
+	def enviarRespuesta(@Body String body){
+		response.contentType = ContentType.APPLICATION_JSON
+		try{
+			var caso = this.juego.getCaso(Integer.valueOf(casoId))
+            if (caso == null) {
+            	notFound(getErrorJson("No existe caso con ese id"))
+            } else {
+            	var lugarEnPais = this.juego.getLugar(caso,lugar)
+            	if(lugarEnPais == null){
+            		notFound(getErrorJson("No existe lugar con ese nombre"))
+            	}
+            	else{
+            		
+            		ok(lugarEnPais.nuevaRespuesta(Integer.valueOf(body.fromJson(int)),caso).toJson)
+            	}           
+            }
+		}
+		catch (NumberFormatException ex){
+			badRequest(getErrorJson("El id debe ser un numero entero"))
+		}
+	}
+	
+	@Get("/respuestaCorrecta/:lugar/:casoId")
+	def getRespuestaCorrecta(){
+		response.contentType = ContentType.APPLICATION_JSON
+		try{
+			var caso = this.juego.getCaso(Integer.valueOf(casoId))
+            if (caso == null) {
+            	notFound(getErrorJson("No existe caso con ese id"))
+            } else {
+            	var lugarEnPais = this.juego.getLugar(caso,lugar)
+            	if(lugarEnPais == null){
+            		notFound(getErrorJson("No existe lugar con ese nombre"))
+            	}
+            	else{
+            		
+            		ok("" + lugarEnPais.getRespuestaCorrecta)
+            	}            
+			}
+		}
+		catch (NumberFormatException ex){
+			badRequest(getErrorJson("El id debe ser un numero entero"))
+		}
 	}
 	
 	@Post("/emitirOrdenPara/:villanoId/:casoId")
@@ -182,6 +230,7 @@ class CarmenSanDiegoRestAPI {
 	def nuevoVillano(@Body String body){
 		response.contentType = ContentType.APPLICATION_JSON
         try {
+        	System.out.println(body)
 	        val Villano villano = body.fromJson(Villano)
 	        try {
 				juego.repoVillanos.create(villano)
@@ -249,7 +298,7 @@ class CarmenSanDiegoRestAPI {
 				notFound(getErrorJson("Recatate gil no existe pais con ese id"))
             } else {
 				this.juego.repoPaises.delete(pais)
-				ok()
+				ok("puto")
 			}		
 		}
 		catch(NumberFormatException ex) {
